@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="UserProfile">
+    <h1>User Details</h1>
+    <div ng-controller="UserDetailsController">
+        <p>Name: <span>{{userDetails.FirstName + " " +userDetails.LastName}}</span></p>
+        <p>Profile Picture: <span>{{userDetails.ProfilePicture}}</span></p>                     <!--//N/A-->
+        <p>EmailId: <span>{{userDetails.EmailId}}</span></p>            
+        <p>Contact: <span>{{userDetails.Contact}}</span></p>
+        <p>Level: <span>{{userDetails.LevelId }}</span></p>
+        <p>City: <span>{{userDetails.City }}</span></p>
+        <p>Points: <span>{{userDetails.Points }}</span></p>
+        <p>No. of reviews given: <span>{{userDetails.reviewCount }}</span></p>
+        <p>No. of helpful votes: <span>{{userDetails.helpfulCount }}</span></p>
+        <p>No. of thanks recieved: <span>{{userDetails.sayThanksCount }}</span></p>
+        <div ng-show="reviewList.length > 0">
+            <p><b>Reviews: </b></p>
+            <p ng-repeat="review in reviewList">
+                Heading: {{review.Heading}}<br />
+                Review: {{review.Text}}<br />
+                Posted On: {{review.Time}}<br />
+                Last Visited This Property: {{review.LastVisited}}<br />
+                Helpful: {{review.Helpful}}<br />
+                Thanks: {{review.SayThanks}}<br />
+            </p>
+        </div>
+        <div ng-show="reviewList.length < 0">
+
+        </div>
+        <p><b>Projects you recently viewed:</b> </p>
+        <p ng-repeat="recent in recentlyViewed">
+            Property: {{recent.Name }}<br/>
+            Image: {{recent.ProfilePicture }}<br />
+        </p>
+        <p><b>Property Followed by you:</b></p> 
+        <p ng-repeat="followed in followedProperty">
+            Property: {{followed.Name}}<br />
+            Image: {{followed.ProfilePicture}}<br />
+        </p>
+        <button ng-click="Save()">Submit</button>
+    </div>
+
+    <script src="scripts/User.js"></script>
+
+</body>
+</html>
+

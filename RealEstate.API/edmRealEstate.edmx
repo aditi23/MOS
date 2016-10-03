@@ -1,0 +1,2653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbRealEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAmenity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterAmenityId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblApartmentBuildQuality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterApartmentBuildQualityId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAverageRating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Amenity" Type="float" Nullable="false" />
+          <Property Name="ApartmentBuildQuality" Type="float" Nullable="false" />
+          <Property Name="BuilderProfile" Type="float" Nullable="false" />
+          <Property Name="ConstructionQualityParameter" Type="float" Nullable="false" />
+          <Property Name="Inventory" Type="float" Nullable="false" />
+          <Property Name="LegalClarity" Type="float" Nullable="false" />
+          <Property Name="Livability" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBuilder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CompanyRegistrationNumber" Type="int" Nullable="false" />
+          <Property Name="YearOfEstablishment" Type="int" Nullable="false" />
+          <Property Name="TotalProjectsCount" Type="int" Nullable="false" />
+          <Property Name="CompanyEmailId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdminContactNumber" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBuilderComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="ProjectBuilderMappingId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsConvinced" Type="bit" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBuilderDirector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuilderId" Type="int" Nullable="false" />
+          <Property Name="NameOfDirector" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBuilderProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterBuilderProfileId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BuilderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblConstructionQualityParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterConstructionQualityParameterId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFollowProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Likes" Type="int" Nullable="false" />
+          <Property Name="ImageCategoryId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInappropriate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterInventoryId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLegalClarity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterLegalClarityId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="ReviewCount" Type="int" Nullable="false" />
+          <Property Name="ThanksCount" Type="int" Nullable="false" />
+          <Property Name="HelpfulCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLivability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterLivabilityId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterAmenity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterApartmentBuildQuality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterBuilderProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterConstructionQualityParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterLegalClarity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterLivability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterProjectInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMasterReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Possession" Type="datetime" />
+          <Property Name="Pricing" Type="bigint" Nullable="false" />
+          <Property Name="AverageRating" Type="float" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProjectBuilderMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuilderId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="BeneficiaryName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProjectInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="MasterProjectInformationId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRecentlyViewed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AverageValue" Type="float" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Helpful" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="IsReviewed" Type="bit" Nullable="false" />
+          <Property Name="SayThanks" Type="int" Nullable="false" />
+          <Property Name="Heading" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="lastVisited" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReviewDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="ReviewedUserId" Type="int" Nullable="false" />
+          <Property Name="Helpful" Type="bit" Nullable="false" />
+          <Property Name="SayThanks" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReviewRatingDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="MasterReviewId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="Contact" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="LevelId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="ProfilePictureUrl" Type="nvarchar(max)" />
+          <Property Name="UserRegMode" Type="bit" Nullable="false" />
+          <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblBuilder_tblBuilderDirector">
+          <End Role="tblBuilder" Type="Self.tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBuilderDirector" Type="Self.tblBuilderDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderDirector">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilder_tblBuilderProfile">
+          <End Role="tblBuilder" Type="Self.tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBuilderProfile" Type="Self.tblBuilderProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderProfile">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilder_tblProjectBuilderMapping">
+          <End Role="tblBuilder" Type="Self.tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProjectBuilderMapping" Type="Self.tblProjectBuilderMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectBuilderMapping">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilderComment_tblProjectBuilderMapping">
+          <End Role="tblProjectBuilderMapping" Type="Self.tblProjectBuilderMapping" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBuilderComment" Type="Self.tblBuilderComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjectBuilderMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderComment">
+              <PropertyRef Name="ProjectBuilderMappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCity_tblLocation">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImage_tblImageCategory">
+          <End Role="tblImageCategory" Type="Self.tblImageCategory" Multiplicity="1" />
+          <End Role="tblImage" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblImageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="ImageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevel_tblUser">
+          <End Role="tblLevel" Type="Self.tblLevel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterAmenity_tblAmenity">
+          <End Role="tblMasterAmenity" Type="Self.tblMasterAmenity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAmenity" Type="Self.tblAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterAmenity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAmenity">
+              <PropertyRef Name="MasterAmenityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality">
+          <End Role="tblMasterApartmentBuildQuality" Type="Self.tblMasterApartmentBuildQuality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApartmentBuildQuality" Type="Self.tblApartmentBuildQuality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterApartmentBuildQuality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblApartmentBuildQuality">
+              <PropertyRef Name="MasterApartmentBuildQualityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterBuilderProfile_tblBuilderProfile">
+          <End Role="tblMasterBuilderProfile" Type="Self.tblMasterBuilderProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBuilderProfile" Type="Self.tblBuilderProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterBuilderProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderProfile">
+              <PropertyRef Name="MasterBuilderProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter">
+          <End Role="tblMasterConstructionQualityParameter" Type="Self.tblMasterConstructionQualityParameter" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblConstructionQualityParameter" Type="Self.tblConstructionQualityParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterConstructionQualityParameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblConstructionQualityParameter">
+              <PropertyRef Name="MasterConstructionQualityParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterInventory_tblInventory">
+          <End Role="tblMasterInventory" Type="Self.tblMasterInventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblInventory" Type="Self.tblInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInventory">
+              <PropertyRef Name="MasterInventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterLegalClarity_tblLegalClarity">
+          <End Role="tblMasterLegalClarity" Type="Self.tblMasterLegalClarity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblLegalClarity" Type="Self.tblLegalClarity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterLegalClarity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLegalClarity">
+              <PropertyRef Name="MasterLegalClarityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterLivability_tblLivability">
+          <End Role="tblMasterLivability" Type="Self.tblMasterLivability" Multiplicity="1" />
+          <End Role="tblLivability" Type="Self.tblLivability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterLivability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLivability">
+              <PropertyRef Name="MasterLivabilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterProjectInformation">
+          <End Role="tblMasterProjectInformation" Type="Self.tblMasterProjectInformation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProjectInformation" Type="Self.tblProjectInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterProjectInformation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectInformation">
+              <PropertyRef Name="MasterProjectInformationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterReview_tblReviewRatingDetails">
+          <End Role="tblMasterReview" Type="Self.tblMasterReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblReviewRatingDetails" Type="Self.tblReviewRatingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewRatingDetails">
+              <PropertyRef Name="MasterReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProjectInformation" Type="Self.tblProjectInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectInformation">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblAmenity">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAmenity" Type="Self.tblAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAmenity">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblApartmentBuildQuality">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApartmentBuildQuality" Type="Self.tblApartmentBuildQuality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblApartmentBuildQuality">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblAverageRating">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAverageRating" Type="Self.tblAverageRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAverageRating">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblConstructionQualityParameter">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblConstructionQualityParameter" Type="Self.tblConstructionQualityParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblConstructionQualityParameter">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblFollowProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFollowProject" Type="Self.tblFollowProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFollowProject">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblImage">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblImage" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblInventory">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblInventory" Type="Self.tblInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInventory">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLegalClarity">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblLegalClarity" Type="Self.tblLegalClarity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLegalClarity">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLivability">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblLivability" Type="Self.tblLivability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLivability">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLocation">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblProjectBuilderMapping">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProjectBuilderMapping" Type="Self.tblProjectBuilderMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectBuilderMapping">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblRecentlyViewed">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecentlyViewed" Type="Self.tblRecentlyViewed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRecentlyViewed">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblReview">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReview">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblBuilderComment">
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="1" />
+          <End Role="tblBuilderComment" Type="Self.tblBuilderComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderComment">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblInappropriate">
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblInappropriate" Type="Self.tblInappropriate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInappropriate">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblReviewDetails">
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblReviewDetails" Type="Self.tblReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewDetails">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblReviewRatingDetails">
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="1" />
+          <End Role="tblReviewRatingDetails" Type="Self.tblReviewRatingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewRatingDetails">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblFollowProject">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFollowProject" Type="Self.tblFollowProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFollowProject">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblInappropriate">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblInappropriate" Type="Self.tblInappropriate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInappropriate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRecentlyViewed">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecentlyViewed" Type="Self.tblRecentlyViewed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRecentlyViewed">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblReview">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblReview" Type="Self.tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReview">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblReviewDetails">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblReviewDetails" Type="Self.tblReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewDetails">
+              <PropertyRef Name="ReviewedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserType_tblUser">
+          <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbRealEstateModelStoreContainer">
+          <EntitySet Name="tblAmenity" EntityType="Self.tblAmenity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblApartmentBuildQuality" EntityType="Self.tblApartmentBuildQuality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAverageRating" EntityType="Self.tblAverageRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuilder" EntityType="Self.tblBuilder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuilderComment" EntityType="Self.tblBuilderComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuilderDirector" EntityType="Self.tblBuilderDirector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuilderProfile" EntityType="Self.tblBuilderProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConstructionQualityParameter" EntityType="Self.tblConstructionQualityParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFollowProject" EntityType="Self.tblFollowProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImageCategory" EntityType="Self.tblImageCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInappropriate" EntityType="Self.tblInappropriate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInventory" EntityType="Self.tblInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLegalClarity" EntityType="Self.tblLegalClarity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevel" EntityType="Self.tblLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLivability" EntityType="Self.tblLivability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocation" EntityType="Self.tblLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterAmenity" EntityType="Self.tblMasterAmenity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterApartmentBuildQuality" EntityType="Self.tblMasterApartmentBuildQuality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterBuilderProfile" EntityType="Self.tblMasterBuilderProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterConstructionQualityParameter" EntityType="Self.tblMasterConstructionQualityParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterInventory" EntityType="Self.tblMasterInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterLegalClarity" EntityType="Self.tblMasterLegalClarity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterLivability" EntityType="Self.tblMasterLivability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterProjectInformation" EntityType="Self.tblMasterProjectInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMasterReview" EntityType="Self.tblMasterReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProjectBuilderMapping" EntityType="Self.tblProjectBuilderMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProjectInformation" EntityType="Self.tblProjectInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRecentlyViewed" EntityType="Self.tblRecentlyViewed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReview" EntityType="Self.tblReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReviewDetails" EntityType="Self.tblReviewDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReviewRatingDetails" EntityType="Self.tblReviewRatingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBuilder_tblBuilderDirector" Association="Self.FK_tblBuilder_tblBuilderDirector">
+            <End Role="tblBuilder" EntitySet="tblBuilder" />
+            <End Role="tblBuilderDirector" EntitySet="tblBuilderDirector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilder_tblBuilderProfile" Association="Self.FK_tblBuilder_tblBuilderProfile">
+            <End Role="tblBuilder" EntitySet="tblBuilder" />
+            <End Role="tblBuilderProfile" EntitySet="tblBuilderProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilder_tblProjectBuilderMapping" Association="Self.FK_tblBuilder_tblProjectBuilderMapping">
+            <End Role="tblBuilder" EntitySet="tblBuilder" />
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilderComment_tblProjectBuilderMapping" Association="Self.FK_tblBuilderComment_tblProjectBuilderMapping">
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMapping" />
+            <End Role="tblBuilderComment" EntitySet="tblBuilderComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCity_tblLocation" Association="Self.FK_tblCity_tblLocation">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblLocation" EntitySet="tblLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImage_tblImageCategory" Association="Self.FK_tblImage_tblImageCategory">
+            <End Role="tblImageCategory" EntitySet="tblImageCategory" />
+            <End Role="tblImage" EntitySet="tblImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevel_tblUser" Association="Self.FK_tblLevel_tblUser">
+            <End Role="tblLevel" EntitySet="tblLevel" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterAmenity_tblAmenity" Association="Self.FK_tblMasterAmenity_tblAmenity">
+            <End Role="tblMasterAmenity" EntitySet="tblMasterAmenity" />
+            <End Role="tblAmenity" EntitySet="tblAmenity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality" Association="Self.FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality">
+            <End Role="tblMasterApartmentBuildQuality" EntitySet="tblMasterApartmentBuildQuality" />
+            <End Role="tblApartmentBuildQuality" EntitySet="tblApartmentBuildQuality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterBuilderProfile_tblBuilderProfile" Association="Self.FK_tblMasterBuilderProfile_tblBuilderProfile">
+            <End Role="tblMasterBuilderProfile" EntitySet="tblMasterBuilderProfile" />
+            <End Role="tblBuilderProfile" EntitySet="tblBuilderProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter" Association="Self.FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter">
+            <End Role="tblMasterConstructionQualityParameter" EntitySet="tblMasterConstructionQualityParameter" />
+            <End Role="tblConstructionQualityParameter" EntitySet="tblConstructionQualityParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterInventory_tblInventory" Association="Self.FK_tblMasterInventory_tblInventory">
+            <End Role="tblMasterInventory" EntitySet="tblMasterInventory" />
+            <End Role="tblInventory" EntitySet="tblInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterLegalClarity_tblLegalClarity" Association="Self.FK_tblMasterLegalClarity_tblLegalClarity">
+            <End Role="tblMasterLegalClarity" EntitySet="tblMasterLegalClarity" />
+            <End Role="tblLegalClarity" EntitySet="tblLegalClarity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterLivability_tblLivability" Association="Self.FK_tblMasterLivability_tblLivability">
+            <End Role="tblMasterLivability" EntitySet="tblMasterLivability" />
+            <End Role="tblLivability" EntitySet="tblLivability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterProjectInformation" Association="Self.FK_tblMasterProjectInformation">
+            <End Role="tblMasterProjectInformation" EntitySet="tblMasterProjectInformation" />
+            <End Role="tblProjectInformation" EntitySet="tblProjectInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterReview_tblReviewRatingDetails" Association="Self.FK_tblMasterReview_tblReviewRatingDetails">
+            <End Role="tblMasterReview" EntitySet="tblMasterReview" />
+            <End Role="tblReviewRatingDetails" EntitySet="tblReviewRatingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject" Association="Self.FK_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblProjectInformation" EntitySet="tblProjectInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAmenity" Association="Self.FK_tblProject_tblAmenity">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblAmenity" EntitySet="tblAmenity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblApartmentBuildQuality" Association="Self.FK_tblProject_tblApartmentBuildQuality">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblApartmentBuildQuality" EntitySet="tblApartmentBuildQuality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAverageRating" Association="Self.FK_tblProject_tblAverageRating">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblAverageRating" EntitySet="tblAverageRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblConstructionQualityParameter" Association="Self.FK_tblProject_tblConstructionQualityParameter">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblConstructionQualityParameter" EntitySet="tblConstructionQualityParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblFollowProject" Association="Self.FK_tblProject_tblFollowProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblFollowProject" EntitySet="tblFollowProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblImage" Association="Self.FK_tblProject_tblImage">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblImage" EntitySet="tblImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblInventory" Association="Self.FK_tblProject_tblInventory">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblInventory" EntitySet="tblInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLegalClarity" Association="Self.FK_tblProject_tblLegalClarity">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblLegalClarity" EntitySet="tblLegalClarity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLivability" Association="Self.FK_tblProject_tblLivability">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblLivability" EntitySet="tblLivability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLocation" Association="Self.FK_tblProject_tblLocation">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblLocation" EntitySet="tblLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblProjectBuilderMapping" Association="Self.FK_tblProject_tblProjectBuilderMapping">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblRecentlyViewed" Association="Self.FK_tblProject_tblRecentlyViewed">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblRecentlyViewed" EntitySet="tblRecentlyViewed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblReview" Association="Self.FK_tblProject_tblReview">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblReview" EntitySet="tblReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblBuilderComment" Association="Self.FK_tblReview_tblBuilderComment">
+            <End Role="tblReview" EntitySet="tblReview" />
+            <End Role="tblBuilderComment" EntitySet="tblBuilderComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblInappropriate" Association="Self.FK_tblReview_tblInappropriate">
+            <End Role="tblReview" EntitySet="tblReview" />
+            <End Role="tblInappropriate" EntitySet="tblInappropriate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblReviewDetails" Association="Self.FK_tblReview_tblReviewDetails">
+            <End Role="tblReview" EntitySet="tblReview" />
+            <End Role="tblReviewDetails" EntitySet="tblReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblReviewRatingDetails" Association="Self.FK_tblReview_tblReviewRatingDetails">
+            <End Role="tblReview" EntitySet="tblReview" />
+            <End Role="tblReviewRatingDetails" EntitySet="tblReviewRatingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblFollowProject" Association="Self.FK_tblUser_tblFollowProject">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblFollowProject" EntitySet="tblFollowProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblInappropriate" Association="Self.FK_tblUser_tblInappropriate">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblInappropriate" EntitySet="tblInappropriate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRecentlyViewed" Association="Self.FK_tblUser_tblRecentlyViewed">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRecentlyViewed" EntitySet="tblRecentlyViewed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblReview" Association="Self.FK_tblUser_tblReview">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblReview" EntitySet="tblReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblReviewDetails" Association="Self.FK_tblUser_tblReviewDetails">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblReviewDetails" EntitySet="tblReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserType_tblUser" Association="Self.FK_tblUserType_tblUser">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbRealEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbRealEstateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAmenities" EntityType="dbRealEstateModel.tblAmenity" />
+          <EntitySet Name="tblApartmentBuildQualities" EntityType="dbRealEstateModel.tblApartmentBuildQuality" />
+          <EntitySet Name="tblAverageRatings" EntityType="dbRealEstateModel.tblAverageRating" />
+          <EntitySet Name="tblBuilders" EntityType="dbRealEstateModel.tblBuilder" />
+          <EntitySet Name="tblBuilderComments" EntityType="dbRealEstateModel.tblBuilderComment" />
+          <EntitySet Name="tblBuilderDirectors" EntityType="dbRealEstateModel.tblBuilderDirector" />
+          <EntitySet Name="tblBuilderProfiles" EntityType="dbRealEstateModel.tblBuilderProfile" />
+          <EntitySet Name="tblCities" EntityType="dbRealEstateModel.tblCity" />
+          <EntitySet Name="tblConstructionQualityParameters" EntityType="dbRealEstateModel.tblConstructionQualityParameter" />
+          <EntitySet Name="tblFollowProjects" EntityType="dbRealEstateModel.tblFollowProject" />
+          <EntitySet Name="tblImages" EntityType="dbRealEstateModel.tblImage" />
+          <EntitySet Name="tblImageCategories" EntityType="dbRealEstateModel.tblImageCategory" />
+          <EntitySet Name="tblInappropriates" EntityType="dbRealEstateModel.tblInappropriate" />
+          <EntitySet Name="tblInventories" EntityType="dbRealEstateModel.tblInventory" />
+          <EntitySet Name="tblLegalClarities" EntityType="dbRealEstateModel.tblLegalClarity" />
+          <EntitySet Name="tblLevels" EntityType="dbRealEstateModel.tblLevel" />
+          <EntitySet Name="tblLivabilities" EntityType="dbRealEstateModel.tblLivability" />
+          <EntitySet Name="tblLocations" EntityType="dbRealEstateModel.tblLocation" />
+          <EntitySet Name="tblMasterAmenities" EntityType="dbRealEstateModel.tblMasterAmenity" />
+          <EntitySet Name="tblMasterApartmentBuildQualities" EntityType="dbRealEstateModel.tblMasterApartmentBuildQuality" />
+          <EntitySet Name="tblMasterBuilderProfiles" EntityType="dbRealEstateModel.tblMasterBuilderProfile" />
+          <EntitySet Name="tblMasterConstructionQualityParameters" EntityType="dbRealEstateModel.tblMasterConstructionQualityParameter" />
+          <EntitySet Name="tblMasterInventories" EntityType="dbRealEstateModel.tblMasterInventory" />
+          <EntitySet Name="tblMasterLegalClarities" EntityType="dbRealEstateModel.tblMasterLegalClarity" />
+          <EntitySet Name="tblMasterLivabilities" EntityType="dbRealEstateModel.tblMasterLivability" />
+          <EntitySet Name="tblMasterProjectInformations" EntityType="dbRealEstateModel.tblMasterProjectInformation" />
+          <EntitySet Name="tblMasterReviews" EntityType="dbRealEstateModel.tblMasterReview" />
+          <EntitySet Name="tblProjects" EntityType="dbRealEstateModel.tblProject" />
+          <EntitySet Name="tblProjectBuilderMappings" EntityType="dbRealEstateModel.tblProjectBuilderMapping" />
+          <EntitySet Name="tblProjectInformations" EntityType="dbRealEstateModel.tblProjectInformation" />
+          <EntitySet Name="tblRecentlyVieweds" EntityType="dbRealEstateModel.tblRecentlyViewed" />
+          <EntitySet Name="tblReviews" EntityType="dbRealEstateModel.tblReview" />
+          <EntitySet Name="tblReviewDetails" EntityType="dbRealEstateModel.tblReviewDetail" />
+          <EntitySet Name="tblReviewRatingDetails" EntityType="dbRealEstateModel.tblReviewRatingDetail" />
+          <EntitySet Name="tblUsers" EntityType="dbRealEstateModel.tblUser" />
+          <EntitySet Name="tblUserTypes" EntityType="dbRealEstateModel.tblUserType" />
+          <AssociationSet Name="FK_tblMasterAmenity_tblAmenity" Association="dbRealEstateModel.FK_tblMasterAmenity_tblAmenity">
+            <End Role="tblMasterAmenity" EntitySet="tblMasterAmenities" />
+            <End Role="tblAmenity" EntitySet="tblAmenities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAmenity" Association="dbRealEstateModel.FK_tblProject_tblAmenity">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblAmenity" EntitySet="tblAmenities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality" Association="dbRealEstateModel.FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality">
+            <End Role="tblMasterApartmentBuildQuality" EntitySet="tblMasterApartmentBuildQualities" />
+            <End Role="tblApartmentBuildQuality" EntitySet="tblApartmentBuildQualities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblApartmentBuildQuality" Association="dbRealEstateModel.FK_tblProject_tblApartmentBuildQuality">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblApartmentBuildQuality" EntitySet="tblApartmentBuildQualities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAverageRating" Association="dbRealEstateModel.FK_tblProject_tblAverageRating">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblAverageRating" EntitySet="tblAverageRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilder_tblBuilderDirector" Association="dbRealEstateModel.FK_tblBuilder_tblBuilderDirector">
+            <End Role="tblBuilder" EntitySet="tblBuilders" />
+            <End Role="tblBuilderDirector" EntitySet="tblBuilderDirectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilder_tblBuilderProfile" Association="dbRealEstateModel.FK_tblBuilder_tblBuilderProfile">
+            <End Role="tblBuilder" EntitySet="tblBuilders" />
+            <End Role="tblBuilderProfile" EntitySet="tblBuilderProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilder_tblProjectBuilderMapping" Association="dbRealEstateModel.FK_tblBuilder_tblProjectBuilderMapping">
+            <End Role="tblBuilder" EntitySet="tblBuilders" />
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBuilderComment_tblProjectBuilderMapping" Association="dbRealEstateModel.FK_tblBuilderComment_tblProjectBuilderMapping">
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMappings" />
+            <End Role="tblBuilderComment" EntitySet="tblBuilderComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblBuilderComment" Association="dbRealEstateModel.FK_tblReview_tblBuilderComment">
+            <End Role="tblReview" EntitySet="tblReviews" />
+            <End Role="tblBuilderComment" EntitySet="tblBuilderComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterBuilderProfile_tblBuilderProfile" Association="dbRealEstateModel.FK_tblMasterBuilderProfile_tblBuilderProfile">
+            <End Role="tblMasterBuilderProfile" EntitySet="tblMasterBuilderProfiles" />
+            <End Role="tblBuilderProfile" EntitySet="tblBuilderProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCity_tblLocation" Association="dbRealEstateModel.FK_tblCity_tblLocation">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblLocation" EntitySet="tblLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter" Association="dbRealEstateModel.FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter">
+            <End Role="tblMasterConstructionQualityParameter" EntitySet="tblMasterConstructionQualityParameters" />
+            <End Role="tblConstructionQualityParameter" EntitySet="tblConstructionQualityParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblConstructionQualityParameter" Association="dbRealEstateModel.FK_tblProject_tblConstructionQualityParameter">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblConstructionQualityParameter" EntitySet="tblConstructionQualityParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblFollowProject" Association="dbRealEstateModel.FK_tblProject_tblFollowProject">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblFollowProject" EntitySet="tblFollowProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblFollowProject" Association="dbRealEstateModel.FK_tblUser_tblFollowProject">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblFollowProject" EntitySet="tblFollowProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImage_tblImageCategory" Association="dbRealEstateModel.FK_tblImage_tblImageCategory">
+            <End Role="tblImageCategory" EntitySet="tblImageCategories" />
+            <End Role="tblImage" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblImage" Association="dbRealEstateModel.FK_tblProject_tblImage">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblImage" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblInappropriate" Association="dbRealEstateModel.FK_tblReview_tblInappropriate">
+            <End Role="tblReview" EntitySet="tblReviews" />
+            <End Role="tblInappropriate" EntitySet="tblInappropriates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblInappropriate" Association="dbRealEstateModel.FK_tblUser_tblInappropriate">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblInappropriate" EntitySet="tblInappropriates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterInventory_tblInventory" Association="dbRealEstateModel.FK_tblMasterInventory_tblInventory">
+            <End Role="tblMasterInventory" EntitySet="tblMasterInventories" />
+            <End Role="tblInventory" EntitySet="tblInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblInventory" Association="dbRealEstateModel.FK_tblProject_tblInventory">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblInventory" EntitySet="tblInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterLegalClarity_tblLegalClarity" Association="dbRealEstateModel.FK_tblMasterLegalClarity_tblLegalClarity">
+            <End Role="tblMasterLegalClarity" EntitySet="tblMasterLegalClarities" />
+            <End Role="tblLegalClarity" EntitySet="tblLegalClarities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLegalClarity" Association="dbRealEstateModel.FK_tblProject_tblLegalClarity">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblLegalClarity" EntitySet="tblLegalClarities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevel_tblUser" Association="dbRealEstateModel.FK_tblLevel_tblUser">
+            <End Role="tblLevel" EntitySet="tblLevels" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterLivability_tblLivability" Association="dbRealEstateModel.FK_tblMasterLivability_tblLivability">
+            <End Role="tblMasterLivability" EntitySet="tblMasterLivabilities" />
+            <End Role="tblLivability" EntitySet="tblLivabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLivability" Association="dbRealEstateModel.FK_tblProject_tblLivability">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblLivability" EntitySet="tblLivabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblLocation" Association="dbRealEstateModel.FK_tblProject_tblLocation">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblLocation" EntitySet="tblLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterProjectInformation" Association="dbRealEstateModel.FK_tblMasterProjectInformation">
+            <End Role="tblMasterProjectInformation" EntitySet="tblMasterProjectInformations" />
+            <End Role="tblProjectInformation" EntitySet="tblProjectInformations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterReview_tblReviewRatingDetails" Association="dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails">
+            <End Role="tblMasterReview" EntitySet="tblMasterReviews" />
+            <End Role="tblReviewRatingDetail" EntitySet="tblReviewRatingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject" Association="dbRealEstateModel.FK_tblProject">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblProjectInformation" EntitySet="tblProjectInformations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblProjectBuilderMapping" Association="dbRealEstateModel.FK_tblProject_tblProjectBuilderMapping">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblProjectBuilderMapping" EntitySet="tblProjectBuilderMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblRecentlyViewed" Association="dbRealEstateModel.FK_tblProject_tblRecentlyViewed">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblRecentlyViewed" EntitySet="tblRecentlyVieweds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblReview" Association="dbRealEstateModel.FK_tblProject_tblReview">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblReview" EntitySet="tblReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRecentlyViewed" Association="dbRealEstateModel.FK_tblUser_tblRecentlyViewed">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRecentlyViewed" EntitySet="tblRecentlyVieweds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblReviewDetails" Association="dbRealEstateModel.FK_tblReview_tblReviewDetails">
+            <End Role="tblReview" EntitySet="tblReviews" />
+            <End Role="tblReviewDetail" EntitySet="tblReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReview_tblReviewRatingDetails" Association="dbRealEstateModel.FK_tblReview_tblReviewRatingDetails">
+            <End Role="tblReview" EntitySet="tblReviews" />
+            <End Role="tblReviewRatingDetail" EntitySet="tblReviewRatingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblReview" Association="dbRealEstateModel.FK_tblUser_tblReview">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblReview" EntitySet="tblReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblReviewDetails" Association="dbRealEstateModel.FK_tblUser_tblReviewDetails">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblReviewDetail" EntitySet="tblReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserType_tblUser" Association="dbRealEstateModel.FK_tblUserType_tblUser">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAmenity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterAmenityId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMasterAmenity" Relationship="dbRealEstateModel.FK_tblMasterAmenity_tblAmenity" FromRole="tblAmenity" ToRole="tblMasterAmenity" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblAmenity" FromRole="tblAmenity" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblApartmentBuildQuality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterApartmentBuildQualityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMasterApartmentBuildQuality" Relationship="dbRealEstateModel.FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality" FromRole="tblApartmentBuildQuality" ToRole="tblMasterApartmentBuildQuality" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblApartmentBuildQuality" FromRole="tblApartmentBuildQuality" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblAverageRating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Amenity" Type="Double" Nullable="false" />
+          <Property Name="ApartmentBuildQuality" Type="Double" Nullable="false" />
+          <Property Name="BuilderProfile" Type="Double" Nullable="false" />
+          <Property Name="ConstructionQualityParameter" Type="Double" Nullable="false" />
+          <Property Name="Inventory" Type="Double" Nullable="false" />
+          <Property Name="LegalClarity" Type="Double" Nullable="false" />
+          <Property Name="Livability" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblAverageRating" FromRole="tblAverageRating" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblBuilder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyRegistrationNumber" Type="Int32" Nullable="false" />
+          <Property Name="YearOfEstablishment" Type="Int32" Nullable="false" />
+          <Property Name="TotalProjectsCount" Type="Int32" Nullable="false" />
+          <Property Name="CompanyEmailId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminContactNumber" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AdminName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBuilderDirectors" Relationship="dbRealEstateModel.FK_tblBuilder_tblBuilderDirector" FromRole="tblBuilder" ToRole="tblBuilderDirector" />
+          <NavigationProperty Name="tblBuilderProfiles" Relationship="dbRealEstateModel.FK_tblBuilder_tblBuilderProfile" FromRole="tblBuilder" ToRole="tblBuilderProfile" />
+          <NavigationProperty Name="tblProjectBuilderMappings" Relationship="dbRealEstateModel.FK_tblBuilder_tblProjectBuilderMapping" FromRole="tblBuilder" ToRole="tblProjectBuilderMapping" />
+        </EntityType>
+        <EntityType Name="tblBuilderComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectBuilderMappingId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsConvinced" Type="Boolean" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblProjectBuilderMapping" Relationship="dbRealEstateModel.FK_tblBuilderComment_tblProjectBuilderMapping" FromRole="tblBuilderComment" ToRole="tblProjectBuilderMapping" />
+          <NavigationProperty Name="tblReview" Relationship="dbRealEstateModel.FK_tblReview_tblBuilderComment" FromRole="tblBuilderComment" ToRole="tblReview" />
+        </EntityType>
+        <EntityType Name="tblBuilderDirector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuilderId" Type="Int32" Nullable="false" />
+          <Property Name="NameOfDirector" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBuilder" Relationship="dbRealEstateModel.FK_tblBuilder_tblBuilderDirector" FromRole="tblBuilderDirector" ToRole="tblBuilder" />
+        </EntityType>
+        <EntityType Name="tblBuilderProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterBuilderProfileId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BuilderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBuilder" Relationship="dbRealEstateModel.FK_tblBuilder_tblBuilderProfile" FromRole="tblBuilderProfile" ToRole="tblBuilder" />
+          <NavigationProperty Name="tblMasterBuilderProfile" Relationship="dbRealEstateModel.FK_tblMasterBuilderProfile_tblBuilderProfile" FromRole="tblBuilderProfile" ToRole="tblMasterBuilderProfile" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLocations" Relationship="dbRealEstateModel.FK_tblCity_tblLocation" FromRole="tblCity" ToRole="tblLocation" />
+        </EntityType>
+        <EntityType Name="tblConstructionQualityParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterConstructionQualityParameterId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMasterConstructionQualityParameter" Relationship="dbRealEstateModel.FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter" FromRole="tblConstructionQualityParameter" ToRole="tblMasterConstructionQualityParameter" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblConstructionQualityParameter" FromRole="tblConstructionQualityParameter" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblFollowProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblFollowProject" FromRole="tblFollowProject" ToRole="tblProject" />
+          <NavigationProperty Name="tblUser" Relationship="dbRealEstateModel.FK_tblUser_tblFollowProject" FromRole="tblFollowProject" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Likes" Type="Int32" Nullable="false" />
+          <Property Name="ImageCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblImageCategory" Relationship="dbRealEstateModel.FK_tblImage_tblImageCategory" FromRole="tblImage" ToRole="tblImageCategory" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblImage" FromRole="tblImage" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblImageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblImages" Relationship="dbRealEstateModel.FK_tblImage_tblImageCategory" FromRole="tblImageCategory" ToRole="tblImage" />
+        </EntityType>
+        <EntityType Name="tblInappropriate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblReview" Relationship="dbRealEstateModel.FK_tblReview_tblInappropriate" FromRole="tblInappropriate" ToRole="tblReview" />
+          <NavigationProperty Name="tblUser" Relationship="dbRealEstateModel.FK_tblUser_tblInappropriate" FromRole="tblInappropriate" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterInventoryId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tblMasterInventory" Relationship="dbRealEstateModel.FK_tblMasterInventory_tblInventory" FromRole="tblInventory" ToRole="tblMasterInventory" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblInventory" FromRole="tblInventory" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblLegalClarity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterLegalClarityId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMasterLegalClarity" Relationship="dbRealEstateModel.FK_tblMasterLegalClarity_tblLegalClarity" FromRole="tblLegalClarity" ToRole="tblMasterLegalClarity" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblLegalClarity" FromRole="tblLegalClarity" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="ReviewCount" Type="Int32" Nullable="false" />
+          <Property Name="ThanksCount" Type="Int32" Nullable="false" />
+          <Property Name="HelpfulCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="dbRealEstateModel.FK_tblLevel_tblUser" FromRole="tblLevel" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblLivability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterLivabilityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tblMasterLivability" Relationship="dbRealEstateModel.FK_tblMasterLivability_tblLivability" FromRole="tblLivability" ToRole="tblMasterLivability" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblLivability" FromRole="tblLivability" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCity" Relationship="dbRealEstateModel.FK_tblCity_tblLocation" FromRole="tblLocation" ToRole="tblCity" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblLocation" FromRole="tblLocation" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblMasterAmenity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblAmenities" Relationship="dbRealEstateModel.FK_tblMasterAmenity_tblAmenity" FromRole="tblMasterAmenity" ToRole="tblAmenity" />
+        </EntityType>
+        <EntityType Name="tblMasterApartmentBuildQuality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblApartmentBuildQualities" Relationship="dbRealEstateModel.FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality" FromRole="tblMasterApartmentBuildQuality" ToRole="tblApartmentBuildQuality" />
+        </EntityType>
+        <EntityType Name="tblMasterBuilderProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBuilderProfiles" Relationship="dbRealEstateModel.FK_tblMasterBuilderProfile_tblBuilderProfile" FromRole="tblMasterBuilderProfile" ToRole="tblBuilderProfile" />
+        </EntityType>
+        <EntityType Name="tblMasterConstructionQualityParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblConstructionQualityParameters" Relationship="dbRealEstateModel.FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter" FromRole="tblMasterConstructionQualityParameter" ToRole="tblConstructionQualityParameter" />
+        </EntityType>
+        <EntityType Name="tblMasterInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblInventories" Relationship="dbRealEstateModel.FK_tblMasterInventory_tblInventory" FromRole="tblMasterInventory" ToRole="tblInventory" />
+        </EntityType>
+        <EntityType Name="tblMasterLegalClarity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLegalClarities" Relationship="dbRealEstateModel.FK_tblMasterLegalClarity_tblLegalClarity" FromRole="tblMasterLegalClarity" ToRole="tblLegalClarity" />
+        </EntityType>
+        <EntityType Name="tblMasterLivability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLivabilities" Relationship="dbRealEstateModel.FK_tblMasterLivability_tblLivability" FromRole="tblMasterLivability" ToRole="tblLivability" />
+        </EntityType>
+        <EntityType Name="tblMasterProjectInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProjectInformations" Relationship="dbRealEstateModel.FK_tblMasterProjectInformation" FromRole="tblMasterProjectInformation" ToRole="tblProjectInformation" />
+        </EntityType>
+        <EntityType Name="tblMasterReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblReviewRatingDetails" Relationship="dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails" FromRole="tblMasterReview" ToRole="tblReviewRatingDetail" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Possession" Type="DateTime" Precision="3" />
+          <Property Name="Pricing" Type="Int64" Nullable="false" />
+          <Property Name="AverageRating" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblAmenities" Relationship="dbRealEstateModel.FK_tblProject_tblAmenity" FromRole="tblProject" ToRole="tblAmenity" />
+          <NavigationProperty Name="tblApartmentBuildQualities" Relationship="dbRealEstateModel.FK_tblProject_tblApartmentBuildQuality" FromRole="tblProject" ToRole="tblApartmentBuildQuality" />
+          <NavigationProperty Name="tblAverageRatings" Relationship="dbRealEstateModel.FK_tblProject_tblAverageRating" FromRole="tblProject" ToRole="tblAverageRating" />
+          <NavigationProperty Name="tblConstructionQualityParameters" Relationship="dbRealEstateModel.FK_tblProject_tblConstructionQualityParameter" FromRole="tblProject" ToRole="tblConstructionQualityParameter" />
+          <NavigationProperty Name="tblFollowProjects" Relationship="dbRealEstateModel.FK_tblProject_tblFollowProject" FromRole="tblProject" ToRole="tblFollowProject" />
+          <NavigationProperty Name="tblImages" Relationship="dbRealEstateModel.FK_tblProject_tblImage" FromRole="tblProject" ToRole="tblImage" />
+          <NavigationProperty Name="tblInventories" Relationship="dbRealEstateModel.FK_tblProject_tblInventory" FromRole="tblProject" ToRole="tblInventory" />
+          <NavigationProperty Name="tblLegalClarities" Relationship="dbRealEstateModel.FK_tblProject_tblLegalClarity" FromRole="tblProject" ToRole="tblLegalClarity" />
+          <NavigationProperty Name="tblLivabilities" Relationship="dbRealEstateModel.FK_tblProject_tblLivability" FromRole="tblProject" ToRole="tblLivability" />
+          <NavigationProperty Name="tblLocations" Relationship="dbRealEstateModel.FK_tblProject_tblLocation" FromRole="tblProject" ToRole="tblLocation" />
+          <NavigationProperty Name="tblProjectInformations" Relationship="dbRealEstateModel.FK_tblProject" FromRole="tblProject" ToRole="tblProjectInformation" />
+          <NavigationProperty Name="tblProjectBuilderMappings" Relationship="dbRealEstateModel.FK_tblProject_tblProjectBuilderMapping" FromRole="tblProject" ToRole="tblProjectBuilderMapping" />
+          <NavigationProperty Name="tblRecentlyVieweds" Relationship="dbRealEstateModel.FK_tblProject_tblRecentlyViewed" FromRole="tblProject" ToRole="tblRecentlyViewed" />
+          <NavigationProperty Name="tblReviews" Relationship="dbRealEstateModel.FK_tblProject_tblReview" FromRole="tblProject" ToRole="tblReview" />
+        </EntityType>
+        <EntityType Name="tblProjectBuilderMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuilderId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="BeneficiaryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBuilder" Relationship="dbRealEstateModel.FK_tblBuilder_tblProjectBuilderMapping" FromRole="tblProjectBuilderMapping" ToRole="tblBuilder" />
+          <NavigationProperty Name="tblBuilderComments" Relationship="dbRealEstateModel.FK_tblBuilderComment_tblProjectBuilderMapping" FromRole="tblProjectBuilderMapping" ToRole="tblBuilderComment" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblProjectBuilderMapping" FromRole="tblProjectBuilderMapping" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblProjectInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="MasterProjectInformationId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMasterProjectInformation" Relationship="dbRealEstateModel.FK_tblMasterProjectInformation" FromRole="tblProjectInformation" ToRole="tblMasterProjectInformation" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject" FromRole="tblProjectInformation" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblRecentlyViewed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblRecentlyViewed" FromRole="tblRecentlyViewed" ToRole="tblProject" />
+          <NavigationProperty Name="tblUser" Relationship="dbRealEstateModel.FK_tblUser_tblRecentlyViewed" FromRole="tblRecentlyViewed" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AverageValue" Type="Double" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Helpful" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsReviewed" Type="Boolean" Nullable="false" />
+          <Property Name="SayThanks" Type="Int32" Nullable="false" />
+          <Property Name="Heading" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lastVisited" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblBuilderComments" Relationship="dbRealEstateModel.FK_tblReview_tblBuilderComment" FromRole="tblReview" ToRole="tblBuilderComment" />
+          <NavigationProperty Name="tblInappropriates" Relationship="dbRealEstateModel.FK_tblReview_tblInappropriate" FromRole="tblReview" ToRole="tblInappropriate" />
+          <NavigationProperty Name="tblProject" Relationship="dbRealEstateModel.FK_tblProject_tblReview" FromRole="tblReview" ToRole="tblProject" />
+          <NavigationProperty Name="tblReviewDetails" Relationship="dbRealEstateModel.FK_tblReview_tblReviewDetails" FromRole="tblReview" ToRole="tblReviewDetail" />
+          <NavigationProperty Name="tblReviewRatingDetails" Relationship="dbRealEstateModel.FK_tblReview_tblReviewRatingDetails" FromRole="tblReview" ToRole="tblReviewRatingDetail" />
+          <NavigationProperty Name="tblUser" Relationship="dbRealEstateModel.FK_tblUser_tblReview" FromRole="tblReview" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblReviewDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int32" Nullable="false" />
+          <Property Name="ReviewedUserId" Type="Int32" Nullable="false" />
+          <Property Name="Helpful" Type="Boolean" Nullable="false" />
+          <Property Name="SayThanks" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblReview" Relationship="dbRealEstateModel.FK_tblReview_tblReviewDetails" FromRole="tblReviewDetail" ToRole="tblReview" />
+          <NavigationProperty Name="tblUser" Relationship="dbRealEstateModel.FK_tblUser_tblReviewDetails" FromRole="tblReviewDetail" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblReviewRatingDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int32" Nullable="false" />
+          <Property Name="MasterReviewId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tblMasterReview" Relationship="dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails" FromRole="tblReviewRatingDetail" ToRole="tblMasterReview" />
+          <NavigationProperty Name="tblReview" Relationship="dbRealEstateModel.FK_tblReview_tblReviewRatingDetails" FromRole="tblReviewRatingDetail" ToRole="tblReview" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LevelId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ProfilePictureUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserRegMode" Type="Boolean" Nullable="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblFollowProjects" Relationship="dbRealEstateModel.FK_tblUser_tblFollowProject" FromRole="tblUser" ToRole="tblFollowProject" />
+          <NavigationProperty Name="tblInappropriates" Relationship="dbRealEstateModel.FK_tblUser_tblInappropriate" FromRole="tblUser" ToRole="tblInappropriate" />
+          <NavigationProperty Name="tblLevel" Relationship="dbRealEstateModel.FK_tblLevel_tblUser" FromRole="tblUser" ToRole="tblLevel" />
+          <NavigationProperty Name="tblRecentlyVieweds" Relationship="dbRealEstateModel.FK_tblUser_tblRecentlyViewed" FromRole="tblUser" ToRole="tblRecentlyViewed" />
+          <NavigationProperty Name="tblReviews" Relationship="dbRealEstateModel.FK_tblUser_tblReview" FromRole="tblUser" ToRole="tblReview" />
+          <NavigationProperty Name="tblReviewDetails" Relationship="dbRealEstateModel.FK_tblUser_tblReviewDetails" FromRole="tblUser" ToRole="tblReviewDetail" />
+          <NavigationProperty Name="tblUserType" Relationship="dbRealEstateModel.FK_tblUserType_tblUser" FromRole="tblUser" ToRole="tblUserType" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="dbRealEstateModel.FK_tblUserType_tblUser" FromRole="tblUserType" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblMasterAmenity_tblAmenity">
+          <End Type="dbRealEstateModel.tblMasterAmenity" Role="tblMasterAmenity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblAmenity" Role="tblAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterAmenity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAmenity">
+              <PropertyRef Name="MasterAmenityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblAmenity">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblAmenity" Role="tblAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAmenity">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterApartmentBuildQuality_tblApartmentBuildQuality">
+          <End Type="dbRealEstateModel.tblMasterApartmentBuildQuality" Role="tblMasterApartmentBuildQuality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblApartmentBuildQuality" Role="tblApartmentBuildQuality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterApartmentBuildQuality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblApartmentBuildQuality">
+              <PropertyRef Name="MasterApartmentBuildQualityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblApartmentBuildQuality">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblApartmentBuildQuality" Role="tblApartmentBuildQuality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblApartmentBuildQuality">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblAverageRating">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblAverageRating" Role="tblAverageRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAverageRating">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilder_tblBuilderDirector">
+          <End Type="dbRealEstateModel.tblBuilder" Role="tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblBuilderDirector" Role="tblBuilderDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderDirector">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilder_tblBuilderProfile">
+          <End Type="dbRealEstateModel.tblBuilder" Role="tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblBuilderProfile" Role="tblBuilderProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderProfile">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilder_tblProjectBuilderMapping">
+          <End Type="dbRealEstateModel.tblBuilder" Role="tblBuilder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblProjectBuilderMapping" Role="tblProjectBuilderMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuilder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectBuilderMapping">
+              <PropertyRef Name="BuilderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBuilderComment_tblProjectBuilderMapping">
+          <End Type="dbRealEstateModel.tblProjectBuilderMapping" Role="tblProjectBuilderMapping" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblBuilderComment" Role="tblBuilderComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjectBuilderMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderComment">
+              <PropertyRef Name="ProjectBuilderMappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblBuilderComment">
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblBuilderComment" Role="tblBuilderComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderComment">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterBuilderProfile_tblBuilderProfile">
+          <End Type="dbRealEstateModel.tblMasterBuilderProfile" Role="tblMasterBuilderProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblBuilderProfile" Role="tblBuilderProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterBuilderProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBuilderProfile">
+              <PropertyRef Name="MasterBuilderProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCity_tblLocation">
+          <End Type="dbRealEstateModel.tblCity" Role="tblCity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblLocation" Role="tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterConstructionQualityParameter_tblConstructionQualityParameter">
+          <End Type="dbRealEstateModel.tblMasterConstructionQualityParameter" Role="tblMasterConstructionQualityParameter" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblConstructionQualityParameter" Role="tblConstructionQualityParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterConstructionQualityParameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblConstructionQualityParameter">
+              <PropertyRef Name="MasterConstructionQualityParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblConstructionQualityParameter">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblConstructionQualityParameter" Role="tblConstructionQualityParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblConstructionQualityParameter">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblFollowProject">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblFollowProject" Role="tblFollowProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFollowProject">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblFollowProject">
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblFollowProject" Role="tblFollowProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFollowProject">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImage_tblImageCategory">
+          <End Type="dbRealEstateModel.tblImageCategory" Role="tblImageCategory" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblImage" Role="tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblImageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="ImageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblImage">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblImage" Role="tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblInappropriate">
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblInappropriate" Role="tblInappropriate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInappropriate">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblInappropriate">
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblInappropriate" Role="tblInappropriate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInappropriate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterInventory_tblInventory">
+          <End Type="dbRealEstateModel.tblMasterInventory" Role="tblMasterInventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblInventory" Role="tblInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInventory">
+              <PropertyRef Name="MasterInventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblInventory">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblInventory" Role="tblInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInventory">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterLegalClarity_tblLegalClarity">
+          <End Type="dbRealEstateModel.tblMasterLegalClarity" Role="tblMasterLegalClarity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblLegalClarity" Role="tblLegalClarity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterLegalClarity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLegalClarity">
+              <PropertyRef Name="MasterLegalClarityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLegalClarity">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblLegalClarity" Role="tblLegalClarity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLegalClarity">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevel_tblUser">
+          <End Type="dbRealEstateModel.tblLevel" Role="tblLevel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterLivability_tblLivability">
+          <End Type="dbRealEstateModel.tblMasterLivability" Role="tblMasterLivability" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblLivability" Role="tblLivability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterLivability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLivability">
+              <PropertyRef Name="MasterLivabilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLivability">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblLivability" Role="tblLivability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLivability">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblLocation">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblLocation" Role="tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterProjectInformation">
+          <End Type="dbRealEstateModel.tblMasterProjectInformation" Role="tblMasterProjectInformation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblProjectInformation" Role="tblProjectInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterProjectInformation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectInformation">
+              <PropertyRef Name="MasterProjectInformationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterReview_tblReviewRatingDetails">
+          <End Type="dbRealEstateModel.tblMasterReview" Role="tblMasterReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblReviewRatingDetail" Role="tblReviewRatingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewRatingDetail">
+              <PropertyRef Name="MasterReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblProjectInformation" Role="tblProjectInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectInformation">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblProjectBuilderMapping">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblProjectBuilderMapping" Role="tblProjectBuilderMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectBuilderMapping">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblRecentlyViewed">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblRecentlyViewed" Role="tblRecentlyViewed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRecentlyViewed">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblReview">
+          <End Type="dbRealEstateModel.tblProject" Role="tblProject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReview">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRecentlyViewed">
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblRecentlyViewed" Role="tblRecentlyViewed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRecentlyViewed">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblReviewDetails">
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblReviewDetail" Role="tblReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewDetail">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReview_tblReviewRatingDetails">
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblReviewRatingDetail" Role="tblReviewRatingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewRatingDetail">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblReview">
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbRealEstateModel.tblReview" Role="tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReview">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblReviewDetails">
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblReviewDetail" Role="tblReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblReviewDetail">
+              <PropertyRef Name="ReviewedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserType_tblUser">
+          <End Type="dbRealEstateModel.tblUserType" Role="tblUserType" Multiplicity="1" />
+          <End Type="dbRealEstateModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbRealEstateModelStoreContainer" CdmEntityContainer="dbRealEstateEntities">
+          <EntitySetMapping Name="tblAmenities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblAmenity">
+              <MappingFragment StoreEntitySet="tblAmenity">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterAmenityId" ColumnName="MasterAmenityId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblApartmentBuildQualities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblApartmentBuildQuality">
+              <MappingFragment StoreEntitySet="tblApartmentBuildQuality">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MasterApartmentBuildQualityId" ColumnName="MasterApartmentBuildQualityId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAverageRatings">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblAverageRating">
+              <MappingFragment StoreEntitySet="tblAverageRating">
+                <ScalarProperty Name="Livability" ColumnName="Livability" />
+                <ScalarProperty Name="LegalClarity" ColumnName="LegalClarity" />
+                <ScalarProperty Name="Inventory" ColumnName="Inventory" />
+                <ScalarProperty Name="ConstructionQualityParameter" ColumnName="ConstructionQualityParameter" />
+                <ScalarProperty Name="BuilderProfile" ColumnName="BuilderProfile" />
+                <ScalarProperty Name="ApartmentBuildQuality" ColumnName="ApartmentBuildQuality" />
+                <ScalarProperty Name="Amenity" ColumnName="Amenity" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuilders">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblBuilder">
+              <MappingFragment StoreEntitySet="tblBuilder">
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="AdminContactNumber" ColumnName="AdminContactNumber" />
+                <ScalarProperty Name="CompanyEmailId" ColumnName="CompanyEmailId" />
+                <ScalarProperty Name="TotalProjectsCount" ColumnName="TotalProjectsCount" />
+                <ScalarProperty Name="YearOfEstablishment" ColumnName="YearOfEstablishment" />
+                <ScalarProperty Name="CompanyRegistrationNumber" ColumnName="CompanyRegistrationNumber" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuilderComments">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblBuilderComment">
+              <MappingFragment StoreEntitySet="tblBuilderComment">
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="IsConvinced" ColumnName="IsConvinced" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ProjectBuilderMappingId" ColumnName="ProjectBuilderMappingId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuilderDirectors">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblBuilderDirector">
+              <MappingFragment StoreEntitySet="tblBuilderDirector">
+                <ScalarProperty Name="NameOfDirector" ColumnName="NameOfDirector" />
+                <ScalarProperty Name="BuilderId" ColumnName="BuilderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuilderProfiles">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblBuilderProfile">
+              <MappingFragment StoreEntitySet="tblBuilderProfile">
+                <ScalarProperty Name="BuilderId" ColumnName="BuilderId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterBuilderProfileId" ColumnName="MasterBuilderProfileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConstructionQualityParameters">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblConstructionQualityParameter">
+              <MappingFragment StoreEntitySet="tblConstructionQualityParameter">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterConstructionQualityParameterId" ColumnName="MasterConstructionQualityParameterId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFollowProjects">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblFollowProject">
+              <MappingFragment StoreEntitySet="tblFollowProject">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImages">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblImage">
+              <MappingFragment StoreEntitySet="tblImage">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ImageCategoryId" ColumnName="ImageCategoryId" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImageCategories">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblImageCategory">
+              <MappingFragment StoreEntitySet="tblImageCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInappropriates">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblInappropriate">
+              <MappingFragment StoreEntitySet="tblInappropriate">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInventories">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblInventory">
+              <MappingFragment StoreEntitySet="tblInventory">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterInventoryId" ColumnName="MasterInventoryId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLegalClarities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblLegalClarity">
+              <MappingFragment StoreEntitySet="tblLegalClarity">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterLegalClarityId" ColumnName="MasterLegalClarityId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevels">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblLevel">
+              <MappingFragment StoreEntitySet="tblLevel">
+                <ScalarProperty Name="HelpfulCount" ColumnName="HelpfulCount" />
+                <ScalarProperty Name="ThanksCount" ColumnName="ThanksCount" />
+                <ScalarProperty Name="ReviewCount" ColumnName="ReviewCount" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLivabilities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblLivability">
+              <MappingFragment StoreEntitySet="tblLivability">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MasterLivabilityId" ColumnName="MasterLivabilityId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocations">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblLocation">
+              <MappingFragment StoreEntitySet="tblLocation">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterAmenities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterAmenity">
+              <MappingFragment StoreEntitySet="tblMasterAmenity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterApartmentBuildQualities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterApartmentBuildQuality">
+              <MappingFragment StoreEntitySet="tblMasterApartmentBuildQuality">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterBuilderProfiles">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterBuilderProfile">
+              <MappingFragment StoreEntitySet="tblMasterBuilderProfile">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterConstructionQualityParameters">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterConstructionQualityParameter">
+              <MappingFragment StoreEntitySet="tblMasterConstructionQualityParameter">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterInventories">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterInventory">
+              <MappingFragment StoreEntitySet="tblMasterInventory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterLegalClarities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterLegalClarity">
+              <MappingFragment StoreEntitySet="tblMasterLegalClarity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterLivabilities">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterLivability">
+              <MappingFragment StoreEntitySet="tblMasterLivability">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterProjectInformations">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterProjectInformation">
+              <MappingFragment StoreEntitySet="tblMasterProjectInformation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMasterReviews">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblMasterReview">
+              <MappingFragment StoreEntitySet="tblMasterReview">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="Pricing" ColumnName="Pricing" />
+                <ScalarProperty Name="Possession" ColumnName="Possession" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjectBuilderMappings">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblProjectBuilderMapping">
+              <MappingFragment StoreEntitySet="tblProjectBuilderMapping">
+                <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="BuilderId" ColumnName="BuilderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjectInformations">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblProjectInformation">
+              <MappingFragment StoreEntitySet="tblProjectInformation">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterProjectInformationId" ColumnName="MasterProjectInformationId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRecentlyVieweds">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblRecentlyViewed">
+              <MappingFragment StoreEntitySet="tblRecentlyViewed">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviews">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblReview">
+              <MappingFragment StoreEntitySet="tblReview">
+                <ScalarProperty Name="lastVisited" ColumnName="lastVisited" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="SayThanks" ColumnName="SayThanks" />
+                <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Helpful" ColumnName="Helpful" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="AverageValue" ColumnName="AverageValue" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviewDetails">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblReviewDetail">
+              <MappingFragment StoreEntitySet="tblReviewDetails">
+                <ScalarProperty Name="SayThanks" ColumnName="SayThanks" />
+                <ScalarProperty Name="Helpful" ColumnName="Helpful" />
+                <ScalarProperty Name="ReviewedUserId" ColumnName="ReviewedUserId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviewRatingDetails">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblReviewRatingDetail">
+              <MappingFragment StoreEntitySet="tblReviewRatingDetails">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MasterReviewId" ColumnName="MasterReviewId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="UserRegMode" ColumnName="UserRegMode" />
+                <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="dbRealEstateModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

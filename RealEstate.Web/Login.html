@@ -1,0 +1,73 @@
+﻿<body ng-app="myApp">
+    <h1>Login</h1>
+    <form name="formInfo" class="form-horizontal" role="form" ng-controller="LoginCtrl" ng-submit="submitForm(formInfo.$valid)" novalidate>
+
+
+        <div class="form-group">
+            <label for="Email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="Email" placeholder="Email" ng-model="objUser.EmailId">
+                <span ng-show="EmailIdRequired">{{EmailIdRequired}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="Password" placeholder="Password" ng-model="objUser.Password">
+                <span ng-show="PasswordRequired">{{PasswordRequired}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-click="saveData()" ng-disabled="formInfo.$invalid">Sign In</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="scripts/ngStorage.js"></script>
+<script src="scripts/ngStorage.min.js"></script>
+<script>
+    'use strict';
+
+    /* Controllers */
+    var app = angular.module('myApp', ['ngStorage']);
+    app.controller('LoginCtrl', ['$scope', '$http','$localStorage', '$sessionStorage','$window', function ($scope,$http, $localStorage, $sessionStorage, $window) {
+        $scope.objUser = {};
+        $scope.saveData = function () {
+            $scope.EmailRequired = '';
+            $scope.PasswordRequired = '';
+            if (!$scope.objUser.EmailId)
+                $scope.EmailIdRequired = "Required";
+            if (!$scope.objUser.Password)
+                $scope.PasswordRequired = "Required";
+            if ($scope.objUser.EmailId && $scope.objUser.Password) {
+                $http({
+                    method: 'POST',
+                    url: 'http://mosrealestate.silive.in/rest/api/User/Login',
+                    data: $scope.objUser, //forms user object
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(function mySuccess(response) {
+                    $scope.Id = response.data;
+                    if ($scope.Id) {
+                        console.log($scope.Id);
+                        $scope.similarProjects = response.data;
+                        $localStorage.userId = $scope.Id;
+                        //$sessionStorage.userId = $scope.Id;
+                        $window.location.href = '/Welcome.html';
+                    }
+                    else
+                        alert('Incorrect username or password');
+                    
+                }, function myError(response) {
+                    $scope.similarProjects = response.statusText;
+                })
+            }
+        }
+    }]);
+</script>
+

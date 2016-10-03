@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="Property">
+    <div ng-controller="PropertyController">
+        <p>Project: <span>{{propertyDetails.Project}}</span></p>                <!--done-->
+        <p>Profile: <span>{{propertyDetails.ProfilePicture}}</span></p>              
+        <p>CoverPic: <span>{{propertyDetails.CoverPicture}}</span></p>                 
+        <p>Address: <span>{{propertyDetails.Address.Addr}}</span></p>           <!--done-->
+        <p>Possession: <span>{{propertyDetails.Possession}}</span></p>              <!--done-->
+        <p>Price: <span>{{propertyDetails.Pricing}}</span></p>                  <!--done-->
+        <p>AddressLine1:<span>{{propertyDetails.AddressLine1}}</span></p>
+        <p>AddressLine2:<span>{{propertyDetails.AddressLine2}}</span></p>
+        <p>City:<span>{{propertyDetails.City}}</span></p>
+
+        <h4>Reviews</h4>
+        <div ng-repeat="review in Reviews">
+            AverageValue: {{review.AverageValue}}<br />
+            BuilderComment: {{review.BuilderComment.Text}}<br />                <!--done-->
+            EmailId: {{review.EmailId}}<br />
+            FirstName: {{review.FirstName}}<br />       <!--done-->
+            Heading: {{review.Heading}}<br />
+            Helpful: {{review.Helpful}}<br />
+            HelpfulCount: {{review.HelpfulCount}}<br />         <!--done-->
+            LastName: {{review.LastName}}<br />
+            Level: {{review.LevelId}}<br />         <!--done-->
+            ProfilePicture: {{review.ProfilePicture}}<br />
+            SayThanksCount: {{review.SayThanksCount}}<br />         <!--done-->
+            UserType=Customer: {{review.UserType=Customer}}<br />
+            Text: {{review.Text}}<br />                 <!--done-->
+            Time:{{review.Time}}<br/>
+            <button ng-click="Helpful(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Helpful</button>           <!--d-->
+            <div ng-show="showHelpful">
+                <p>{{HelpfulStatus}}</p>
+            </div>
+            <button ng-click="SayThanks(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Say Thanks</button>       <!--d-->
+            <div ng-show="showSayThanks">
+                <p>{{SayThanksStatus}}</p>
+            </div>
+            <button ng-click="Inappropriate(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Inappropriate</button>    <!--d-->
+            <div ng-show="showInappropriate">
+                <p>{{InappropriateStatus}}</p>
+            </div>
+            <div ng-show="!review.BuilderComment.IsConvinced">
+                <div ng-show="showIsConvinced">
+                    <button ng-click="IsConvinced(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">IsConvinced</button>
+                </div>
+            </div>
+            <div ng-show="review.BuilderComment.IsConvinced">
+                <p>Convinced</p>
+            </div>
+        </div>
+        <button ng-click="ViewFullDetails()">View Full Details</button>
+        <div ng-show="showPropertyFullDetails">
+            <p>Address: <span>{{propertyDetails.Address.Addr}}</span></p><br />
+            <h5>Amenities</h5>
+            <p ng-repeat="Amenity in Amenities">
+                {{Amenity.Name }}
+                {{Amenity.Value }}<br />
+            </p>
+            <h5>Apartment Build Quality</h5>
+            <p ng-repeat="ABQ in ApartmentBuildQuality">
+                {{ABQ.Name }}
+                {{ABQ.Value }}<br />
+            </p>
+            <h5>Construction Quality Parameter</h5>
+            <p ng-repeat="CQP in ConstructionQualityParameter">
+                {{CQP.Name }}
+                {{CQP.Value }}<br />
+            </p>
+            <h5>Inventory</h5>
+            <p ng-repeat="Inv in Inventory">
+                {{Inv.Name }}
+                {{Inv.Value }}<br />
+            </p>
+            <h5>Legal Clarity</h5>
+            <p ng-repeat="Legal in LegalClarity">
+                {{Legal.Name }}
+                {{Legal.Value }}<br />
+            </p>
+            <h5>Livability</h5>
+            <p ng-repeat="Liv in Livability">
+                {{Liv.Name }}
+                {{Liv.Value }}<br />
+            </p>
+            <h5>Project Information</h5>
+            <p ng-repeat="PI in ProjectInformation">
+                {{PI.Name }}
+                {{PI.Value }}<br />
+            </p>
+            <h6>Average Raitings</h6>
+            <p>Amenity: <span>{{propertyDetails.AverageRaitings.Amenity}}</span></p><br />
+            <p>ApartmentBuildQuality: <span>{{propertyDetails.AverageRaitings.ApartmentBuildQuality}}</span></p><br />
+            <p>BuilderProfile: <span>{{propertyDetails.AverageRaitings.BuilderProfile}}</span></p><br />
+            <p>ConstructionQualityParameter: <span>{{propertyDetails.AverageRaitings.ConstructionQualityParameter}}</span></p><br />
+            <p>Inventory: <span>{{propertyDetails.AverageRaitings.Inventory}}</span></p><br />
+            <p>LegalClarity: <span>{{propertyDetails.AverageRaitings.LegalClarity}}</span></p><br />
+            <p>Livability: <span>{{propertyDetails.AverageRaitings.Livability}}</span></p><br />
+            <p>AverageRating: <span>{{propertyDetails.AverageRating}}</span></p><br />
+            <p>Builder: <span>{{propertyDetails.Builder.Name}}</span></p><br />
+            <p>CoverPicture: <span>{{propertyDetails.CoverPicture}}</span></p><br />
+            <p>Image: <span>{{propertyDetails.Image}}</span></p><br />
+            <p>Possession: <span>{{propertyDetails.Possession}}</span></p><br />
+            <p>Pricing: <span>{{propertyDetails.Pricing}}</span></p><br />
+            <p>ProfilePicture: <span>{{propertyDetails.ProfilePicture}}</span></p><br />
+            <p>Project: <span>{{propertyDetails.Project}}</span></p><br />
+        </div>
+
+        <div ng-show="!propertyDetails.IsFollowed">                                                         <!--d-->
+            <button ng-click="Follow(sessionUserId,sessionPropertyId)">Follow Property</button>
+            <div ng-show="showFollowProperty">
+                <p>{{FollowedStatus}}</p>
+            </div>
+        </div>
+        <div ng-show="propertyDetails.IsFollowed">                                                              <!--d-->
+            <button ng-click="UnFollow()">Unfollow Property</button>
+            <div ng-show="showUnFollowProperty">
+                <p>{{UnFollowStatus}}</p>
+            </div>
+        </div>
+
+
+        <div ng-repeat="projects in similarProjects">
+            <p>Average Rating: <span>{{projects.AverageRating}}</span></p>
+            <p>CoverPicture: <span>{{projects.CoverPicture}}</span></p>
+            <p>Name: <span>{{projects.Name}}</span></p>
+            <p>ProfilePicture: <span>{{projects.ProfilePicture}}</span></p>
+            <p>ReviewCount: <span>{{projects.ReviewCount}}</span></p>       <!--d-->
+        </div>
+        <button ng-click="Get()">Session</button>               //session test
+    </div>
+
+
+
+    <script src="scripts/Property.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+﻿<body ng-app="Home">
+    <div ng-controller="ProjectController">
+        <select id="ddlCity" ng-model="SelectedCity" ng-options="city.Name for city in City track by city.Id">
+            <option value="">Select City</option>
+        </select>
+        {{SelectedCity.Id}}
+
+        <autocomplete ng-model="Projects" data="project" on-type="updateData"></autocomplete>
+        {{Projects}}
+        <div ng-repeat="trend in Trending">
+            {{trend.Name}}
+            {{trend.ReviewCount}}
+            {{trend.FirstName}}
+            {{trend.Heading}}
+            {{trend.city}}
+        </div>
+        <button type="submit" class="btn btn-success" ng-click="Search(SelectedCity.Id,Projects)">Search</button>
+
+    </div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="/autocomplete.css">
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+<script src="/scripts/autocomplete.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<script>
+    var app = angular.module("Home", ['ui.bootstrap', 'autocomplete', 'ngStorage']);
+
+    //app.controller("ProjectController", function ($scope, $http) {
+    //    $http.get('http://mosrealestate.silive.in/rest/api/Search/GetAllCities').
+    //    success(function (data, status, headers, config) {
+    //        $scope.City = data;
+    //        console.log(data)
+    //    }).
+    //    error(function (data, status, headers, config) {
+    //        alert("error");
+    //    });
+    //});
+
+    //app.controller("TypeaheadCtrl", function ($scope, $http) {
+    //    $scope.onedit = function () {
+    //        params = {
+    //            stringToLook: $scope.te,
+    //            //cityId: $scope.SelectedCity.Id
+    //        }
+    //        $http({
+    //            method: 'GET',
+    //            url: 'http://mosrealestate.silive.in/rest/api/Search/MainSearch?stringToLook=%27maha%27&&cityId=0',
+    //            //data: JSON.stringify(params),
+    //            headers: { 'Content-Type': 'application/json' }
+    //        }).
+    //        success(function (data, status, headers, config) {
+    //            $scope.Search = data;
+    //            console.log(data)
+    //        }).
+    //        error(function (data, status, headers, config) {
+    //            alert("error");
+    //        });
+    //    }
+    //});
+
+    app.controller('ProjectController', ['$scope', '$http', function ($scope, $http, $localStorage, $sessionStorage) {
+
+        $http.get('http://mosrealestate.silive.in/rest/api/Search/GetAllCities').
+       success(function (data, status, headers, config) {
+           $scope.City = data;
+           console.log(data)
+       }).
+       error(function (data, status, headers, config) {
+           alert("error");
+       });
+
+        $http.get('http://mosrealestate.silive.in/rest/api/Search/TrendingReviews').
+  then(function mySucces(response) {
+      $scope.Trending = response.data;
+      console.log(response.data)
+  }, function myError(response) {
+      alert("error");
+  });
+
+        $scope.updateData = function (typed) {
+            $http({
+                method: 'GET',
+                url: 'http://mosrealestate.silive.in/rest/api/Search/GetAllCities',
+                //data: JSON.stringify(params),
+                headers: { 'Content-Type': 'application/json' }
+            }).
+            then(function mySucces(response) {
+                $scope.project = response.data.map(function (a) { return a.Name; });
+                console.log(response.data.map(function (a) { return a.Name; }))
+            }, function myError(response) {
+                alert("error");
+            });
+        }
+
+        $scope.Search = function (id, project) {
+            console.log(id, project);
+            $localStorage.LocalMessage = {};
+            $localStorage.LocalMessage = 2;
+            $sessionStorage.SessionMessage = {};
+            $sessionStorage.SessionMessage = 2;
+            //$window.location.href = '~/PropertyPage.html';
+        }
+    }]);
+
+    app.controller('SeachProject', ['$scope', '$http', function ($scope, $http) {
+        $scope.Search = function (id, project) {
+            console.log(id, project)
+            //$http({
+            //    method: 'GET',
+            //    url: 'http://mosrealestate.silive.in/rest/api/Search/GetAllCities',
+            //    //data: JSON.stringify(params),
+            //    headers: { 'Content-Type': 'application/json' }
+            //}).
+            //then(function mySucces(response) {
+            //    $scope.project = response.data.map(function (a) { return a.Name; });
+            //    console.log(response.data.map(function (a) { return a.Name; }))
+            //}, function myError(response) {
+            //    alert("error");
+            //});
+        }
+    }]);
+</script>

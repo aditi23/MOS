@@ -1,0 +1,482 @@
+﻿<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" style="z-index:3;">&times;</a>
+</div>
+<div class="row" id="main" ng-app="MyApp" ng-controller="MyController">
+    <div>
+        <center><h4><span class="custom-heading"><u>Create New Project</u></span></h4></center>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#project">
+                        <h4 class="panel-title">
+                            Project
+                        </h4>
+                    </a>
+                </div>
+                <div id="project" class="panel-collapse collapse in">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label blue lighten-2">Project Name</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" id="NAme" ng-model="Project.Name" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Possession</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="date" id="possession" ng-model="Project.Possession" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Pricing</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="number" id="Pricing" ng-model="Project.Pricing" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Profile Picture</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="file" id="ProfilePic" name="profile"
+                                               ng-files="getProfilePic($files)" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Cover Picture</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="file" id="CoverPic" name="cover"
+                                               ng-files="getCoverPic($files)" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Builder</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select id="ddlBuilder" ng-model="Project.BuilderId" ng-options="builder.Name for builder in Builder track by builder.Id">
+                                            <option value="">Select Builder</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-1" style="width:13%">
+                                        <span class="custom-label">Beneficiary Name</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" id="Cover" ng-model="Project.Beneficiary" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#amenity">
+                        <h4 class="panel-title">
+                            Amenity
+                        </h4>
+                    </a>
+                </div>
+                <div id="amenity" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div ng-repeat="i in AmenityList" class="panel-body">
+                                <!--{{i.Name}}  <input type="checkbox" id="amenity{{i.Id}}" ng-model="Project.Amenity[i.Id]" />-->
+                                {{i.Name}}  <input type="checkbox" id="{{i.Id}}" value="{{i.Id}}" ng-checked="i.Id" ng-model="Project.Amenity[i.Id]" />
+                                <input type="text" ng-show="Project.Amenity[i.Id]" ng-model="Project.amenitytext[i.Id]" ng-required="amenity{{i.Id}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#apartmentBuildQuality">
+                        <h4 class="panel-title">
+                            Apartment Build Quality
+                        </h4>
+                    </a>
+                </div>
+                <div id="apartmentBuildQuality" class="panel-collapse collapse ">
+                    <div class="custom-form-container">
+                        <div ng-repeat="i in ApartmentList" class="panel-body">
+                            {{i.Name}}  <input type="checkbox" id="apartment_{{i.Id}}" ng-model="Project.Quality[i.Id]" />
+                            <input type="text" placeholder="Name" ng-model="Project.qualitytext[i.Id]" ng-show="Project.Quality[i.Id]" ng-required="apartment_{{i.Id}}" />
+                            <input type="text" placeholder="Value" ng-model="Project.qualityvalue[i.Id]" ng-show="Project.Quality[i.Id]" ng-required="apartment_{{i.Id}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#parameters">
+                        <h4 class="panel-title">
+                            Construction Quality Parameters
+                        </h4>
+                    </a>
+                </div>
+                <div id="parameters" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div ng-repeat="i in QualityList" class="panel-body">
+                                {{i.Name}}  <input type="checkbox" id="quality{{i.Id}}" ng-model="Project.Construction[i.Id]" />
+                                <input type="text" ng-show="Project.Construction[i.Id]" ng-model="Project.constructiontext[i.Id]" ng-required="quality{{i.Id}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#inventory">
+                        <h4 class="panel-title">
+                            Inventory Details
+                        </h4>
+                    </a>
+                </div>
+                <div id="inventory" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div ng-repeat="i in Inventoryist" class="panel-body">
+                                {{i.Name}}  <input type="checkbox" id="inventory{{i.Id}}" ng-model="Project.Inventory[i.Id]" />
+                                <input type="text" ng-show="Project.Inventory[i.Id]" ng-model="Project.inventorytext[i.Id]" ng-required="inventory{{i.Id}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#clarity">
+                        <h4 class="panel-title">
+                            Legal Clarity Details
+                        </h4>
+                    </a>
+                </div>
+                <div id="clarity" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div ng-repeat="i in ClarityList" class="panel-body">
+                                {{i.Name}}  <input type="checkbox" id="legalclarity{{i.Id}}" ng-model="Project.legal[i.Id]" />
+                                <input type="text" ng-show="Project.legal[i.Id]" ng-model="Project.claritytext[i.Id]" ng-required="legalclarity{{i.Id}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#livability">
+                        <h4 class="panel-title">
+                            Livability Details
+                        </h4>
+                    </a>
+                </div>
+                <div id="livability" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                            <div ng-repeat="i in LivabilityList" class="panel-body">
+                                <input type="text" ng-model="Livabilty.data" />
+                                {{i.Name}}  <input type="checkbox" id="livability{{i.Id}}" ng-model="Project.livability[i.Id]" />
+                                <input type="text" ng-show="Project.livability[i.Id]" ng-model="Project.livabilitytext[$index]" ng-required="livability{{i.Id}}" />
+                                <input type="text" ng-show="Project.livability[i.Id]" ng-model="Project.livabilityvalue[$index]" ng-required="livability{{i.Id}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#location">
+                        <h4 class="panel-title">
+                            Location Details
+                        </h4>
+                    </a>
+                </div>
+                <div id="location" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="form-group ">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-1" style="width:13%">
+                                            <span class="custom-label">Address Line 1</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="address1" ng-model="Project.Line1" />
+                                        </div>
+                                        <div class="col-sm-5">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-1" style="width:13%">
+                                            <span class="custom-label">Address Line 2</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="address2" ng-model="Project.Line2" />
+                                        </div>
+                                        <div class="col-sm-5">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-1" style="width:13%">
+                                            <span class="custom-label">City</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select id="ddlCity" ng-model="Project.SelectedCity" ng-options="city.Name for city in City track by city.Id">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#projectInformation">
+                        <h4 class="panel-title">
+                            Project Information
+                        </h4>
+                    </a>
+                </div>
+                <div id="projectInformation" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#projectImages">
+                        <h4 class="panel-title">
+                            Upload Project Images
+                        </h4>
+                    </a>
+                </div>
+                <div id="projectImages" class="panel-collapse collapse">
+                    <div class="custom-form-container">
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <center>
+                    <div>
+                        <input type="submit" value="Create" ng-click="save()" class="btn btn-primary btn-md custom-btn" />
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module('MyApp', []);
+    app.directive('ngFiles', ['$parse', function ($parse) {
+
+        function fn_link(scope, element, attrs) {
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    } ]).controller('MyController', function ($scope, $http) {
+        $http({
+            method: 'GET',
+            url: 'http://mosrealestate.silive.in/rest/api/Builder/GetAllMasterDetails',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function mySuccess(response) {
+            $scope.MasterEntries = response.data;
+            $scope.AmenityList = $scope.MasterEntries[0];
+            $scope.ApartmentList = $scope.MasterEntries[1];
+            $scope.QualityList = $scope.MasterEntries[2];
+            $scope.Inventoryist = $scope.MasterEntries[3];
+            $scope.ClarityList = $scope.MasterEntries[4];
+            $scope.LivabilityList = $scope.MasterEntries[5];
+            $scope.City = $scope.MasterEntries[6];
+
+        }, function myError(response) {
+        })
+        $scope.Project = {};
+        $scope.save = function () {
+            var formdata = new FormData();
+            $scope.getProfilePic = function ($files) {
+                angular.forEach($files, function (value, key) {
+                    formdata.append(key, value);
+                });
+            };
+            console.log(formdata);
+
+            var i;
+            var listAmenity = [];
+            for (i = 0; i < $scope.AmenityList.length; i++) {
+
+                var index = $scope.AmenityList[i].Id;
+                if (($scope.Project.Amenity[index]) != false) {
+                    var objAmenity = {
+                        MasterAmenityId: index,
+                        Value: $scope.Project.amenitytext[index]
+                    }
+                    listAmenity.push(objAmenity);
+                }
+            }
+            console.log(listAmenity);
+            console.log($scope.Project)
+            var listApartment = [];
+            for (i = 0; i < $scope.ApartmentList.length; i++) {
+                var index = $scope.ApartmentList[i].Id;
+                if ($scope.Project.Quality[index] != false) {
+                    var objApartment = {
+                        MasterApartmentBuildQualityId: index,
+                        Name: $scope.Project.qualitytext[index],
+                        Value: $scope.Project.qualityvalue[index]
+                    }
+                    listApartment.push(objApartment);
+                }
+            }
+            var listConstruction = [];
+            for (i = 0; i < $scope.QualityList.length; i++) {
+                var index = $scope.QualityList[i].Id;
+                if ($scope.Project.Construction[index] != false) {
+                    var objConstruction = {
+                        MasterConstructionQualityParameterId: index,
+                        Value: $scope.Project.constructiontext[index]
+                    }
+                    listConstruction.push(objConstruction);
+                }
+            }
+            var listInventory = [];
+            for (i = 0; i < $scope.Inventoryist.length; i++) {
+                var index = $scope.Inventoryist[i].Id;
+                if ($scope.Project.Inventory[index] != false) {
+                    var objInventory = {
+                        MasterInventoryId: index,
+                        Value: $scope.Project.inventorytext[index]
+                    }
+                    listInventory.push(objInventory);
+                }
+            }
+            var listLegalClarity = [];
+            for (i = 0; i < $scope.ClarityList.length; i++) {
+                var index = $scope.ClarityList[i].Id;
+                if ($scope.Project.legal[index] != false) {
+                    var objLegalClarity = {
+                        MasterLegalClarityId: index,
+                        Value: $scope.Project.claritytext[index]
+                    }
+                    listLegalClarity.push(objLegalClarity);
+                }
+            }
+            var listLivability = [];
+            for (i = 0; i < $scope.LivabilityList.length; i++) {
+                var index = $scope.LivabilityList[i].Id;
+                if ($scope.Project.livability[index] != false) {
+                    var objLivability = {
+                        MasterLivabilityId: index,
+                        Name: $scope.Project.livabilitytext[index],
+                        Value: $scope.Project.livabilityvalue[index]
+                    }
+                    listLivability.push(objLivability);
+                }
+            }
+            var objLocation = {
+                AddressLine1: $scope.Project.Line1,
+                AddressLine2: $scope.Project.Line2,
+                CityId: $scope.Project.SelectedCity.Id
+            }
+            var obj = {};
+            obj.Name = $scope.Project.Name;
+            obj.ProfilePicture = formdata;
+            obj.Possession = $scope.Project.Possession;
+            obj.Pricing = $scope.Project.Pricing;
+            obj.Amenities = listAmenity;
+            obj.ApartmentBuildQualities = listApartment;
+            obj.ConstructionQualityParameters = listConstruction;
+            obj.Inventories = listInventory;
+            obj.LegalClarities = listLegalClarity;
+            obj.Livabilities = listLivability;
+            obj.Locations = objLocation;
+            console.log(obj);
+            $http({
+                method: 'POST',
+                url: 'http://mosrealestate.silive.in/rest/api/Builder/AddNewProject',
+                data: { obj, formdata },
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function mySuccess(response) {
+                console.log("Done");
+            }, function myError(response) {
+            })
+
+        }
+        //This will hide the DIV by default.
+        //$scope.IsVisible = false;
+        //$scope.ShowHide = function (v) {
+        //    //If DIV is visible it will be hidden and vice versa.
+        //    $scope.IsVisible = $scope.myCountry.selected[v];
+        //}
+        //$scope.myCountry = {
+        //    selected: {}
+        //};
+    });
+</script>

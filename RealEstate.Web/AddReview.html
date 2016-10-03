@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="scripts/ngStorage.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="AddReview">
+    <h1>Write Your Review!!</h1>
+    <form name="addReviewForm" role="form" ng-controller="AddReviewController" ng-submit="submitForm(addReviewForm.$valid)" novalidate>
+        <div>
+            <label for="connectivity">Connectivity</label>
+            <input id="connectivity" placeholder="Rate Connectivity" ng-model="objReview.Connectivity">
+            <span ng-show="ConnectivityRequired">{{ConnectivityRequired}}</span>
+        </div>
+        <div>
+            <label for="livability">Livability</label>
+            <input id="livability" placeholder="Rate Livability" ng-model="objReview.Livability">
+            <span ng-show="LivabilityRequired">{{LivabilityRequired}}</span>
+        </div>
+        <!--<div>
+            <label for="text">Review</label>
+            <input id="text" placeholder="Write Your Review" ng-model="objReview.Text">
+            <span ng-show="TextRequired">{{TextRequired}}</span>
+        </div>
+        <div>
+            <label for="text">Review</label>
+            <input id="text" placeholder="Write Your Review" ng-model="objReview.Text">
+            <span ng-show="TextRequired">{{TextRequired}}</span>
+        </div>
+        <div>
+            <label for="text">Review</label>
+            <input id="text" placeholder="Write Your Review" ng-model="objReview.Text">
+            <span ng-show="TextRequired">{{TextRequired}}</span>
+        </div>-->
+        <div>
+            <label for="text">Review</label>
+            <input id="text" placeholder="Write Your Review" ng-model="objReview.Text">
+            <span ng-show="TextRequired">{{TextRequired}}</span>
+        </div>
+
+        <div>
+            <label for="heading">Heading</label>
+            <input id="heading" placeholder="Write Your Topic Here" ng-model="objReview.Heading">
+            <span ng-show="HeadingRequired">{{HeadingRequired}}</span>
+        </div>
+
+        <div>
+            <label for="ddlLastVisited"> When did you last visit this place? </label>
+            <select name="ddlLastVisited" id="ddlLastVisited" ng-model="Id">
+                <option ng-repeat="option in LastVisitedList" value="{{option.Id}}">{{option.LastVisitedOn}}</option>
+            </select>
+            <span ng-show="LastVisitedRequired">{{LastVisitedRequired}}</span>
+            <p>{{Id}}</p>
+        </div>
+
+
+        <div>
+            <button type="submit" ng-click="addReview()" ng-disabled="addReviewForm.$invalid">Add Review</button>
+        </div>
+        <span>{{objUser}}</span>
+    </form>
+    <div ng-controller="RecentReviewController">
+        <p>Recent Reviews...</p>
+        <div ng-repeat="RecentReview in RecentReviews">
+            <p>Name: <span>{{RecentReview.FirstName + " " +RecentReview.LastName}}</span></p>
+            <p>Level: <span>{{RecentReview.LevelId}}</span></p>
+            <p>Review: <span>{{RecentReview.Text}}</span></p>
+        </div>
+    </div>
+    <script src="scripts/AddReview.js"></script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Real-Estate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="stylesheets/style.css" rel="stylesheet" media="all" />
+    <link href="stylesheets/font-awesome.min.css" rel="stylesheet" media="all" />
+    <link href="stylesheets/awesomeRating.min.css" rel="stylesheet" media="all" />
+    <!-- Bootstrap CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="scripts/ngStorage.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="stylesheets/fontawesome-stars-o.css" rel="stylesheet" />
+    <link href="stylesheets/bootstrap-stars.css" rel="stylesheet" />
+    <!-- User Embedded -->
+    <!--<link rel="stylesheet" type="text/css" href="stylesheet.css">-->
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link href="stylesheets/stylesheet.css" rel="stylesheet" />
+    <!--<script type="text/javascript" src="javascript.js"></script>-->
+    <script src="scripts/javascript.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/936bbf24d4.js"></script>
+    <link href="scripts/awesomeRating.css" rel="stylesheet" />
+    <script src="scripts/awesomeRating.angular.min.js"></script>
+    <script src="scripts/jquery-2.1.3.min.js"></script>
+    <!-- Swiper CSS & JS -->
+    <!--<link rel="stylesheet" type="text/css" href="lib/css/swiper.min.css">-->
+    <link href="stylesheets/swiper.min.css" rel="stylesheet" />
+    <!--<script src="lib/js/swiper.min.js"></script>-->
+    <script src="scripts/swiper.min.js"></script>
+    <script src="scripts/jquery.barrating.min.js"></script>
+    <script src="scripts/examples.js"></script>
+
+    <script type="text/javascript">
+        $('#example').barrating('show', {
+            theme: 'my-awesome-theme',
+            onSelect: function (value, text, event) {
+                if (typeof (event) !== 'undefined') {
+                    // rating was selected by a user
+                    console.log(event.target);
+                } else {
+                    // rating was selected programmatically
+                    // by calling `set` method
+                }
+            }
+        });
+    </script>
+    <style type="text/css">
+        .rating {
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.rating {
+            display: inline-block;
+        }
+
+        .rating li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 1px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .rating .filled {
+            color: #1976d2;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        .swiper-slide {
+            background-color: transparent;
+            font-size: 18px;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================================================================================= -->
+    <!-- navbar -->
+    <div class="navbar navbar-default" id="navbar-custom" style="margin-bottom:0px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Index.html">REALESTATE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+        </div><!-- /.container-fluid -->
+    </div><!--navbar end-->
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx modal xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="close-modal">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="contents" style="padding-top:65px;">
+
+                                <div class="row text-center">
+                                    <button type="button" class="btn" style="border-radius:2px; width:255px; color:white; background-color: #DD4B39; margin-bottom:10px;"><i class="fa fa-google-plus" aria-hidden="true" style="padding-right:10px;"></i> Connect with Google+</button>
+                                    <button type="button" class="btn" style="border-radius:2px; width:255px; color:white; background-color: #3B5998; margin-bottom:10px;"><i class="fa fa-facebook" aria-hidden="true" style="padding-right:10px;"></i> Connect with Facebook</button>
+                                </div>
+                                <div class="row text-center">
+                                    <p style="color:#999; margin:10px 0px;">or use your email address</p>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal-login" id="modal-login" style="border-radius:2px; width:255px; color:white; background-color: #27755a; margin-bottom:10px; margin:10px 0px;">Login</button>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal-signup" style="border-radius:2px; width:255px; color:#27755a; background-color: white; margin-bottom:10px; border:1px solid darkgreen;">Sign Up</button>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal-builder" style="border-radius:2px; width:255px; color: #27755a; background-color: white; margin-bottom:10px; border:1px solid darkgreen">Sign Up as Builder</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Modal-login -->
+    <div class="modal fade" id="myModal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-left:-14px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="close-modal">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="contents" style="padding-top:90px;">
+                                <div class="row text-center">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+
+                                </div>
+                                <div style="padding:20px 0px; float:right;" class="center-block">
+                                    <button class="btn button fill" style="padding:10px 20px;">LOGIN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Modal-signup -->
+    <div class="modal fade" id="myModal-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="close-modal">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="contents" style="padding-top:40px">
+                                <div class="row text-center">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                </div>
+                                <div style="padding:20px 0px; float:right;" class="center-block">
+                                    <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Modal-builder -->
+    <div class="modal fade" id="myModal-builder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="close-modal">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="contents" style="padding-top:40px;">
+                                <div class="row text-center">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="COMPANY REG NUMBER" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="ESTABLISHMENT YEAR" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="CONTACT" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;
+                                           box-shadow none;">
+                                </div>
+                                <div style="padding:20px 0px; float:right;" class="center-block">
+                                    <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Modal-builder -->
+    <div class="modal fade" id="myModal-builder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="contents" style="">
+                                <div class="row text-center">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="COMPANY REG NUMBER" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="ESTABLISHMENT YEAR" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="CONTACT" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                    <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                           height 58px;
+                                           background #FFF none repeat scroll 0% 0%;
+                                           position relative;
+                                           margin-bottom -1px;
+                                           border 1px solid #E6E6E6;
+                                           transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                           border-radius 0px;">
+                                </div>
+                                <div style="padding:20px 0px; float:right;" class="center-block">
+                                    <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+    <div class="container-fluid text-center" style="padding-top: 50px; background-color: #b7b7b7; color: dimgrey; letter-spacing: 3px;">
+        <h2 style="margin: 35px auto;">Write a review, Save someone's money.</h2>
+    </div>
+    <div class="container-fluid" ng-app="AddReview">
+        <div class="container" ng-controller="AddReviewController">
+
+            <div class="row" style="padding-top:50px;">
+
+                <div class="col-lg-5">
+                    <img src="images\p2.jpg" class="img-thumbnail" alt="Cinque Terre">
+                </div>
+                <div class="col-lg-6">
+                    <h2 style="margin:0px auto; font-size:50px;">Street View, Delhi</h2><br>
+                    <!--<p style="margin:0px auto;">
+                        Lorem ipsum dolor sit amet, eum accusamus interesset in. Pri tractatos deterruisset ut. In his oblique consulatu, dicunt incorrupte vim in, an duo dicam primis possit. Sed ex omnis causae, erat eripuit eum et.
+                    </p>-->
+                    <div class="dropdown pull-right" style="padding:0px 0px 0px 15px; ">
+                    </div>
+                </div>
+                <div class="col-lg-5"></div>
+            </div>
+            <div class="row" style="padding:30px 0px 0px 0px;">
+                <div class="col-lg-7">
+                    <form name="addReviewForm" role="form" ng-submit="submitForm(addReviewForm.$valid)" novalidate>
+
+                        <p style="padding-left:10px;">Your rating of this property based on certain parameters.</p>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <span ng-repeat="rating in ratings">
+                                    <div class="connectivity col-md-12">
+                                        <div class="lead col-md-6">
+                                            <span style="padding: 0px 0px 0px 10px;">{{rating.label}}</span>
+                                        </div>
+                                        <div class="col-md-6" star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+
+                                         </div>
+                                </span>
+                                    </div>
+
+                                </div>
+                        <!--<div class="row">
+                            <div class="col-lg-3" style="padding-left:0px;">
+                                <div class="livability">
+                                    <p class="lead"><span style="padding: 0px 0px 0px 10px;">Livability</span> </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <span ng-repeat="rating1 in ratings1">
+                                    {{rating1.current}} out of {{rating1.max}}
+                                    <div star-rating rating-value="rating1.current" max="rating1.max" on-rating-selected="getSelectedRating1(rating1)"></div>
+                                </span>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-lg-3" style="padding-left:0px;">
+                                <div class="lifestyle">
+                                    <p class="lead"><span style="padding: 0px 0px 0px 10px;">Lifestyle</span> </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <span ng-repeat="rating2 in ratings2">
+                                    {{rating2.current}} out of {{rating2.max}}
+                                    <div star-rating rating-value="rating2.current" max="rating2.max" on-rating-selected="getSelectedRating2(rating2)"></div>
+
+                                </span>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-lg-3" style="padding-left:0px;">
+                                <div class="amenities">
+                                    <p class="lead"><span style="padding: 0px 0px 0px 10px;">Amenities</span> </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <span ng-repeat="rating3 in ratings3">
+                                    {{rating3.current}} out of {{rating3.max}}
+                                    <div star-rating rating-value="rating3.current" max="rating3.max" on-rating-selected="getSelectedRating3(rating3)"></div>
+                                </span> 
+                                    </div>
+                                </div>
+                            -->
+                        <!-- Review section -->
+                        <div class="row">
+                            <div class="form-group" style="padding:10px 0px 0px 15px;">
+                                <fieldset class="form-group" ng-class="{ 'has-error' : addReviewForm.ddlMonths.$invalid && !addReviewForm.ddlMonths.$pristine || addReviewForm.ddlYears.$invalid && !addReviewForm.ddlYears.$pristine }">
+                                <label for="heading">When did you last visit?</label>
+                                        <select class="btn dropdown-toggle" data-toggle="dropdown" name="ddlMonths" id="ddlMonths" ng-model="SelectedMonth" style="border-radius: 0px; background-color:#1976d2; color:white; margin-left:25px;" required>
+                                            <option value="" style="color:white">Select</option>
+                                            <option value="1" style="color:white">1 day Ago</option>
+                                            <option value="2" style="color:white">3 days Ago</option>
+                                            <option value="3" style="color:white">1 week Ago</option>
+                                            <option value="4" style="color:white">1 month Ago</option>
+                                            <option value="5" style="color:white">6 months Ago</option>
+                                            <option value="6" style="color:white">1 Year Ago</option>
+                                            <option value="7" style="color:white">More than 1 Year</option>
+                                        </select>
+                                    
+                                    <div ng-show="addReviewForm.$submitted || addReviewForm.ddlMonths.$touched ">
+                                        <span ng-show="addReviewForm.ddlMonths.$error.required" class="error">*</span>
+                                    </div>
+                                    <div ng-show=" addReviewForm.$submitted || addReviewForm.ddlYears.$touched">
+                                        <span ng-show="addReviewForm.ddlYears.$error.required" class="error">*</span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <fieldset class="form-group" ng-class="{ 'has-error' : addReviewForm.heading.$invalid && !addReviewForm.heading.$pristine }">
+                            <div class="form-group" style="padding:10px 0px 0px 15px;">
+                                <label for="heading">Title of your review</label>
+                                    <input type="text" class="form-control" name="heading" id="heading" placeholder="Write Your Topic Here" ng-model="objReview.Text" required>
+                            </div>
+                                <div ng-show="addReviewForm.$submitted || addReviewForm.heading.$touched">
+                                    <span ng-show="addReviewForm.heading.$error.required" class="error">*</span>
+                            </div>
+                            </fieldset>
+                            <script>
+                                $(document).ready(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            </script>
+                            <fieldset class="form-group" ng-class="{ 'has-error' : addReviewForm.review.$invalid && !addReviewForm.review.$pristine }">
+                            <div class="form-group" style="padding:10px 0px 0px 15px;">
+                                    <div class="col-md-12">
+                                        <label style="float:left; margin-left:-28px;" class="col-md-3" for="text">Your Review</label>
+                                        <div class="container col-md-9" style="float:right; margin-right:-295px;">
+                                            <ul class="list-inline">
+                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Go, get some creativity">Tips for a great review</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <textarea class="form-control" rows="3" id="text" name="review" placeholder="Help Someone by writing a review" ng-model="objReview.Heading" required></textarea>
+                                </div>
+                                <div ng-show="addReviewForm.$submitted || addReviewForm.review.$touched">
+                                    <span ng-show="addReviewForm.review.$error.required" class="error">*</span>
+                            </div>
+                            </fieldset>
+                        </div>
+                        <!-- Review section ends-->
+                        <!--captcha-->
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                        <div class="g-recaptcha" data-sitekey="6Lc2BikTAAAAAGDzK24CCvtFGNDd3G8W0kujhCfZ" style="margin-left:15px;"></div>
+                        <noscript>
+                            <div>
+                                <div style="width: 302px; height: 422px; position: relative;">
+                                    <div style="width: 302px; height: 422px; position: absolute;">
+                                        <iframe src="https://www.google.com/recaptcha/api/fallback?k=6Lc2BikTAAAAAGDzK24CCvtFGNDd3G8W0kujhCfZ"
+                                                frameborder="0" scrolling="no"
+                                                style="width: 302px; height:422px; border-style: none;"></iframe>
+                                    </div>
+                                </div>
+                                <div style="width: 300px; height: 60px; border-style: none;
+                   bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                   background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                                    <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                              class="g-recaptcha-response"
+                                              style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                          margin: 10px 25px; padding: 0px; resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </noscript>
+                        <script>
+                            $("addReviewForm").submit(function (event) {
+
+                                var recaptcha = $("#g-recaptcha-response").val();
+                                if (recaptcha === "") {
+                                    event.preventDefault();
+                                    alert("Please check the recaptcha");
+                                }
+                            });
+                        </script>
+                        <!--end captcha-->
+                        <div style="padding: 40px 0px 40px 15px; align:right;">
+                            <button type="button" ng-click="addReview()" ng-disabled="addReviewForm.$invalid" class="btn" style="padding:10px 15px 10px 15px; border-radius:0px; background-color: #1976d2; color:white;">Submit your review</button>
+                        </div>
+                    </form>
+                </div>
+
+                <script src="scripts/AddReview.js"></script>
+                <!-- col-lg-7 end -->
+                <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx reviews xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+                <div class="col-lg-5">
+
+
+                    <div class="row">
+                        <!-- Vertical Scroll Region  -->
+                        <div class="col-sm-12" style="padding-right:0px;">
+                            <h3 style="text-transform: uppercase; margin: 0px;">Recent Reviews</h3>
+                            <hr style="border-top-color: #000; margin:5px 0px 30px 0px;">
+
+                            <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Vertical Scrolling Start -->
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper" style="height: 480px;">
+                                    <div class="swiper-slide" ng-controller="RecentReviewController">
+
+                                        <!-- Single Row for review -->
+                                        <div class="row" ng-repeat="RecentReview in RecentReviews" ng-show="RecentReviews.length">
+                                            <div class="col-sm-12" style="margin-bottom:20px">
+                                                <div class="col-lg-3 col-sm-12">
+                                                    <img src="s/profile1.jpg" class="img-circle" width="80" height="80">
+                                                </div>
+                                                <div class="col-lg-5" style="padding-left:20px; color:white; text-align:justify; ">
+                                                    <p style="font-size:14px; color:#333;">{{RecentReview.FirstName + " " +RecentReview.LastName}}</p>
+                                                    <!--<p id="no-of-review-1" style="font-size:11px;line-height:70%;color:#333; "><kbd>180</kbd> Reviews</p>
+                                                    <p id="no-of-review-1" style="font-size:11px; line-height:70%;color:#333;"><kbd>34</kbd> Likes</p>-->
+                                                    <p style="font-size:11px; line-height:70%;color:#333;"><kbd>{{RecentReview.LevelId}}</kbd> Level</p>
+                                                    <div star-rating rating-value="RecentReview.AverageValue" max="5" style="width:154px;"></div>
+                                                </div>
+                                                <div class="col-lg-4" style="color:#333; text-align:justify; ">
+                                                    <!--<p  style="font-size:14px;">Green View, Delhi</p>-->
+                                                    <p style="font-size:11px;">
+                                                        {{RecentReview.Text}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-hide="RecentReviews.length" style="text-transform:uppercase;">Be first to give review.</div>
+                                        <!-- Add Scroll Bar -->
+                                        <div class="swiper-scrollbar"></div>
+                                    </div>
+                                    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Vertical Scrolling End -->
+                                    <script>
+                                        var swiper = new Swiper('.swiper-container', {
+                                            scrollbar: '.swiper-scrollbar',
+                                            direction: 'vertical',
+                                            slidesPerView: 'auto',
+                                            mousewheelControl: true,
+                                            freeMode: true,
+                                            scrollbarDraggable: true
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--footer-->
+    <div class="container-fluid" style="background-color: #424242; color: #adadad; padding: 60px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Contact Us</h4>
+                    <p style="margin-bottom: 1px;"><b>Call Us:</b> +9876543210</p>
+                    <p style="margin-bottom: 1px;"><b>Email:</b> contact@myownspace.com</p>
+                    <p style="margin-bottom: 1px;">or</p>
+                    <p style="margin-bottom: 1px;"><b>Skype:</b> myownspace</p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Follow Us</h4>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-facebook-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-google-plus-square"></span><span style="padding: 2px 10px;" class="fa fa-twitter-square"></span></span><span style="padding: 2px 10px;" class="fa fa-linkedin-square"></span></p>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-behance-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-get-pocket"></span><span style="padding: 2px 10px;" class="fa fa-git-square"></span></span><span style="padding: 2px 10px;" class="fa fa-glide"></span></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Mailing List</h4>
+                    <input class="textbox" type="text" placeholder="Enter Your E-mail ID">
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Expertise</h4>
+                    <p style="margin-bottom: 1px;">www.expertise.com</p>
+                    <p style="margin-bottom: 1px;">www.builderbuild.com</p>
+                    <p style="margin-bottom: 1px;">www.enterprisebuilder.com</p>
+                    <p style="margin-bottom: 1px;">www.housingproject.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #424242; padding: 0px;">
+        <img src="images/building-footer.png" class="img-responsive center-block" pad style="color: #808080; margin-top: -85px;">
+    </div>
+    <div class="container-fluid text-center" style="background-color: #191919; padding: 30px 0px;">
+        <div class="col-sm-12">
+            <span style=" color #808080; font-size 12px;">
+                Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2016 My Own Space  .  All Rights Reserved  .  Terms of Services  .  Privacy Policy  .  Site Map
+            </span>
+        </div>
+    </div>
+</body>

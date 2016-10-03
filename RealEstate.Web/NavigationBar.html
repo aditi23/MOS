@@ -1,0 +1,84 @@
+﻿<div id="navbar-custom" class="navbar navbar-static-top" role="navigation" data-spy="affix" data-offset-top="485" style="z-index:9399; margin:0px;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">REALESTATE</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" ng-controller="ProjectController as ctrl" id="bs-example-navbar-collapse-1">
+            <ul>
+                <div class="search-bar center-block">
+                    <div class="col-lg-6 col-lg-offset-2" style="padding-top:8px; ">
+                        <ul class="pull-left" style="list-style: none;">
+                            <li class="dropdown">
+                                <!--<a href="#" class= " navbar-city dropdown-toggle drop-link" id="dropdown-city-prop" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="">Select City <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Ghaziabad</a></li>
+                                    <li><a href="#">Faridabad</a></li>
+                                    <li><a href="#">Gautam Buddha Nagar</a></li>
+                                    <li><a href="#">Noida</a></li>
+                                    <li><a href="#">Gurgaon</a></li>
+                                </ul>-->
+                                <select id="ddlCity" ng-model="SelectedCity" class="navbar-city dropdown-toggle drop-link dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-change="changedValue(SelectedCity)" ng-options="city.Name for city in City track by city.Id">
+                                    <option value="">Select City</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="input-group">
+                            <!-- <input type="text" class="form-control" placeholder="Project name, Location, Builder..">-->
+                            <div layout="column">
+                                <md-content>
+                                    `            <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                                  md-no-cache="ctrl.noCache"
+                                                                  md-selected-item="ctrl.selectedItem"
+                                                                  md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                                  md-search-text="ctrl.searchText"
+                                                                  md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                                  md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                                  md-item-text="item.Name"
+                                                                  md-min-length="0"
+                                                                  placeholder="Enter Location,Property or Builder...">
+                                        <md-item-template>
+                                            <span md-highlight-text="ctrl.searchText">{{item.Name}}</span>
+                                            <span class="item-metastat">
+                                                <strong>{{item.Type}}</strong>
+                                            </span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            No property matching "{{ctrl.searchText}}" were found.
+                                        </md-not-found>
+                                    </md-autocomplete>
+                                </md-content>
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-search" type="button" ng-click="Search(ctrl.selectedItem)" id="search-box">Search</button>
+                               <!--  <button class="btn" type="button" style="background-color:#1976D2; border-radius: 2px; color:white; ">Search</button>-->
+                            </span>
+                            <!-- Dropdown -->
+
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!--row end-->
+            </ul>
+            <div ng-controller="NavBar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="dropbtn">News</a></li>
+                    <div class="dropdown">
+                        <li><a ng-click="myFunc()">{{Email}}</a></li>
+                        <div class="dropdown-content" ng-hide="checkLogin()">
+                            <a ng-click="myFunc()">Profile</a>
+                            <a ng-click="logout()">Logout</a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</div>

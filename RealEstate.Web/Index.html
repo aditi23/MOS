@@ -1,0 +1,584 @@
+﻿<!-- Landing Part -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Estate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="scripts/ngDialog.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/autocomplete.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="/scripts/autocomplete.js"></script>
+    <script src="scripts/ngStorage.js"></script>
+    <script src="scripts/Index.js"></script>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <!-- User Embedded -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+    <!-- <link rel="stylesheet" type="text/css" href="layout.css">-->
+    <script type="text/javascript" src="scripts/javascript.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/936bbf24d4.js"></script>
+    <!-- Swiper CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/swiper.min.css">
+    <style type="text/css">
+         .rating {
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.rating {
+            display: inline-block;
+        }
+
+        .rating li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 1px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .rating .filled {
+            color: #1976d2;
+        }
+
+        a:focus, a:hover {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent !important;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+            .dropdown-content a {
+                color: #ffffff;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                font-size: 18px;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: transparent;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .dropdown-menu {
+            top: -1%;
+            left: -175px;
+        }
+
+        #navbar-custom.navbar-default .navbar-brand {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        #navbar-custom.navbar-default {
+            font-size: 12px;
+            background-color: transparent;
+            border-bottom-width: 0px;
+        }
+
+            #navbar-custom.navbar-default .navbar-nav > li > a {
+                color: rgba(255, 255, 255, 1);
+                background-color: transparent;
+            }
+
+                #navbar-custom.navbar-default .navbar-nav > li > a:hover,
+                #navbar-custom.navbar-default .navbar-nav > li > a:focus {
+                    color: #fff;
+                    background-color: rgba(255,255,255,0.2);
+                }
+
+            #navbar-custom.navbar-default .navbar-nav > .active > a,
+            #navbar-custom.navbar-default .navbar-nav > .active > a:hover,
+            #navbar-custom.navbar-default .navbar-nav > .active > a:focus {
+                color: rgba(66, 66, 66, 1);
+                background-color: #2196F3;
+            }
+
+            #navbar-custom.navbar-default .navbar-toggle {
+                border-color: #ffffff;
+            }
+
+                #navbar-custom.navbar-default .navbar-toggle:hover,
+                #navbar-custom.navbar-default .navbar-toggle:focus {
+                    background-color: #ffffff;
+                }
+
+                #navbar-custom.navbar-default .navbar-toggle .icon-bar {
+                    background-color: #ffffff;
+                }
+
+                #navbar-custom.navbar-default .navbar-toggle:hover .icon-bar,
+                #navbar-custom.navbar-default .navbar-toggle:focus .icon-bar {
+                    background-color: #00d4a3;
+                }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+
+        [ng-click],
+        [data-ng-click],
+        [x-ng-click] {
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .ui-autocomplete-category {
+            font-weight: bold;
+            padding: .2em .4em;
+            margin: .8em 0 .2em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body ng-app="Home" ng-cloak>
+    <div class="navbar navbar-default navbar-static-top" id="navbar-custom" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Index.html">REALESTATE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div ng-controller="NavBar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--<li><a href="#" class="dropbtn">News</a></li>-->
+                        <div class="dropdown navbar-brand">
+                            <li><a ng-click="myFunc()">{{Email}}</a></li>
+                            <div class="dropdown-content" ng-hide="checkLogin()">
+                                <a ng-click="myFunc()">Profile</a>
+                                <a ng-click="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </div><!--navbar end-->
+    <style type="text/css">
+        .affix {
+            top: 0;
+            width: 100%;
+            -webkit-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+            color: #fff;
+            background-color: #3F51B5;
+        }
+
+            .affix a {
+                -webkit-transition: all .3s ease-in-out;
+                transition: all .3s ease-in-out;
+                color: #fff;
+            }
+
+                .affix a:hover {
+                    color: #3F51B5;
+                }
+
+        .affix-top a {
+            color: #000;
+        }
+    </style>
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx modal xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <!-- modal end -->
+    <!--jumbotron-->
+    <div class="container-fluid" style="background-image:url(images/bg.jpg); margin-bottom:0px; padding:70px 0px; margin-top: -50px">
+        <div class="container text-center" style="padding-top:20px;">
+            <!-- top review -->
+            <!-- Single Card -->
+            <div class="row" style="padding-top:40px;">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="col-lg-3">
+                        <img src="images/profile1.jpg" class="img-circle" width="80" height="80">
+                    </div>
+                    <div class="col-lg-4" style="padding-left:15px; color:white; text-align:justify; ">
+                        <p id="username-1" style="font-size:14px;">Kunal Ch.</p>
+                        <p id="no-of-review-1" style="font-size:11px;line-height:70%; "><kbd>180</kbd> Reviews</p>
+                        <p id="no-of-review-1" style="font-size:11px; line-height:70%;"><kbd>34</kbd> Likes</p>
+                        <div id="stars" style="padding-top:0px; color: white; ">
+                            <!-- Star Filled icon by Icons8 -->
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <!--star end-->
+                        </div>
+                    </div>
+                    <div class="col-lg-5" style="color:white; text-align:justify; ">
+                        <p id="property-name-1" style="font-size:14px;">Green View, Delhi</p>
+                        <p id="user-review-1" style="font-size:11px;">
+                            Lorem ipsum dolor sit amet, te aperiri labitur eum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- top review end -->
+            <h2 style="margin-top:60px; font-size:35px; color:white;">Lorem ipsum dolor sit amet ut equidem  </h2>
+            <div class="row" style="padding-top:30px; padding-bottom:0px;">
+                <div class="col-lg-2" style="padding-right:0px;">
+                </div>
+                <div ng-controller="ProjectController as ctrl" class="col-lg-8" style="">
+                    <div class="row" style="padding-right:45px;">
+                        <ul class="pull-left">
+                            <li class="dropdown">
+                                <select id="ddlCity" ng-model="SelectedCity" style="height:37px;" class="navbar-city dropdown-toggle drop-link dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-change="changedValue(SelectedCity)"> <!--ng-change="changedValue(SelectedCity)" ng-options="city.Name for city in City track by city.Id">-->
+                                    <option value="">Select City</option>
+                                    <option ng-repeat="city in City" ng-selected="SelectedCity == city.Id" value="{{city.Id}}">{{city.Name}}</option>
+                                </select>
+                                <!--<select ng-model="selectedItemvalue">
+                                    <option value="">--Select --</option>
+                                    <option ng-repeat="sel in selectables" ng-selected="selectedItemvalue == sel.value" value="{{sel.value}}">{{sel.label}}</option>
+                                </select>-->
+                            </li>
+                        </ul>
+                        <div class="input-group">
+                            <div layout="column">
+                                <!--<md-content>-->
+                                `  <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                    md-no-cache="ctrl.noCache"
+                                                    md-selected-item="ctrl.selectedItem"
+                                                    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                    md-search-text="ctrl.searchText"
+                                                    md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                    md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                    md-item-text="item.Name"
+                                                    md-min-length="0"
+                                                    placeholder="Enter Location,Property or Builder...">
+                                    <md-item-template>
+                                        <span md-highlight-text="ctrl.searchText">{{item.Name}}</span>
+                                        <span class="item-metastat" style="float:right;">
+                                            <strong>{{item.Type}}</strong>
+                                        </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        Searching for Projects.Select a <b>City</b> First.
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <!--</md-content>-->
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-search" type="button" ng-click="Search(ctrl.selectedItem)" id="search-box">Search</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-2"></div>
+            </div><!--row end-->
+        </div> <!-- end container-->
+    </div> <!--end jumbotron-->
+    <!--Statistics div starts-->
+    <div class="container" style="margin-bottom:-2px;">
+        <section>
+            <div class="row" ng-controller="TrendingReviewsController">
+                <div>
+                    <!-- projects reviewed -->
+                    <div class="col-lg-4">
+                        <div class="row" style="padding-top:20px;">
+                            <div class="col-lg-8" style="padding-left: 0px;">
+                                <h3>PROJECTS <span style="font-size:15px;">REVIEWED</span></h3>
+                            </div>
+                            <div class="col-lg-4">
+                                <h2 class="timer count-title" id="count-number" data-to="{{getProjectCount()}}" data-speed="2500" style="font-size: 42px; margin-top:0px; ">{{getProjectCount()}}</h2>
+                            </div>
+                        </div>
+                        <div class="row" style="border-top:1px solid gray; padding-right:0px">
+                            <p style="padding:10px 0 0 0;">Lorem ipsum dolor sit amet, te aperiri labitur eum, laudem utamur cotidieque cum ut.Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <!-- USERS -->
+                        <div class="row" style="padding-top:20px;">
+                            <div class="col-lg-8" style="padding-left: 0px;">
+                                <h3>USERS <span style="font-size:16px;"></span></h3>
+                            </div>
+                            <div class="col-lg-4">
+                                <h2 class="timer count-title" id="count-number" data-to="{{getUserCount()}}" data-speed="2500" style="font-size: 42px; margin-top:0px; ">{{getUserCount()}}</h2>
+                            </div>
+                        </div>
+                        <div class="row" style="border-top:1px solid gray; padding-right:0px">
+                            <p style="padding:10px 0 0 0;">Lorem ipsum dolor sit amet, te aperiri labitur eum, laudem utamur cotidieque cum ut.Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                    <!-- centre image -->
+                    <div class="col-lg-4" style="padding:30px 0 0px 0; ">
+                        <img src="images/building1.png" style="width:350px; height:300px;" />
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- total reviews -->
+                        <div class="row" style="padding-top:20px;">
+                            <div class="col-lg-8" style="padding-left: 0px;">
+                                <h3>TOTAL <span style="font-size:15px;">REVIEWS</span></h3>
+                            </div>
+                            <div class="col-lg-4">
+                                <h2 class="timer count-title" id="count-number" data-to="{{getReviewCount()}}" data-speed="2500" style="font-size: 42px; margin-top:0px; ">{{getReviewCount()}}</h2>
+                            </div>
+                        </div>
+                        <div class="row" style="border-top:1px solid gray; padding-right:0px">
+                            <p style="padding:10px 0 0 0;">Lorem ipsum dolor sit amet, te aperiri labitur eum, laudem utamur cotidieque cum ut.Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <!-- builders -->
+                        <div class="row" style="padding-top:20px;">
+                            <div class="col-lg-8" style="padding-left: 0px;">
+                                <h3>BUILDERS <span style="font-size:14px;"></span></h3>
+                            </div>
+                            <div class="col-lg-4">
+                                <h2 class="timer count-title" id="count-number" data-to="{{getBuilderCount()}}" data-speed="2500" style="font-size: 42px; margin-top:0px; ">{{getBuilderCount()}}</h2>
+                            </div>
+                        </div>
+                        <div class="row" style="border-top:1px solid gray; padding-right:0px">
+                            <p style="padding:10px 0 0 0;">Lorem ipsum dolor sit amet, te aperiri labitur eum, laudem utamur cotidieque cum ut.Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> <!--end container-->
+    <!--Statistics div ends-->
+    <!-- why review -->
+    <div class="container-fluid" style="background-image: url(images/test2.jpg); background-attachment: scroll; background-size: cover; color: #fff;">
+        <div class="container" style="padding-top:60px;">
+            <h5 style="margin:0px;">WHY</h5>
+            <h2 style="font-weight: lighter; margin: 0px;">REVIEW <span class="glyphicon glyphicon-star" style="color: #fff;"></span> <span class="glyphicon glyphicon-star" style="color: #fff;"></span> <span class="glyphicon glyphicon-star" style="color: #fff;"></span> <span class="glyphicon glyphicon-star" style="color: #fff;"></span> <span class="glyphicon glyphicon-star-empty" style="color: #fff;"></span></h2>
+            <hr style="margin: 5px;">
+            <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a turpis ultricies, rhoncus leo eu, volutpat tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dignissim vitae nisl a porta. In commodo ipsum id ipsum vehicula, eget faucibus libero bibendum. Nunc aliquet sem ut quam pellentesque, porta imperdiet felis egestas. Nulla facilisi. Proin sit amet purus porttitor elit interdum cursus. Etiam non consectetur nun. In commodo ipsum id ipsum vehicula, eget faucibus libero bibendum. Nunc aliquet sem ut quam pellentesque, porta imperdiet felis egestas. Nulla facilisi. Proin sit amet purus porttitor elit interdum cursus. Etiam non consectetur nun.</p>
+            <img src="images/building.png" class="img-responsive center-block">
+        </div>
+    </div>
+    <!-- Error -->
+    <div style="height: 30px;"></div>
+    <div class="container-fluid" style="padding-bottom:20px;">
+        <div class="container" ng-controller="TrendingReviewsController">
+            <h5 style="margin:0px;">SOME</h5>
+            <h2 style="text-transform: uppercase; margin: 0px;">Top Reviews</h2>
+            <hr style="border-top-color: #000; margin:5px; padding-bottom:20px;">
+                <div class="swiper-container swiper1">
+                    <div class="swiper-wrapper">
+                        <!-- Single Card -->
+                        <div class="swiper-slide">
+                            <div class="col-sm-12" style="padding: 30px 0px; margin-bottom:20px;">
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="col-lg-3">
+                                        <img src="images/profile1.jpg" class="img-circle" width="100" height="100">
+                                        <div star-rating rating-value="Trending[0].AverageValue" max="5" style="width:154px;"></div>
+                                    </div>
+                                    <div class="col-lg-4" style="padding-left:15px;">
+                                        <p id="username-1">{{Trending[0].FirstName}}</p>
+                                        <p id="no-of-review-1" style="font-size:15px; margin-top:0px;"><kbd>{{Trending[0].ReviewCount}}</kbd> Reviews</p>
+                                        <p id="no-of-review-1" style="font-size:15px; margin-top:-7px;"><kbd>{{Trending[0].SayThanksCount}}</kbd> Likes</p>
+                                    </div>
+                                    <div class="col-lg-5" style="">
+                                        <p id="property-name-1">{{Trending[0].city}}</p>
+                                        <p id="user-review-1" style="">
+                                            {{Trending[0].Name}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="col-lg-3">
+                                        <img src="images/profile1.jpg" class="img-circle" width="100" height="100">
+                                        <div star-rating rating-value="Trending[1].AverageValue" max="5" style="width:154px;"></div>
+                                    </div>
+                                    <div class="col-lg-4" style="padding-left:15px;">
+                                        <p id="username-1">{{Trending[1].FirstName}}</p>
+                                        <p id="no-of-review-1" style="font-size:15px; margin-top:0px;"><kbd>{{Trending[1].ReviewCount}}</kbd> Reviews</p>
+                                        <p id="no-of-review-1" style="font-size:15px; margin-top:-7px;"><kbd>{{Trending[1].SayThanksCount}}</kbd> Likes</p>
+                                    </div>
+                                    <div class="col-lg-5" style="">
+                                        <p id="property-name-1">{{Trending[5].city}}</p>
+                                        <p id="user-review-1" style="">
+                                            {{Trending[1].Name}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination1"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: #424242; color: #adadad; padding: 60px 0px; padding-bottom:0px;">
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Contact Us</h4>
+                    <p style="margin-bottom: 1px;"><b>Call Us:</b> +9876543210</p>
+                    <p style="margin-bottom: 1px;"><b>Email:</b> contact@myownspace.com</p>
+                    <p style="margin-bottom: 1px;">or</p>
+                    <p style="margin-bottom: 1px;"><b>Skype:</b> myownspace</p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Follow Us</h4>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-facebook-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-google-plus-square"></span><span style="padding: 2px 10px;" class="fa fa-twitter-square"></span></span><span style="padding: 2px 10px;" class="fa fa-linkedin-square"></span></p>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-behance-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-get-pocket"></span><span style="padding: 2px 10px;" class="fa fa-git-square"></span></span><span style="padding: 2px 10px;" class="fa fa-glide"></span></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Mailing List</h4>
+                    <input class="textbox" type="text" placeholder="Enter Your E-mail ID">
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Expertise</h4>
+                    <p style="margin-bottom: 1px;">www.expertise.com</p>
+                    <p style="margin-bottom: 1px;">www.builderbuild.com</p>
+                    <p style="margin-bottom: 1px;">www.enterprisebuilder.com</p>
+                    <p style="margin-bottom: 1px;">www.housingproject.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #424242; padding: 0px;">
+        <img src="images/building-footer.png" class="img-responsive center-block" pad style="color: #808080;">
+    </div>
+    <div class="container-fluid" style="background-color: #191919; padding: 30px 0px; ">
+        <div class="col-sm-12" style="text-align: center;">
+            <span style=" color #808080; font-size 12px; ">
+                Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2016 My Own Space  .  All Rights Reserved  .  Terms of Services  .  Privacy Policy  .  Site Map
+            </span>
+        </div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="scripts/swiper.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper1', {
+            pagination: '.swiper-pagination1',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            freenav: true
+        });
+
+
+    </script>
+    <div id="navbar-custom" class="navbar navbar-static-top" role="navigation" data-spy="affix" data-offset-top="485" style="z-index:9399; margin:0px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Index.html">REALESTATE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" ng-controller="ProjectController as ctrl" id="bs-example-navbar-collapse-1">
+                <ul>
+                    <div class="search-bar center-block">
+                        <div class="col-lg-6 col-lg-offset-2" style="padding-top:8px; ">
+                            <ul class="pull-left" style="list-style: none;">
+                                <li class="dropdown">
+                                    <select id="ddlCity" ng-model="SelectedCity" style="height:37px;margin-top:-15px;" class="navbar-city dropdown-toggle drop-link dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-change="changedValue(SelectedCity)">
+                                        <!--ng-change="changedValue(SelectedCity)" ng-options="city.Name for city in City track by city.Id">-->
+                                        <option value="">Select City</option>
+                                        <option ng-repeat="city in City" ng-selected="SelectedCity == city.Id" value="{{city.Id}}">{{city.Name}}</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="input-group">
+                                <!-- <input type="text" class="form-control" placeholder="Project name, Location, Builder..">-->
+                                <div layout="column">
+                                          <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                            md-no-cache="ctrl.noCache"
+                                                            md-selected-item="ctrl.selectedItem"
+                                                            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                            md-search-text="ctrl.searchText"
+                                                            md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                            md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                            md-item-text="item.Name"
+                                                            md-min-length="0"
+                                                            placeholder="Enter Location,Property or Builder...">
+                                        <md-item-template>
+                                            <span md-highlight-text="ctrl.searchText">{{item.Name}}</span>
+                                            <span class="item-metastat">
+                                                <strong>{{item.Type}}</strong>
+                                            </span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            No property matching "{{ctrl.searchText}}" were found.
+                                        </md-not-found>
+                                    </md-autocomplete>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-search" style="margin-left:0px;margin-top:0px;" type="button" ng-click="Search(ctrl.selectedItem)" id="search-box">Search</button>
+                                    <!--  <button class="btn" type="button" style="background-color:#1976D2; border-radius: 2px; color:white; ">Search</button>-->
+                                </span>
+                                <!-- Dropdown -->
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!--row end-->
+                </ul>
+                <div ng-controller="NavBar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--<li><a href="#" class="dropbtn">News</a></li>-->
+                        <div class="dropdown" style="margin-right:12px;">
+                            <li><a ng-click="myFunc()">{{Email}}</a></li>
+                            <!--<div class="dropdown-content" ng-hide="checkLogin()">
+                                <a ng-click="myFunc()">Profile</a>
+                                <a ng-click="logout()">Logout</a>
+                            </div>-->
+                        </div>
+                    </ul>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </div>
+</body>
+</html><!-- Landing Part -->

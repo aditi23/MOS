@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="scripts/ngDialog.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/autocomplete.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="/scripts/autocomplete.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="scripts/Property.js"></script>
+    <script src="scripts/Index.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script src="scripts/ngStorage.min.js"></script>
+    <script src="scripts/dirPagination.js"></script>
+
+    <!-- User Embedded -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+    <!-- <link rel="stylesheet" type="text/css" href="layout.css">-->
+    <script type="text/javascript" src="scripts/javascript.js"></script>
+    <script src="scripts/Property.js"></script>
+    <script src="scripts/Index.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="Propertyapp">
+    <div ng-controller="PropertiesController">
+
+        <div ng-repeat="property in Properties">
+            <p>Project: <span>{{property.Name}}</span></p>
+            <p>Builder: <span>{{property.BuilderName}}</span></p>
+            <p>Review: <span>{{property.ReviewCount}}</span></p>
+            <p>Address: <span>{{property.Address}}</span></p>
+            <p>Possession: <span>{{property.Possession}}</span></p>
+            <p>Price: <span>{{property.Pricing}}</span></p>
+            <button ng-click="View(property.reviewId)">View</button>
+        </div>
+    </div>
+    <script src="scripts/Property.js"></script>
+    <script>
+        var abc = angular.module("Propertyapp", ['ngStorage']);
+        abc.controller("PropertiesController", function ($scope, $http) {
+            var abc = {};
+            var id = 2;
+            if (id == 1)
+                abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByCity?cityId=1";
+            if (id == 2)
+                abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByBuilder?builderId=1";
+            if (id == 3)
+                abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByLocation?locationId=1";
+            $http({
+                method: 'GET',
+                url: abc,
+                //data: id,
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function mySuccess(response) {
+                console.log(response.data)
+                $scope.Properties = response.data;
+            }, function myError(response) {
+                $scope.similarProjects = response.statusText;
+            })
+        });
+</script>
+</body>
+</html>

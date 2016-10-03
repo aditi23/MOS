@@ -1,0 +1,1109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Estate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="scripts/ngDialog.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/autocomplete.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.0/angular-sanitize.min.js"></script>
+    <script src="scripts/readmore.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+    <script src="/scripts/autocomplete.js"></script>
+    <script src="scripts/ngStorage.js"></script>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- User Embedded -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+    <!-- <link rel="stylesheet" type="text/css" href="layout.css">-->
+    <script type="text/javascript" src="scripts/javascript.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/936bbf24d4.js"></script>
+    <!-- Swiper CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/swiper.min.css">
+    <script src="scripts/Property.js"></script>
+    <style type="text/css">
+        .rating {
+            color: #3b8ad8;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.rating {
+            display: inline-block;
+        }
+
+        .rating li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 1px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .rating .filled {
+            color: #1976d2;
+        }
+         a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            a:focus, a:hover {
+                color: #ffffff !important;
+                text-decoration: none !important;
+            }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        .swiper-slide {
+            background-color: transparent;
+            font-size: 18px;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        [ng-click],
+        [data-ng-click],
+        [x-ng-click] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body ng-app="PropertyApp">
+    <div >
+        <!-- ========================================================================================================= -->
+        <!-- navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" id="navbar-custom">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./Index.html">REALESTATE</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div ng-controller="ProjectPageAutoComplete as ctrl" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul>
+                        <div class="search-bar center-block">
+                            <div class="col-lg-6 col-lg-offset-2" style="padding-top:8px; ">
+                                <ul class="pull-left" style="list-style: none;">
+                                    <li class="dropdown">
+                                        <!--<a href="#" class="navbar-city dropdown-toggle drop-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select City <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Ghaziabad</a></li>
+                                            <li><a href="#">Faridabad</a></li>
+                                            <li><a href="#">Gautam Buddha Nagar</a></li>
+                                            <li><a href="#">Noida</a></li>
+                                            <li><a href="#">Gurgaon</a></li>
+                                        </ul>-->
+                                        <select id="ddlCity" ng-model="SelectedCity" style="height:37px;margin-top:-12px;margin-left:-165px;" class="navbar-city dropdown-toggle drop-link dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-change="changedValue(SelectedCity)">
+                                            <!--ng-change="changedValue(SelectedCity)" ng-options="city.Name for city in City track by city.Id">-->
+                                            <option value="">Select City</option>
+                                            <option ng-repeat="city in City" ng-selected="SelectedCity == city.Id" value="{{city.Id}}">{{city.Name}}</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                                <div class="input-group">
+                                    <!--<autocomplete ng-model="Projects" data="project" on-type="updateData" class="form-control" placeholder="Project name, Location, Builder.." style="border-radius:2px;"></autocomplete>-->
+                                    <!-- <input type="text" class="form-control" placeholder="Project name, Location, Builder.." style="border-radius:2px;">-->
+                                    <div layout="column">
+                                        <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                         md-no-cache="ctrl.noCache"
+                                                         md-selected-item="ctrl.selectedItem"
+                                                         md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                         md-search-text="ctrl.searchText"
+                                                         md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                         md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                         md-item-text="item.Name"
+                                                         md-min-length="0"
+                                                         placeholder="Enter Location,Property or Builder...">
+                                            <md-item-template>
+                                                <span md-highlight-text="ctrl.searchText">{{item.Name}}</span>
+                                                <span class="item-metastat" style="float:right;">
+                                                    <strong>{{item.Type}}</strong>
+                                                </span>
+                                            </md-item-template>
+                                            <md-not-found>
+                                                Searching for Projects.Select a <b>City</b> First.
+                                            </md-not-found>
+                                        </md-autocomplete>
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-search" type="button" style="margin-left:0px;margin-top:0px;" ng-click="Search(ctrl.selectedItem)" id="search-box">Search</button>
+                                    </span>
+                                    <!-- Dropdown -->
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div><!--row end-->
+                    </ul>
+                    <div ng-controller="NavBarProjectPage">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!--<li><a href="#" class="dropbtn">News</a></li>-->
+                            <div class="dropdown" style="margin-right:12px;margin-top:6px;">
+                                <li><a ng-click="myFunc()">{{Email}}</a></li>
+                                <!--<div class="dropdown-content" ng-hide="checkLogin()">
+                                    <a ng-click="myFunc()">Profile</a>
+                                    <a ng-click="logout()">Logout</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+                    </div>
+                </div>
+            </div>
+        <!--navbar end-->
+        <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx modal xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+        <div ng-controller="PropertyController"> 
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                            </div>
+                            <div class="col-lg-7">
+                                <div id="close-modal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="contents" style="padding-top:65px;">
+                                    <div class="row text-center">
+                                        <button type="button" class="btn" style="border-radius:2px; width:255px; color:white; background-color: #DD4B39; margin-bottom:10px;"><i class="fa fa-google-plus" aria-hidden="true" style="padding-right:10px;"></i> Connect with Google+</button>
+                                        <button type="button" class="btn" style="border-radius:2px; width:255px; color:white; background-color: #3B5998; margin-bottom:10px;"><i class="fa fa-facebook" aria-hidden="true" style="padding-right:10px;"></i> Connect with Facebook</button>
+                                    </div>
+                                    <div class="row text-center">
+                                        <p style="color:#999; margin:10px 0px;">or use your email address</p>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn" data-toggle="modal" data-target="#myModal-login" id="modal-login" style="border-radius:2px; width:255px; color:white; background-color: #1976D2; margin-bottom:10px; margin:10px 0px;">Login</button>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn" data-toggle="modal" data-target="#myModal-signup" style="border-radius:2px; width:255px; color:#1976D2; background-color: white; margin-bottom:10px; border:1px solid #1976D2;">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- Modal-login -->
+        <div class="modal fade" id="myModal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-left:-14px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                            </div>
+                            <div class="col-lg-7">
+                                <div id="close-modal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="contents" style="padding-top:90px;">
+                                    <div class="row text-center">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                    </div>
+                                    <div style="padding:20px 0px; float:right;" class="center-block">
+                                        <button class="btn button fill" style="padding:10px 20px;">LOGIN</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- Modal-signup -->
+        <div class="modal fade" id="myModal-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                            </div>
+                            <div class="col-lg-7">
+                                <div id="close-modal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="contents" style="padding-top:40px">
+                                    <div class="row text-center">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                    </div>
+                                    <div style="padding:20px 0px; float:right;" class="center-block">
+                                        <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- Modal-builder -->
+        <div class="modal fade" id="myModal-builder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                            </div>
+                            <div class="col-lg-7">
+                                <div id="close-modal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="contents" style="padding-top:40px;">
+                                    <div class="row text-center">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="COMPANY REG NUMBER" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="ESTABLISHMENT YEAR" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="CONTACT" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;
+                                               box-shadow none;">
+                                    </div>
+                                    <div style="padding:20px 0px; float:right;" class="center-block">
+                                        <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- Modal-builder -->
+        <div class="modal fade" id="myModal-builder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img src="images\house.jpg" style="width:240px; height:400px; margin-left:-30px; margin-bottom:-15px;">
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="contents" style="">
+                                    <div class="row text-center">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="NAME" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="EMAIL" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="COMPANY REG NUMBER" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="ESTABLISHMENT YEAR" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="CONTACT" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                        <input type="text" class="form-control" id="sign-up-builder" placeholder="PASSWORD" aria-describedby="basic-addon1" style=" line-height 58px;
+                                               height 58px;
+                                               background #FFF none repeat scroll 0% 0%;
+                                               position relative;
+                                               margin-bottom -1px;
+                                               border 1px solid #E6E6E6;
+                                               transition border 0.3s ease 0s, height 0.3s ease 0s;
+                                               border-radius 0px;">
+                                    </div>
+                                    <div style="padding:20px 0px; float:right;" class="center-block">
+                                        <button class="btn button fill" style="padding:10px 20px;">SIGNUP</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+        <div class="container-fluid" style="margin-left:-15px;
+             margin-right:-15px;">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="images/bg1.jpg" alt="Chania" width="1349" height="345">
+                    </div>
+                    <div class="item">
+                        <img src="images/bg1.jpg" alt="Chania" width="1349" height="345">
+                    </div>
+                    <div class="item">
+                        <img src="images/bg1.jpg" alt="Flower" width="1349" height="345">
+                    </div>
+                    <div class="row" style="margin:0px -16px;">
+                        <!-- Cover -->
+                        <div style="padding-top:0px;">
+                            <div class="col-sm-12" style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); margin-top: -177px;">
+                                <div class="col-sm-2 col-sm-offset-1">
+                                    <img src="images/vvip-project.jpg" style="height:180px; width:auto">
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <h1 style="color: white; font-size: 24px;">{{propertyDetails.Project}}</h1>
+                                    </div>
+                                    <div class="row" style="color:white;">
+                                        <!--<p>4.5 <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <b><span style="color:#2196F3;">{{propertyDetails.ReviewCount}} Reviews</span></b></p>-->
+                                        <div star-rating rating-value="propertyDetails.AverageRating" max="5"></div>
+                                    </div>
+                                    <div style="padding-top: 30px;">
+                                        <h5 style="color:white;">
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            Property Status
+                                        </h5>
+                                        <div class="progress" style="height:10px;  ">
+                                            <div class="progress-bar progress-bar-striped active " role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; background-color:#1976D2; ">
+                                                <span class="sr-only">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+            </div>
+        </div>
+
+        <div class="container-fluid" style="background-image: url(images/bg.jpg);  background-size: cover; color: white; margin:0px -15px;">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <!-- ============================================================================================================= -->
+        <div class="container-fluid" style="color:#fff; background-color:#040404;">
+            <div class="container" style=" padding:20px; padding-left:34px;">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p style="font-weight: bolder;font-size: 14px;">Possesion</p>
+                        <p style="line-height: 1px;">{{propertyDetails.Possession|date}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p style="font-weight: bolder;font-size: 14px;">Pricing</p>
+                        <p style="line-height: 1px;">{{propertyDetails.Pricing}}</p>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <p style="font-weight: bolder;font-size: 14px;">Pricing</p>
+                        <p style="line-height: 1px;">{{propertyDetails.Pricing}}</p>
+                    </div>-->
+                    <div class="
+                    <div class="col-sm-2" style="float:right">
+                        <div ng-show="!propertyDetails.IsFollowed" class="tooltip-wrapper" title="{{checkBuilder()?' This is not available' : ''}}">
+                            <button class="btn button fill" style="height:47px; width:180px;" ng-click="Follow()" data-ng-disabled="checkBuilder()">Follow Property</button>
+                        </div>
+                        <div ng-show="propertyDetails.IsFollowed">
+                            <button class="btn button fill" style="height:47px; width:180px;" ng-click="UnFollow()">Unfollow Property</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" style="float:right">
+                        <button type="button" ng-click="ViewFullDetails()" class="btn btn-primary outline" style="height:47px; width:180px;" data-toggle="modal" data-target="#details">READ FULL DEATILS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ================================================================================== -->
+        <div class="container-fluid" style="padding: 0px; border-bottom:1px solid #e4e4e4;">
+            <div class="container">
+                <div class="row" style="padding: 10px;">
+                    <div class="col-sm-8">
+                        <ol class="breadcrumb" style="padding:15px 30px;">
+                            <li class="active">{{propertyDetails.City.Name}}</a></li>
+                            <li class="active">{{propertyDetails.AddressLine2.AddressLine2}}</a></li>
+                            <li class="active">{{propertyDetails.AddressLine1.AddressLine1}}</li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-2 tooltip-wrapper" style="float:right" title="{{checkBuilder()?' This is not available' : ''}}">
+                        <button type="button" ng-click="WriteReview()" class="btn btn-primary outline" data-ng-disabled="checkBuilder()" style="height:47px; width:180px;">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            WRITE A REVIEW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal-full-details -->
+        <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-left:-14px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 0px; width:900px;">
+
+                    <div class="modal-body">
+                        <div id="close-modal">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-12">
+                                <h1 style="padding: 0px 15px; color: #303f9f;">{{propertyDetails.Project}}</h1>
+                            </div>
+                        </div>
+                        <hr>
+                        <div ng-show="showPropertyFullDetails">
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-sm-6 full-detail">
+
+                                </div>
+                                <div class="col-sm-6 full-detail">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Address</p>
+                                    <p style="line-height: 1px;" class="inner-detail">{{propertyDetails.AddressLine1.AddressLine1}}, {{propertyDetails.AddressLine2.AddressLine2}}, {{propertyDetails.City.Name}}</p>
+                                </div>
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Amenities</p>
+                                    <p style="line-height: 1px;" ng-repeat="Amenity in Amenities" class="inner-detail">{{Amenity.Name }}    :   {{Amenity.Value }}</p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Apartment Build Quality</p>
+                                    <p style="line-height: 1px;" ng-repeat="ABQ in ApartmentBuildQuality" class="inner-detail">{{ABQ.Name }}    :   {{ABQ.Value }}</p>
+                                </div>
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Construction Quality Parameter</p>
+                                    <p style="line-height: 1px;" ng-repeat="CQP in ConstructionQualityParameter" class="inner-detail">{{CQP.Name }}    :    {{CQP.Value }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Inventory</p>
+                                    <p style="line-height: 1px;" ng-repeat="Inv in Inventory" class="inner-detail">{{Inv.Name }}    :   {{Inv.Value }}</p>
+                                </div>
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Legal Clarity</p>
+                                    <p style="line-height: 1px;" ng-repeat="Legal in LegalClarity" class="inner-detail">{{Legal.Name }}     :   {{Legal.Value }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Livability</p>
+                                    <p style="line-height: 1px;" class="inner-detail" ng-repeat="Liv in Livability">{{Liv.Name }}   :   {{Liv.Value }}</p>
+                                </div>
+                                <div class="col-sm-6 full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Project Information</p>
+                                    <p style="line-height: 1px;" ng-repeat="PI in ProjectInformation" class="inner-detail">{{PI.Name }}    :    {{PI.Value }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="full-detail">
+                                    <p style="font-weight: bolder;font-size: 14px;">Average Raitings</p>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Amenity: <span>{{propertyDetails.AverageRaitings.Amenity}}</span></p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">ApartmentBuildQuality: <span>{{propertyDetails.AverageRaitings.ApartmentBuildQuality}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">BuilderProfile: <span>{{propertyDetails.AverageRaitings.BuilderProfile}}</span></p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">ConstructionQualityParameter: <span>{{propertyDetails.AverageRaitings.ConstructionQualityParameter}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Inventory: <span>{{propertyDetails.AverageRaitings.Inventory}}</span></p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">LegalClarity: <span>{{propertyDetails.AverageRaitings.LegalClarity}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Livability: <span>{{propertyDetails.AverageRaitings.Livability}}</span></p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">AverageRating: <span>{{propertyDetails.AverageRating}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Builder: <span>{{propertyDetails.Builder.Name}}</span></p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Possession: <span>{{propertyDetails.Possession|date}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p style="line-height: 1px;" class="inner-detail">Pricing: <span>{{propertyDetails.Pricing}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!--<div class="row" style="padding: 15px;">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consequat pretium lectus eu consectetur. Mauris euismod, enim sit amet laoreet volutpat, tellus leo ullamcorper ex, non aliquet orci arcu at tellus. Sed dictum malesuada lacinia. Aenean vestibulum ultricies enim, vitae accumsan enim cursus fringilla. Integer non egestas augue, eu posuere augue. Nam et ex efficitur, condimentum quam eget, luctus nunc. Nulla eu leo convallis, feugiat lorem eu, pretium erat.</p>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx reviews xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+        <div class="container-fluid" style="padding:30px 0px; ">
+            <div class="container">
+                <div class="row">
+                  
+                    <!-- Vertical Scroll Region  -->
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h3 style="text-transform: uppercase; margin: 0px;">Top Reviews</h3>
+                        </div>
+                            </div>
+                        <hr style="border-top-color: #000; margin:5px 0px 30px 0px;">
+<br />
+                            <br />
+                        <div ng-repeat="review in Reviews">
+                        <div ng-show="Reviews.length">
+                           
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx review pages xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+                            <!-- Single Row for review -->
+                            <div dir-paginate="review in Reviews|itemsPerPage:3">
+                                <div class="row thumbnail" style="margin-bottom: 40px;">
+                                    <div style="padding: 10px;">
+                                        <!-- Image Column -->
+                                        <div class="col-lg-2">
+                                            <img src="images/profile1.jpg" ng-click="UserProfile()" ng-value="review.userId" id="{{}}" class="img-circle" width="80" height="80">
+                                            <!-- Reviews Star -->
+                                            <div star-rating rating-value="review.AverageRaitings" max="5"></div>
+
+                                        </div>
+                                        <!-- Information -->
+                                        <div class="col-lg-3" style="padding-left:15px; text-align:justify; ">
+                                            <p id="username-1" style="font-size:15px; ">{{review.FirstName}} {{review.LastName}}</p>
+                                            <p id="no-of-review-1" style="font-size:12px;line-height:70%; " ng-show="showYears"><kbd>{{review.Duration.TotalYears}}</kbd>Days ago</p>
+                                            <p id="no-of-review-1" style="font-size:12px;line-height:70%;" ng-show="showMonths"><kbd>{{review.Duration.TotalMonths}}</kbd>Months ago</p>
+                                            <p id="no-of-review-1" style="font-size:12px;line-height:70%;" ng-show="showDays"><kbd>{{review.Duration.TotalDays}}</kbd>Year ago</p>
+                                            <p id="no-of-review-1" style="font-size:12px;line-height:70%; "><kbd>{{review.SayThanksCount}}</kbd> Thanked</p>
+                                            <p id="no-of-review-1" style="font-size:12px; line-height:70%;"><kbd>{{review.HelpfulCount}}</kbd> Helpful</p>
+                                            <p id="no-of-review-1" style="font-size:12px; line-height:70%;"><kbd>{{review.LevelId}}</kbd> Level</p>
+                                        </div>
+                                        <!-- Review Write Up -->
+                                        <div class="col-lg-7" style="text-align:justify; ">
+                                            <p id="property-name-1" style="font-size:15px; margin-bottom: 2px; ">{{review.Heading}}</p>
+                                            <div class="more" style="font-size:12px; line-height: 16px;">{{review.Text}}</div>
+                                            <div hm-read-more
+                                                 hm-text="{{ review.Text }}"
+                                                 hm-limit="5"
+                                                 hm-more-text="read more"
+                                                 hm-less-text="read less"
+                                                 hm-dots-class="dots"
+                                                 hm-link-class="links">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="color:#2196F3; padding:7px;">
+                                            <span class="pull-right" style="margin-top: -5px;"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> {{review.Time|date:'yyyy-MM-dd HH:mm:ss '}}</span></h6>
+                                        </div>
+                                        <div class="row review-log tooltip-wrapper" ng-hide="checkBuilder()">
+                                            <button class="btn log button" ng-click="Helpful(review.reviewId)" data-ng-disabled="checkBuilder()" ng-value="review.reviewId" id="{{review.reviewId}}">Helpful</button>
+                                            <span ng-show="showHelpful">{{HelpfulStatus}}</span>
+                                            <button class="btn log button" ng-click="SayThanks(review.reviewId)" data-ng-disabled="checkBuilder()" ng-value="review.reviewId" id="{{review.reviewId}}">Say Thanks</button>
+                                            <span ng-show="showSayThanks"><p>{{SayThanksStatus}}</p></span>
+                                            <button class="btn log button" data-toggle="modal" data-ng-disabled="checkBuilder()" data-target="#myModal-Inappropriate" ng-click="abc(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Innapropriate</button>
+                                            <!--<button class="btn log button" ng-click="Inappropriate(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Innapropriate</button>-->
+                                            <span ng-show="showInappropriate"><p>{{InappropriateStatus}}</p></span>
+
+                                            <div>
+                                                <div ng-show="review.BuilderComment" id="comment1">
+                                                    <div class="row thumbnail">
+                                                        <div class="col-md-1" style="padding: 0px;">
+                                                            <img src="images/placeholder_image.jpg" class="img-responsive">
+                                                        </div>
+                                                        <div class="col-md-11" style="padding: 8px;">
+                                                            <p class="textbox-comment"> {{review.BuilderComment.Text}}</p>
+                                                        </div>
+                                                        <div class="col-md-3 pull-right" style="margin-bottom: -4px; ">
+                                                            <!--<p>Are you convinced? <a style="text-decoration: none;">Yes</a></p>-->
+                                                            <div ng-show="!review.BuilderComment.IsConvinced">
+                                                                <div ng-show="showIsConvinced">
+                                                                    <p>
+                                                                        Are you convinced?
+                                                                        <button class="btn log button" ng-click="IsConvinced(review.reviewId)" ng-value="review.reviewId" id="{{review.reviewId}}">Yes</button>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="review.BuilderComment.IsConvinced">
+                                                                <p>User is Convinced</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-hide="Reviews.length" style="text-transform: uppercase; margin: 0px;">You haven't helped anyone yet.</div>
+                        <!-- ==============================pagination ==================================== -->
+                        <dir-pagination-controls class="col-sm-4 col-sm-offset-4" max-size="5"
+                                                 direction-links="true"
+                                                 boundary-links="true" style="width:350px">
+                        </dir-pagination-controls>
+                    </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <h5 style="margin:0px;">TOP</h5>
+                            <h3 style="text-transform: uppercase; margin: 0px;">Similar Property</h3>
+                            <hr style="border-top-color: #000; margin:5px 0px 30px 0px;">
+                        </div>
+                        <div ng-repeat="projects in similarProjects">
+                            <div class="row" style="margin: 5px auto;">
+                                <div ng-value="projects.Id" id="{{projects.Id}}" style="padding: 20px; background-image: url(images/bg.jpg); background-size: cover; color: #fff; font-weight: bold;">
+                                    <h4 style=" margin-top 80px; margin-bottom 0px;">{{projects.Name}}</h4>
+                                    <p><span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span>
+                                    <p id="no-of-review-1" style="font-size:12px; line-height:70%;"><kbd>{{projects.ReviewCount}}</kbd> Reviews <span class="pull-right"><a ng-click="ViewProperty()" style="color: white;">View All Details</a></span></p>
+                                </div>
+                            </div>
+                            <hr style="margin: 10px auto;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Inappropriate Modal-->
+    <div class="modal fade bs-example-modal-sm" id="myModal-Inappropriate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="margin-right:-1025px;">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form name="InappropriateForm" role="form" ng-controller="PropertyController" ng-submit="submitForm(InappropriateForm.$valid)" novalidate>
+                                <fieldset class="form-group">
+                                    <h5>Reason</h5>
+                                    <input type="text" class="form-control" id="Reason" ng-model="Reason">
+                                    <span ng-show="ReasonRequired">{{ReasonRequired}}</span>
+                                </fieldset>
+                                <button type="submit" ng-click="Inappropriate()" class="btn button fill" style="padding:10px 15px;float:left;" ng-disabled="InappropriateForm.$invalid" ng-value="review.reviewId" id="{{review.reviewId}}">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Inappropriate Modal-->
+    <!-- ======================================================== Query =============================================================== -->
+    <div style="position: fixed; bottom: 0px; right: 30px; position:overlay; z-index: 3;" class="center-block">
+        <button class="btn button fill-1" data-toggle="modal" data-target="#myModal-2" id="query-btn">WRITE A QUERY</button>
+    </div>
+    <!--	Query Modal -->
+    <div class="modal fade bs-example-modal-sm" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="margin-right:-1025px;">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 style="text-transform:uppercase;">Query Us</h4>
+                            <form name="queryUsForm" role="form" ng-controller="QueryUsController" ng-submit="submitForm(queryUsForm.$valid)" novalidate>
+                                <fieldset class="form-group">
+                                    <h5>Name</h5>
+                                    <input type="text" class="form-control" id="InputName" ng-model="objQuery.Name">
+                                    <span ng-show="NameRequired">{{NameRequired}}</span>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <h5>Contact Number</h5>
+                                    <input type="number" class="form-control" id="Inputcontact" ng-model="objQuery.Contact">
+                                    <span ng-show="ContactRequired">{{ContactRequired}}</span>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <h5>Email address</h5>
+                                    <input type="email" class="form-control" id="InputEmail" ng-model="objQuery.Email">
+                                    <span ng-show="EmailRequired">{{EmailRequired}}</span>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="ddlCity"> City </label>
+                                    <select name="ddlCity" id="ddlCity" ng-model="Id">
+                                        <option ng-repeat="option in CityList" value="{{option.Id}}">{{option.Name}}</option>
+                                    </select>
+                                    <span ng-show="CityRequired">{{CityRequired}}</span>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <h5>Message</h5>
+                                    <textarea class="form-control" id="InputMessage" rows="3" ng-model="objQuery.Message"></textarea>
+                                    <span ng-show="MessageRequired">{{MessageRequired}}</span>
+                                </fieldset>
+                                <button type="submit" ng-click="queryUs()" class="btn button fill" style="padding:10px 15px;float:right;" ng-disabled="addReviewForm.$invalid">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Query modal end-->
+    <!--footer-->
+    <div class="container-fluid" style="background-color: #424242; color: #adadad; padding: 60px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Contact Us</h4>
+                    <p style="margin-bottom: 1px;"><b>Call Us:</b> +9876543210</p>
+                    <p style="margin-bottom: 1px;"><b>Email:</b> contact@myownspace.com</p>
+                    <p style="margin-bottom: 1px;">or</p>
+                    <p style="margin-bottom: 1px;"><b>Skype:</b> myownspace</p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Follow Us</h4>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-facebook-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-google-plus-square"></span><span style="padding: 2px 10px;" class="fa fa-twitter-square"></span></span><span style="padding: 2px 10px;" class="fa fa-linkedin-square"></span></p>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-behance-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-get-pocket"></span><span style="padding: 2px 10px;" class="fa fa-git-square"></span></span><span style="padding: 2px 10px;" class="fa fa-glide"></span></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Mailing List</h4>
+                    <input class="textbox" type="text" placeholder="Enter Your E-mail ID">
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Expertise</h4>
+                    <p style="margin-bottom: 1px;">www.expertise.com</p>
+                    <p style="margin-bottom: 1px;">www.builderbuild.com</p>
+                    <p style="margin-bottom: 1px;">www.enterprisebuilder.com</p>
+                    <p style="margin-bottom: 1px;">www.housingproject.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #424242; padding: 0px; margin-top: -85px">
+        <img src="images/building-footer.png" class="img-responsive center-block" pad style="color: #808080;">
+    </div>
+    <div class="container-fluid" style="background-color: #191919; padding: 30px 0px;">
+        <div class="col-sm-12">
+            <span style=" color #808080; font-size 12px;">
+                Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2016 My Own Space  .  All Rights Reserved  .  Terms of Services  .  Privacy Policy  .  Site Map
+            </span>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="scripts/Property.js"></script>
+    <script src="scripts/dirPagination.js"></script>
+    <script src="scripts/readmore.js"></script>
+    <script>
+        //$(document).ready(function () {
+        //    // Configure/customize these variables.
+        //    var showChar = 20;  // How many characters are shown by default
+        //    var ellipsestext = "...";
+        //    var moretext = "Show more >";
+        //    var lesstext = "Show less";
+
+
+        //    $('.more').each(function () {
+        //        var content = $(this).html();
+
+        //        if (content.length > showChar) {
+
+        //            var c = content.substr(0, showChar);
+        //            var h = content.substr(showChar, content.length - showChar);
+
+        //            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+        //            $(this).html(html);
+        //        }
+
+        //    });
+
+        //    $(".morelink").click(function () {
+        //        if ($(this).hasClass("less")) {
+        //            $(this).removeClass("less");
+        //            $(this).html(moretext);
+        //        } else {
+        //            $(this).addClass("less");
+        //            $(this).html(lesstext);
+        //        }
+        //        $(this).parent().prev().toggle();
+        //        $(this).prev().toggle();
+        //        return false;
+        //    });
+        //});
+    </script>
+    <script type="text/javascript">
+<!--// Set read more/less for all long text that takes up more than 250 pixels.
+// Any text block with the class " more" will be evaluated.-->
+        //    $('.more').each(function() {
+        //    if($(this).innerHeight()>
+        // 5){
+        //        $(this).readmore({
+        //          moreLink: '<a href="#" class="read-more-link">Show more text ></a>',
+        //          lessLink: '<a href="#" class="read-less-link">&lt; Show less text</a>',
+        //          maxHeight: 10,
+        //          speed: 200,
+        //          afterToggle: function(trigger, element, expanded) {
+        //            if(! expanded) { // The "Close" link was clicked
+        //              $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+        //            }
+        //          }
+        //        });
+        //    }
+        //});
+    </script>
+    <!--<script>
+        $('more').readmore();
+        $('more').readmore({
+            speed: 75,
+            lessLink: '<a href="#">Read less</a>'
+        });
+        $('more').readmore({
+            afterToggle: function (trigger, element, expanded) {
+                if (!expanded) { // The "Close" link was clicked
+                    $('html, body').animate({ scrollTop: element.offset().top }, { duration: 100 });
+                }
+            }
+        });
+    </script>-->
+</body>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: '',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+-->
+</html>

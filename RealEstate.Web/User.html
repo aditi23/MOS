@@ -1,0 +1,474 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="scripts/ngDialog.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/autocomplete.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <!-- load angular-moment -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script src="/scripts/autocomplete.js"></script>
+    <script src="scripts/ngStorage.js"></script>
+    <script src="scripts/User.js"></script>
+    <script src="scripts/Index.js"></script>
+    <script src="scripts/RegisterUser.js"></script>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- User Embedded -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+    <!-- <link rel="stylesheet" type="text/css" href="layout.css">-->
+    <script type="text/javascript" src="scripts/javascript.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/936bbf24d4.js"></script>
+    <!-- Swiper CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/swiper.min.css">
+    <style>
+        [ng-click],
+        [data-ng-click],
+        [x-ng-click] {
+            cursor: pointer;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+            a:focus, a:hover {
+                color: #ffffff !important;
+                text-decoration: none !important;
+            }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent !important;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+            .dropdown-content a {
+                color: #ffffff;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                font-size: 18px;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: transparent;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .dropdown-menu {
+            top: -1%;
+            left: -175px;
+        }
+    </style>
+</head>
+<body ng-app="UserProfile">
+    <!-- navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" id="navbar-custom" style="margin:0px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./Index.html">REALESTATE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div ng-controller="ProjectController as ctrl" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul>
+                    <div class="search-bar center-block">
+                        <div class="col-lg-6 col-lg-offset-2" style="padding-top:8px; ">
+                            <ul class="pull-left" style="list-style: none;">
+                                <li class="dropdown">
+
+                                    <select id="ddlCity" ng-model="SelectedCity" style="height:37px;margin-top:-12px;margin-left:7px;" class="navbar-city dropdown-toggle drop-link dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-change="changedValue(SelectedCity)">
+                                        <!--ng-change="changedValue(SelectedCity)" ng-options="city.Name for city in City track by city.Id">-->
+                                        <option value="">Select City</option>
+                                        <option ng-repeat="city in City" ng-selected="SelectedCity == city.Id" value="{{city.Id}}">{{city.Name}}</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="input-group">
+                                <!--<autocomplete ng-model="Projects" data="project" on-type="updateData" class="form-control" placeholder="Project name, Location, Builder.." style="border-radius:2px;"></autocomplete>-->
+                                <!-- <input type="text" class="form-control" placeholder="Project name, Location, Builder.." style="border-radius:2px;">-->
+                                <div layout="column">
+                                    <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                     md-no-cache="ctrl.noCache"
+                                                     md-selected-item="ctrl.selectedItem"
+                                                     md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                     md-search-text="ctrl.searchText"
+                                                     md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                     md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                     md-item-text="item.Name"
+                                                     md-min-length="0"
+                                                     placeholder="Enter Location,Property or Builder...">
+                                        <md-item-template>
+                                            <span md-highlight-text="ctrl.searchText">{{item.Name}}</span>
+                                            <span class="item-metastat" style="float:right;">
+                                                <strong>{{item.Type}}</strong>
+                                            </span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            Searching for Projects.Select a <b>City</b> First.
+                                        </md-not-found>
+                                    </md-autocomplete>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-search" type="button" style="margin-left:0px;margin-top:0px;" ng-click="Search(ctrl.selectedItem)" id="search-box">Search</button>
+                                </span>
+                                <!-- Dropdown -->
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!--row end-->
+                </ul>
+                <div ng-controller="NavBar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--<li><a href="#" class="dropbtn">News</a></li>-->
+                        <div class="dropdown navbar-brand">
+                            <li><a ng-click="myFunc()">{{Email}}</a></li>
+                            <div class="dropdown-content" ng-hide="checkLogin()">
+                                <a ng-click="myFunc()">PROFILE</a>
+                                <a ng-click="logout()">LOGOUT</a>
+                            </div>
+                        </div>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal">EDIT PROFILE</a></li>
+                    </ul>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </div><!--navbar end-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="EditUserController">
+        <div class="modal-dialog" role="document" style="height: 412px; overflow-y:scroll;">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <img ng-src="{{getImage()}}" ng-model="image_source" style="width:200px; height:300px; margin-left:-30px; margin-bottom:-15px;">
+                            <!--<input type="file" id="ProfilePic" accept="image/*" name="profile"
+                                   ng-files="getProfilePic($files)" onchange="angular.element(this).scope().setFile(this)" />
+                            <img ng-src="{{image_source}}" style="width:215px;height: 268px; margin-top: -300px;margin-left: -36px;">-->
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="close-modal">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="contents" style="padding-top:36px;">
+                                <div class="row">
+                                    <form name="UserRegForm" role="form" ng-submit="submitForm(UserRegForm.$valid)" novalidate>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.exampleInputName.$invalid && !UserRegForm.exampleInputName.$pristine }">
+                                            <label for="exampleInputFname">First Name</label>
+                                            <input type="text" class="form-control" name="exampleInputName" placeholder="Enter First Name" ng-model="objForm.FirstName" required>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.exampleInputName.$touched">
+                                                <span ng-show="UserRegForm.exampleInputName.$error.required" class="error">*</span>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.LastName.$invalid && !UserRegForm.LastName.$pristine }">
+                                            <label for="LastName">Last Name</label>
+                                            <input type="text" class="form-control" name="LastName" placeholder="Enter Last Name" ng-model="objForm.LastName" required>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.LastName.$touched">
+                                                <span ng-show="UserRegForm.LastName.$error.required" class="error">*</span>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.exampleInputEmail.$invalid && !UserRegForm.exampleInputEmail.$pristine }">
+                                            <label for="exampleInputEmail">Email address</label>
+                                            <input type="email" class="form-control" name="exampleInputEmail" placeholder="Enter Email" ng-model="objForm.EmailId" readonly required>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.exampleInputEmail.$touched">
+                                                <span ng-show="UserRegForm.exampleInputEmail.$error.required" class="error">*</span>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.exampleInputcontact.$invalid && !UserRegForm.exampleInputcontact.$pristine }">
+                                            <label for="exampleInputContact">Contact Number</label>
+                                            <input type="number" class="form-control" name="exampleInputcontact" placeholder="Enter Contact Number" ng-model="objForm.Contact" required>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.exampleInputcontact.$touched">
+                                                <span ng-show="UserRegForm.exampleInputcontact.$error.required" class="error">*</span>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.exampleInputCity.$invalid && !UserRegForm.exampleInputCity.$pristine }">
+                                            <label for="exampleInputCity">City</label>
+                                            <input type="text" class="form-control" name="exampleInputCity" placeholder="Enter City" ng-model="objForm.City" required>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.exampleInputCity.$touched">
+                                                <span ng-show="UserRegForm.exampleInputCity.$error.required" class="error">*</span>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group" ng-class="{ 'has-error' : UserRegForm.ddlUserType.$invalid && !UserRegForm.ddlUserType.$pristine }">
+                                            <label for="ddlUserType"> UserType </label>
+                                            <select id="ddlUserType" ng-model="objForm.UserType" class="navbar-city dropdown-toggle drop-link dropdown-menu" style="top: 92%; left: 6px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-options="option.UserTypeName for option in UserTypeList track by option.Id" required>
+                                                <option value="">Select Type</option>
+                                                <!--<option ng-repeat="option in UserTypeList" value="{{option.Id}}">{{option.UserTypeName}}</option>-->
+                                            </select>
+                                            <div ng-show="UserRegForm.$submitted || UserRegForm.ddlUserType.$touched">
+                                                <span ng-show="UserRegForm.ddlUserType.$error.required" class="error">*</span>
+                                            </div>
+                                            
+                                            
+                                        </fieldset>
+                                        <button type="submit" class="btn button fill pull-right" style="padding: 10px 10px;" ng-click="regUser()">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ================================================ Wrapper  -->
+    <div class="wrapper" ng-app="UserProfile">
+        <div ng-controller="UserDetailsController">
+            <div class="container ">
+                <!-- =========================================== Cover -->
+                <div class="row ">
+                    <div class="img-top">
+                        <div class="col-sm-3 col-xs-10 col-sm-offset-0 col-xs-offset-1">
+                            <img ng-src="{{getImages()}}" height="180px" width="180px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ==================================================== Strip -->
+            <div class="container-fluid" style="padding: 0px;">
+                <div class="row background-strip">
+                    <div class="col-md-offset-3 col-md-5">
+                        <h2>{{userDetails.FirstName}} {{userDetails.LastName}}</h2>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3">
+                        <span ng-repeat="rating in ratings">
+                            {{rating.current}} out of
+                            {{rating.max}}
+                            <div star-rating rating-value="rating.current" max="rating.max"></div>
+                        </span>
+                        <p style="margin: 2px 0px 0px 0px;"><span class="glyphicon glyphicon-home">&nbsp;{{userDetails.City}}</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope">&nbsp;{{userDetails.EmailId}}</span></p>
+                        <p style="margin: 2px 0px 0px 0px;"><span class="glyphicon glyphicon-phone">&nbsp;{{userDetails.Contact}}</span></p>
+                        <p style="margin: 2px 0px 0px 0px;"><span class="glyphicon glyphicon-thumbs-up">&nbsp;{{userDetails.helpfulCount}}</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-heart-empty">&nbsp;{{userDetails.sayThanksCount}}</span></p>
+                        <p style="margin: 2px 0px 15px 0px;">LEVEL:<span>{{userDetails.LevelId}}</span>&nbsp;&nbsp;POINTS:<span>{{userDetails.Points}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================ Review Section -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx review pages xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+                        <h3 style="text-transform: uppercase; margin: 30px 0px 0px 0px;">Your Reviews</h3>
+                        <hr style="border-top-color: #000; margin:5px 0px 30px 0px;">
+                        <!-- Single Row for review -->
+                        <div dir-paginate="review in reviewList|itemsPerPage:5">
+                            <div ng-repeat="review in reviewList">
+                                <div ng-show="reviewList.length">
+                                    <div class="row thumbnail" style="margin: 20px auto;">
+                                        <div style="padding: 10px;">
+                                            <!-- Image Column -->
+                                            <!--<div class="col-lg-2">
+                        <img src="images/profile1.jpg" class="img-circle" width="80" height="80">-->
+                                            <!-- Reviews Star -->
+                                            <div id="stars" style="padding-top:0px; color: #fff600;">
+                                                <!-- Star Filled icon by Icons8 -->
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <!--star end-->
+                                            </div>
+                                        </div>
+                                        <!-- Information -->
+                                        <div class="col-lg-3" style="padding-left:15px; text-align:justify; ">
+                                            <!--<p id="username-1" style="font-size:15px; ">Kunal Chaudhary</p>-->
+                                            <p id="no-of-review-1" style="font-size:12px;line-height:70%; "><kbd>{{review.Helpful}}</kbd> Marked Helpful</p>
+                                            <p id="no-of-review-1" style="font-size:12px; line-height:70%;"><kbd>{{review.SayThanks}}</kbd> Thanked</p>
+                                            <p id="no-of-review-1" style="font-size:12px; line-height:70%;"><kbd><time am-time-ago="review.lastVisited" title="{{ review.lastVisited | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></kbd> Last visited</p>
+                                        </div>
+                                        <!-- Review Write Up -->
+                                        <div class="col-lg-7" style="text-align:justify; ">
+                                            <p id="property-name-1" style="font-size:15px; margin-bottom: 2px; ">{{review.Heading}}</p>
+                                            <p id="user-review-1" style="font-size:12px; line-height: 16px;">
+                                                {{review.Text}}...<a><span>Read More</span></a>
+                                            </p>
+                                        </div>
+                                        <div class="row" style="color:#2196F3; padding:7px;">
+                                            <span class="pull-right" style="margin-top: -5px;"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> {{review.Time|date:'yyyy-MM-dd HH:mm:ss '}}</span></h6>
+                                        </div>
+                                        <div class="row review-log">
+                                            <!--<span class="btn log button">Helpful</span>
+                        <span class="btn log button">Say Thanks</span>
+                        <span class="btn log button">Innapropriate</span>-->
+                                            <!--<span class="btn log button pull-right" data-toggle="collapse" data-target="#comment3">Comment<p class="caret" style="font-size: 5px; margin:0px 6px;"></p></span>-->
+                                        </div>
+                                        <div ng-show="review.BuilderComment">
+                                            <div id="comment3">
+                                                <div class="row thumbnail">
+                                                    <div class="col-md-1" style="padding: 0px;">
+                                                        <img src="images/placeholder_image.jpg" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-md-9" style="padding: 8px;">
+                                                        <p class="textbox-comment">{{review.BuilderComment.Text}}</p>
+                                                    </div>
+                                                    <div ng-show="review.BuilderComment.IsConvinced" class="col-md-2">
+                                                        <p>User is convinced </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               <!-- <div ng-hide="!reviewList.length" style="text-transform: uppercase; margin: 0px;">You haven't helped anyone yet.</div>-->
+                            </div>
+                            </div>
+                        <div ng-hide="reviewList.length" style="text-transform: uppercase; margin: 0px;">You haven't reviewed yet.</div>
+                            <!-- ==============================pagenation ==================================== -->
+                        <dir-pagination-controls class="col-sm-4 col-sm-offset-4" max-size="5"
+                                                 direction-links="true"
+                                                 boundary-links="true" style="width:350px">
+                        </dir-pagination-controls>
+                        </div>
+                    <div class="col-md-4">
+                        <div style="padding: 0px;">
+                            <h3 style="text-transform: uppercase; margin: 30px 0px 0px 0px;">RECENTLY VIEWED</h3>
+                            <hr style="border-top-color: #000; margin:5px 0px 30px 0px;">
+                            <div ng-repeat="recent in recentlyViewed">
+                                <div ng-show="reviewList.length">
+                                    <div class="row">
+                                        <div class="thumbnail" style="padding: 7px;">
+                                            <img src="images/p1.jpg" class="img-responsive">
+                                            <h4 style="margin-bottom: 0px;">{{recent.Name}}</h4>
+                                            <p style="color: #333; margin-top: 5px;">{{recent.AddressLine1.AddressLine1}} / {{recent.AddressLine2.AddressLine2}} / {{recent.City.Name}}</p>
+                                            <p style="color: #333; margin-top: 5px;"><b>Average Rating</b>&nbsp;&nbsp;{{recent.AverageRating}}</p>
+                                            <a><p style="margin-bottom: 0px;">Know More...</p></a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <div ng-hide="recentlyViewed.length" style="text-transform: uppercase; margin: 0px;">You haven't recently visited any property.</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================================================== Following Property -->
+            <br/>
+                <div class="row">
+                    <h2 style="text-transform: uppercase; margin: 0px;">FOLLOWING PROPERTY</h2>
+                    <hr style="border-top-color: #000; margin:5px;">
+                    <div class="swiper-container swiper2">
+                        <div class="swiper-wrapper">
+                            <div ng-repeat="followed in followedProperty">
+                                <div ng-show="followedProperty.length">
+                                    <div class="col-md-3">
+                                        <div class="thumbnail" style="width: 100%;">
+                                            <div class="row">
+                                                <img src="images/p1.jpg" style="width: 100%; ">
+                                            </div>
+                                            <!--<div class="row pull-right" style="padding: 10px 0px">
+                    <div class="col-md-8 btn-following-div">
+                        <button class="btn btn-sucess" style="padding: 7px 35px;">Following</button>
+                    </div>
+                </div>-->
+                                            <div class="row" style="padding: 10px 20px;">
+                                                <h3 style="margin-top: 0px;">{{followed.Name}}</h3>
+                                                <p style="color: #3b7bd2;">{{followed.AddressLine1.AddressLine1}} / {{followed.AddressLine2.AddressLine2}} / {{followed.City.Name}}</p>
+                                                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla elit quis ultrices posuere. Aenean vulputate libero eu ligula rhoncus blandit.</p>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <br/>
+                            <div ng-hide="followedProperty.length" style="text-transform: uppercase; margin: 15px;">You haven't followed any property.</div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination swiper-pagination2"></div>
+                    </div>
+                </div>
+                <!-- =====================================================Footor -->
+            </div><!-- Container End -->
+        </div>
+    </div><!-- Wrapper End -->
+    <div class="container-fluid" style="background-color: #424242; color: #adadad; padding: 60px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Contact Us</h4>
+                    <p style="margin-bottom: 1px;"><b>Call Us:</b> +9876543210</p>
+                    <p style="margin-bottom: 1px;"><b>Email:</b> contact@myownspace.com</p>
+                    <p style="margin-bottom: 1px;">or</p>
+                    <p style="margin-bottom: 1px;"><b>Skype:</b> myownspace</p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Follow Us</h4>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-facebook-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-google-plus-square"></span><span style="padding: 2px 10px;" class="fa fa-twitter-square"></span></span><span style="padding: 2px 10px;" class="fa fa-linkedin-square"></span></p>
+                    <p style="margin-bottom: 1px; font-size: 30px;"><span class="fa fa-behance-square" style="padding: 2px 10px;"></span><span style="padding: 2px 10px;" class="fa fa-get-pocket"></span><span style="padding: 2px 10px;" class="fa fa-git-square"></span></span><span style="padding: 2px 10px;" class="fa fa-glide"></span></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Mailing List</h4>
+                    <input class="textbox" type="text" placeholder="Enter Your E-mail ID">
+                </div>
+                <div class="col-sm-3">
+                    <h4 style="font-weight: 600;padding: 10px 0px;">Expertise</h4>
+                    <p style="margin-bottom: 1px;">www.expertise.com</p>
+                    <p style="margin-bottom: 1px;">www.builderbuild.com</p>
+                    <p style="margin-bottom: 1px;">www.enterprisebuilder.com</p>
+                    <p style="margin-bottom: 1px;">www.housingproject.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #424242; padding: 0px; margin-top: -85px">
+        <img src="images/building-footer.png" class="img-responsive center-block" pad style="color: #808080;">
+    </div>
+    <div class="container-fluid" style="background-color: #191919; padding: 30px 0px;">
+        <div class="col-sm-12">
+            <span style=" color #808080; font-size 12px;">
+                Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2016 My Own Space  .  All Rights Reserved  .  Terms of Services  .  Privacy Policy  .  Site Map
+            </span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var swiper = new Swiper('.swiper2', {
+            pagination: '.swiper-pagination2',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            freeMode: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿<body ng-app="s">
+
+    <div ng-controller="myController">
+        <div ng-repeat="i in number">
+            {{i.id}}
+            <input type="text" ng-model="some[$index]" />
+            {{some}}
+        </div>
+        <button ng-click="unFollow()">unfollow</button>
+
+        <p>{{abc}}</p>
+        <div class="some" hm-read-more
+             hm-text="Saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaariiiiiiiiiii"
+             hm-limit="5"
+             hm-more-text="read more"
+             hm-less-text="read less"
+             hm-dots-class="dots"
+             hm-link-class="links">
+        </div>
+    </div>
+</body>
+<style>
+    .some{
+        color:red;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="scripts/ngDialog.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/autocomplete.css">
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.0/angular-sanitize.min.js"></script>
+<script src="scripts/readmore.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+<script src="/scripts/autocomplete.js"></script>
+<script src="scripts/ngStorage.js"></script>
+<!-- Bootstrap CDN -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- User Embedded -->
+<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+<!-- <link rel="stylesheet" type="text/css" href="layout.css">-->
+<!--<script type="text/javascript" src="scripts/javascript.js"></script>-->
+<script>
+    var app = angular.module('s', ["hm.readmore"]);
+    app.controller('myController', ['$scope', '$http', function ($scope, $http) {
+        $scope.number = [
+            { id: 1 },
+            { id: 2 },
+        ];
+
+
+        $scope.some = [];
+        $scope.unFollow = function () {
+            console.log($scope.some)
+            //$http({
+            //    method: 'POST',
+            //    url: 'http://mosrealestate.silive.in/rest/api/Review/Inappropriate',
+            //    headers: { 'Content-Type': 'application / json' },
+            //    data: {
+            //        ReviewId: 3,
+            //        UserId: 3,
+            //        Reason: 'love it',
+            //        IsDeleted: true
+            //    }
+            //}).then(function mySucces(response) {
+            //    $scope.abc =response.data;
+            //}, function myError(response) {
+            //    $scope.abc = response.statusText;
+            //})
+        };
+    }]);
+
+</script>

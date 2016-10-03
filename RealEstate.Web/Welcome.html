@@ -1,0 +1,92 @@
+﻿<body ng-app="myApp" ng-controller="Dashboard">
+    <button ng-click="Get()">Session</button>      
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script>
+    var app = angular.module('myApp', ['ngStorage']);
+    app.controller('Dashboard', ['$scope', '$localStorage', '$window', function ($scope, $localStorage, $window) {
+        $scope.Get = function () {
+            alert($localStorage.userId);
+        }
+    }]);
+</script>
+<div class="container " ng-controller="BuilderRegistrationController">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7" style="padding: 30px;">
+                <h1>Registration</h1>
+                <form name="formBuilderRegister" novalidate>
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.Name.$invalid && !formBuilderRegister.Name.$pristine }">
+                        <label for="Name">Company Name</label>
+                        <input type="text" class="form-control" name="Name" placeholder="Enter Name" ng-model="objBuilder.CompanyName" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.Name.$touched">
+                            <span ng-show="formBuilderRegister.Name.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.CompanyRegistrationNumber.$invalid && !formBuilderRegister.CompanyRegistrationNumber.$pristine }">
+                        <label for="CompanyRegistrationNumber">Company Registration Number</label>
+                        <input type="text" class="form-control" name="CompanyRegistrationNumber" ng-model="objBuilder.CompanyRegistrationNumber" placeholder="Enter Company Registration Number" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.CompanyRegistrationNumber.$touched">
+                            <span ng-show="formBuilderRegister.CompanyRegistrationNumber.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.YearOfEstablishment.$invalid && !formBuilderRegister.YearOfEstablishment.$pristine }">
+                        <label for="lblYearOfEstablishment">Year Of Establishment</label>
+                        <input type="text" class="form-control" name="YearOfEstablishment" ng-model="objBuilder.YearOfEstablishment" placeholder="Enter Year Of Establishment" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.YearOfEstablishment.$touched">
+                            <span ng-show="formBuilderRegister.YearOfEstablishment.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.ContactNumber.$invalid && !formBuilderRegister.ContactNumber.$pristine }">
+                        <label for="lblContactNumber">Admin Contact Number</label>
+                        <input type="text" class="form-control" name="ContactNumber" ng-model="objBuilder.AdminContactNumber" placeholder="Enter Contact Number" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.ContactNumber.$touched">
+                            <span ng-show="formBuilderRegister.ContactNumber.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.Email.$invalid && !formBuilderRegister.Email.$pristine }">
+                        <label for="lblEmailId">Company Email</label>
+                        <input type="text" class="form-control" name="Email" ng-model="objBuilder.CompanyEmailId" placeholder="Enter Email" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.Email.$touched">
+                            <span ng-show="formBuilderRegister.Email.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.AdminName.$invalid && !formBuilderRegister.AdminName.$pristine }">
+                        <label for="lblTotalProjectsCount">Admin Name</label>
+                        <input type="text" class="form-control" name="AdminName" ng-model="objBuilder.AdminName" placeholder="Enter Admin Name" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.AdminName.$touched">
+                            <span ng-show="formBuilderRegister.AdminName.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group" ng-class="{ 'has-error' : formBuilderRegister.Password.$invalid && !formBuilderRegister.Password.$pristine }">
+                        <label for="lblPassword">Password</label>
+                        <input type="password" class="form-control" name="Password" ng-model="objBuilder.Password" placeholder="Enter Password" required>
+                        <div ng-show="formBuilderRegister.$submitted || formBuilderRegister.Password.$touched">
+                            <span ng-show="formBuilderRegister.Password.$error.required" class="error">*</span>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn button fill pull-right" style="padding: 10px 25px;" ng-click="RegisterBuilder()">Register</button>
+                </form>
+            </div>
+            <div class="col-lg-5 reg-img">
+                <div style="padding: 30px;">
+                    <h3>Instruction for Builder</h3>
+                    <p>1. Enter valid details only. </p>
+                    <p>2. After registration, you will only be added if verified.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
