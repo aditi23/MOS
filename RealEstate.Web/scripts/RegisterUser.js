@@ -220,7 +220,8 @@ app.directive('ngFiles', ['$parse', function ($parse) {
             obj.City = $scope.objForm.City;
                 obj.ProfilePictureUrl = image;
             obj.UserTypeId = $scope.objForm.UserType.Id;
-                obj.UserRegMode = true;
+                obj.
+ = true;
             console.log(obj.UserTypeId)
             $http({
                 method: "POST",

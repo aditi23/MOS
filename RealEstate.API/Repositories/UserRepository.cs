@@ -430,7 +430,7 @@ namespace RealEstate.API.Repositories
                                               u.UserRegMode
                                           }).FirstOrDefault();
 
-                    if (DoEmailExist == true && RegisteredMode != null)
+                    if (DoEmailExist == true && RegisteredMode.UserRegMode ==false)
                     {
                         List<object> loginPerson = new List<object>();
                         string type = "User";

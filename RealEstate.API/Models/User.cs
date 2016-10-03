@@ -24,7 +24,9 @@ namespace RealEstate.API.Models
         public string City { get; set; }
         public int LevelId { get; set; }
         public int IsDeleted { get; set; }
-        public bool UserRegMode { get; set; }
+        public bool UserRegMode { get; set; }  //false = social
+                                                //true= manual reg
+
         public DateTime RegisteredDate { get; set; }
         public int Points { get; set; }
         [Required]
