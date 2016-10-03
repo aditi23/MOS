@@ -12,7 +12,7 @@ namespace RealEstate.API.Models
         public int ProjectId { get; set; }
         public int MasterLivabilityId { get; set; }
         public string Name { get; set; }
-        public double Value { get; set; }
+        //public double Value { get; set; }
         public bool isIncluded { get; set; }
 
 

@@ -322,8 +322,8 @@ public bool GetAllProjects(out object projectList)
                                                         select new
                                                         {
                                                             a.MasterApartmentBuildQualityId,
-                                                            a.Name,
-                                                            a.Value
+                                                            a.Name
+                                                           // a.Value
                                                         }).ToList(),
                                AverageRaitings = (from a in dbContext.tblAverageRatings
                                                   where a.ProjectId == p.Id
@@ -370,7 +370,7 @@ public bool GetAllProjects(out object projectList)
                                              join m in dbContext.tblMasterLivabilities
                                              on l.MasterLivabilityId equals m.Id
                                              where l.ProjectId == p.Id
-                                             select new { m.Name, l.Value }).ToList(),
+                                             select new { m.Name }).ToList(),
                                ProjectInformation = (from pi in dbContext.tblProjectInformations
                                                      join m in dbContext.tblMasterProjectInformations
                                                      on pi.MasterProjectInformationId equals m.Id
@@ -762,8 +762,8 @@ public int GetProjectDetailstByProjectId(int projectId, int? userId, out object 
                                                                         select new
                                                                         {
                                                                             a.MasterApartmentBuildQualityId,
-                                                                            a.Name,
-                                                                            a.Value
+                                                                            a.Name
+                                                                           
                                                                         }).ToList(),
                                                AverageRaitings = (from a in dbContext.tblAverageRatings
                                                                   where a.ProjectId == projectId
@@ -810,7 +810,7 @@ public int GetProjectDetailstByProjectId(int projectId, int? userId, out object 
                                                              join m in dbContext.tblMasterLivabilities
                                                              on l.MasterLivabilityId equals m.Id
                                                              where l.ProjectId == projectId
-                                                             select new { m.Name, l.Value }).ToList(),
+                                                             select new { m.Name }).ToList(),
                                                ProjectInformation = (from pi in dbContext.tblProjectInformations
                                                                      join m in dbContext.tblMasterProjectInformations
                                                                      on pi.MasterProjectInformationId equals m.Id
@@ -924,8 +924,8 @@ public int GetProjectDetailstByProjectId(int projectId, int? userId, out object 
                                                                    select new
                                                                    {
                                                                        a.MasterApartmentBuildQualityId,
-                                                                       a.Name,
-                                                                       a.Value
+                                                                       a.Name
+                                                                      
                                                                    }).ToList(),
                                           AverageRaitings = (from a in dbContext.tblAverageRatings
                                                              where a.ProjectId == projectId
@@ -972,7 +972,7 @@ public int GetProjectDetailstByProjectId(int projectId, int? userId, out object 
                                                         join m in dbContext.tblMasterLivabilities
                                                         on l.MasterLivabilityId equals m.Id
                                                         where l.ProjectId == projectId
-                                                        select new { m.Name, l.Value }).ToList(),
+                                                        select new { m.Name }).ToList(),
                                           ProjectInformation = (from pi in dbContext.tblProjectInformations
                                                                 join m in dbContext.tblMasterProjectInformations
                                                                 on pi.MasterProjectInformationId equals m.Id
@@ -1043,9 +1043,10 @@ public int GetSimilarProjectsByProjectId(int projectId, out object similarProjec
                                    on pr.Id equals l.ProjectId
                                    join i in dbContext.tblImages
                                    on pr.Id equals i.ProjectId
-                                   where pr.Pricing >= (currentProject.Pricing - 0.1 * currentProject.Pricing) 
-                                   && pr.Pricing <= (currentProject.Pricing + 0.1 * currentProject.Pricing)
-                                   && l.CityId == currentProject.CityId && l.AddressLine2.Equals(currentProject.AddressLine2) 
+                                   where 
+                                   //pr.Pricing >= (currentProject.Pricing - 0.1 * currentProject.Pricing) 
+                                   //&& pr.Pricing <= (currentProject.Pricing + 0.1 * currentProject.Pricing)
+                                   l.CityId == currentProject.CityId && l.AddressLine2.Equals(currentProject.AddressLine2) 
                                    && pr.Id != projectId && i.ImageCategoryId == 1
                                    select new
                                    {

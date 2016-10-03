@@ -349,7 +349,7 @@ namespace RealEstate.API.Repositories
                                 ProjectId = objProject.Id,
                                 MasterApartmentBuildQualityId = objProject.ApartmentBuildQualities[i].MasterApartmentBuildQualityId,
                                 Name = objProject.ApartmentBuildQualities[i].Name,
-                                Value = objProject.ApartmentBuildQualities[i].Value,
+                                //Value = objProject.ApartmentBuildQualities[i].Value,
                             };
                             db.tblApartmentBuildQualities.AddObject(objtblApartmentBuildQuality);
                             db.SaveChanges();
@@ -512,7 +512,7 @@ namespace RealEstate.API.Repositories
                                 ProjectId = objProject.Id,
                                 MasterLivabilityId = objProject.Livabilities[i].MasterLivabilityId,
                                 Name = objProject.Livabilities[i].Name,
-                                Value = objProject.Livabilities[i].Value,
+                                //Value = objProject.Livabilities[i].Value,
                             };
                             db.tblLivabilities.AddObject(objtblLivability);
                             db.SaveChanges();
@@ -655,7 +655,7 @@ namespace RealEstate.API.Repositories
                             ProjectId = objProject.ApartmentBuildQualities[i].ProjectId,
                             MasterApartmentBuildQualityId = objProject.ApartmentBuildQualities[i].MasterApartmentBuildQualityId,
                             Name = objProject.ApartmentBuildQualities[i].Name,
-                            Value = objProject.ApartmentBuildQualities[i].Value,
+                           // Value = objProject.ApartmentBuildQualities[i].Value,
                         };
                         if (objtblApartmentBuildQuality != null)
                         {
@@ -834,7 +834,7 @@ namespace RealEstate.API.Repositories
                             ProjectId = objProject.Livabilities[i].ProjectId,
                             MasterLivabilityId = objProject.Livabilities[i].MasterLivabilityId,
                             Name = objProject.Livabilities[i].Name,
-                            Value = objProject.Livabilities[i].Value,
+                           // Value = objProject.Livabilities[i].Value,
                         };
                         if (objtblLivability != null)
                         {

@@ -48,16 +48,16 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject_tblLivability", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblLivability", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblLivability), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject_tblLocation", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblLocation", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblLocation), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblMasterProjectInformation", "tblMasterProjectInformation", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblMasterProjectInformation), "tblProjectInformation", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblProjectInformation), true)]
-[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblMasterReview_tblReviewRatingDetails", "tblMasterReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblMasterReview), "tblReviewRatingDetail", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewRatingDetail), true)]
+[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblMasterReview_tblReviewRatingDetails", "tblMasterReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblMasterReview), "tblReviewRatingDetails", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewRatingDetail), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblProjectInformation", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblProjectInformation), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject_tblProjectBuilderMapping", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblProjectBuilderMapping", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblProjectBuilderMapping), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject_tblRecentlyViewed", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblRecentlyViewed", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblRecentlyViewed), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblProject_tblReview", "tblProject", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblProject), "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReview), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblUser_tblRecentlyViewed", "tblUser", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblUser), "tblRecentlyViewed", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblRecentlyViewed), true)]
-[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblReview_tblReviewDetails", "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblReview), "tblReviewDetail", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewDetail), true)]
-[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblReview_tblReviewRatingDetails", "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblReview), "tblReviewRatingDetail", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewRatingDetail), true)]
+[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblReview_tblReviewDetails", "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblReview), "tblReviewDetails", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewDetail), true)]
+[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblReview_tblReviewRatingDetails", "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblReview), "tblReviewRatingDetails", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewRatingDetail), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblUser_tblReview", "tblUser", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblUser), "tblReview", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReview), true)]
-[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblUser_tblReviewDetails", "tblUser", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblUser), "tblReviewDetail", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewDetail), true)]
+[assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblUser_tblReviewDetails", "tblUser", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblUser), "tblReviewDetails", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblReviewDetail), true)]
 [assembly: EdmRelationshipAttribute("dbRealEstateModel", "FK_tblUserType_tblUser", "tblUserType", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(RealEstate.API.tblUserType), "tblUser", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RealEstate.API.tblUser), true)]
 
 #endregion
@@ -78,7 +78,8 @@ namespace RealEstate.API
         /// </summary>
         public dbRealEstateEntities() : base("name=dbRealEstateEntities", "dbRealEstateEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.ProxyCreationEnabled = false;
             OnContextCreated();
         }
     
@@ -1217,15 +1218,13 @@ namespace RealEstate.API
         /// <param name="projectId">Initial value of the ProjectId property.</param>
         /// <param name="masterApartmentBuildQualityId">Initial value of the MasterApartmentBuildQualityId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="value">Initial value of the Value property.</param>
-        public static tblApartmentBuildQuality CreatetblApartmentBuildQuality(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 masterApartmentBuildQualityId, global::System.String name, global::System.String value)
+        public static tblApartmentBuildQuality CreatetblApartmentBuildQuality(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 masterApartmentBuildQualityId, global::System.String name)
         {
             tblApartmentBuildQuality tblApartmentBuildQuality = new tblApartmentBuildQuality();
             tblApartmentBuildQuality.Id = id;
             tblApartmentBuildQuality.ProjectId = projectId;
             tblApartmentBuildQuality.MasterApartmentBuildQualityId = masterApartmentBuildQualityId;
             tblApartmentBuildQuality.Name = name;
-            tblApartmentBuildQuality.Value = value;
             return tblApartmentBuildQuality;
         }
 
@@ -1331,30 +1330,6 @@ namespace RealEstate.API
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Value
-        {
-            get
-            {
-                return _Value;
-            }
-            set
-            {
-                OnValueChanging(value);
-                ReportPropertyChanging("Value");
-                _Value = StructuralObject.SetValidValue(value, false, "Value");
-                ReportPropertyChanged("Value");
-                OnValueChanged();
-            }
-        }
-        private global::System.String _Value;
-        partial void OnValueChanging(global::System.String value);
-        partial void OnValueChanged();
 
         #endregion
 
@@ -4439,15 +4414,13 @@ namespace RealEstate.API
         /// <param name="projectId">Initial value of the ProjectId property.</param>
         /// <param name="masterLivabilityId">Initial value of the MasterLivabilityId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="value">Initial value of the Value property.</param>
-        public static tblLivability CreatetblLivability(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 masterLivabilityId, global::System.String name, global::System.Double value)
+        public static tblLivability CreatetblLivability(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 masterLivabilityId, global::System.String name)
         {
             tblLivability tblLivability = new tblLivability();
             tblLivability.Id = id;
             tblLivability.ProjectId = projectId;
             tblLivability.MasterLivabilityId = masterLivabilityId;
             tblLivability.Name = name;
-            tblLivability.Value = value;
             return tblLivability;
         }
 
@@ -4553,30 +4526,6 @@ namespace RealEstate.API
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double Value
-        {
-            get
-            {
-                return _Value;
-            }
-            set
-            {
-                OnValueChanging(value);
-                ReportPropertyChanging("Value");
-                _Value = StructuralObject.SetValidValue(value, "Value");
-                ReportPropertyChanged("Value");
-                OnValueChanged();
-            }
-        }
-        private global::System.Double _Value;
-        partial void OnValueChanging(global::System.Double value);
-        partial void OnValueChanged();
 
         #endregion
 
@@ -5735,6 +5684,30 @@ namespace RealEstate.API
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Example
+        {
+            get
+            {
+                return _Example;
+            }
+            set
+            {
+                OnExampleChanging(value);
+                ReportPropertyChanging("Example");
+                _Example = StructuralObject.SetValidValue(value, true, "Example");
+                ReportPropertyChanged("Example");
+                OnExampleChanged();
+            }
+        }
+        private global::System.String _Example;
+        partial void OnExampleChanging(global::System.String value);
+        partial void OnExampleChanged();
 
         #endregion
 
@@ -5854,18 +5827,18 @@ namespace RealEstate.API
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetails")]
         public EntityCollection<tblReviewRatingDetail> tblReviewRatingDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetails");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblMasterReview_tblReviewRatingDetails", "tblReviewRatingDetails", value);
                 }
             }
         }
@@ -5891,7 +5864,7 @@ namespace RealEstate.API
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="pricing">Initial value of the Pricing property.</param>
         /// <param name="averageRating">Initial value of the AverageRating property.</param>
-        public static tblProject CreatetblProject(global::System.Int32 id, global::System.String name, global::System.Int64 pricing, global::System.Double averageRating)
+        public static tblProject CreatetblProject(global::System.Int32 id, global::System.String name, global::System.String pricing, global::System.Double averageRating)
         {
             tblProject tblProject = new tblProject();
             tblProject.Id = id;
@@ -5961,7 +5934,7 @@ namespace RealEstate.API
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> Possession
+        public global::System.String Possession
         {
             get
             {
@@ -5971,13 +5944,13 @@ namespace RealEstate.API
             {
                 OnPossessionChanging(value);
                 ReportPropertyChanging("Possession");
-                _Possession = StructuralObject.SetValidValue(value, "Possession");
+                _Possession = StructuralObject.SetValidValue(value, true, "Possession");
                 ReportPropertyChanged("Possession");
                 OnPossessionChanged();
             }
         }
-        private Nullable<global::System.DateTime> _Possession;
-        partial void OnPossessionChanging(Nullable<global::System.DateTime> value);
+        private global::System.String _Possession;
+        partial void OnPossessionChanging(global::System.String value);
         partial void OnPossessionChanged();
     
         /// <summary>
@@ -5985,7 +5958,7 @@ namespace RealEstate.API
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 Pricing
+        public global::System.String Pricing
         {
             get
             {
@@ -5995,13 +5968,13 @@ namespace RealEstate.API
             {
                 OnPricingChanging(value);
                 ReportPropertyChanging("Pricing");
-                _Pricing = StructuralObject.SetValidValue(value, "Pricing");
+                _Pricing = StructuralObject.SetValidValue(value, false, "Pricing");
                 ReportPropertyChanged("Pricing");
                 OnPricingChanged();
             }
         }
-        private global::System.Int64 _Pricing;
-        partial void OnPricingChanging(global::System.Int64 value);
+        private global::System.String _Pricing;
+        partial void OnPricingChanging(global::System.String value);
         partial void OnPricingChanged();
     
         /// <summary>
@@ -7436,18 +7409,18 @@ namespace RealEstate.API
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblReview_tblReviewDetails", "tblReviewDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblReview_tblReviewDetails", "tblReviewDetails")]
         public EntityCollection<tblReviewDetail> tblReviewDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblReview_tblReviewDetails", "tblReviewDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblReview_tblReviewDetails", "tblReviewDetails");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblReview_tblReviewDetails", "tblReviewDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblReview_tblReviewDetails", "tblReviewDetails", value);
                 }
             }
         }
@@ -7458,18 +7431,18 @@ namespace RealEstate.API
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetails")]
         public EntityCollection<tblReviewRatingDetail> tblReviewRatingDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetails");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewRatingDetail>("dbRealEstateModel.FK_tblReview_tblReviewRatingDetails", "tblReviewRatingDetails", value);
                 }
             }
         }
@@ -8486,18 +8459,18 @@ namespace RealEstate.API
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblUser_tblReviewDetails", "tblReviewDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("dbRealEstateModel", "FK_tblUser_tblReviewDetails", "tblReviewDetails")]
         public EntityCollection<tblReviewDetail> tblReviewDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblUser_tblReviewDetails", "tblReviewDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblUser_tblReviewDetails", "tblReviewDetails");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblUser_tblReviewDetails", "tblReviewDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblReviewDetail>("dbRealEstateModel.FK_tblUser_tblReviewDetails", "tblReviewDetails", value);
                 }
             }
         }

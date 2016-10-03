@@ -11,8 +11,8 @@ namespace RealEstate.API.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> Possession { get; set; }
-        public long Pricing { get; set; }
+        public string Possession { get; set; }
+        public string Pricing { get; set; }
         public double AverageRating { get; set; }
         public DateTime Date { get; set; }
         public HttpPostedFileBase ProfilePicture { get; set; }
