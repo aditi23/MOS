@@ -4,17 +4,17 @@ app.controller("TrendingReviewsController", function ($scope, $http) {
     $http.get('http://localhost:19342/api/Search/TrendingReviews').
     then(function mySucces(response) {
         $scope.Trending = response.data;
-        console.log(response.data)
+        //console.log(response.data)
     }, function myError(response) {
-        alert("error");
+        //alert("error");
     });
     $http.get('http://localhost:19342/api/Search/SiteStats').
    then(function mySucces(response) {
        $scope.SiteStats = response.data;
    }, function myError(response) {
-       alert("error");
+       //alert("error");
    });
-    console.log($scope.SiteStats)
+    //console.log($scope.SiteStats)
     $scope.getReviewCount = function () {
         if ($scope.SiteStats) {
             if ($scope.SiteStats.reviewCount)
@@ -58,19 +58,19 @@ app.controller("TrendingReviewsController", function ($scope, $http) {
 });
 
 app.controller("NavBar", ['$scope', '$http', '$localStorage', '$sessionStorage', '$window', function ($scope, $http, $localStorage, $sessionStorage, $window) {
-    if ($sessionStorage.UserId && $sessionStorage.UserType == "User") {
+    if ($sessionStorage.UserId && $sessionStorage.UserType == 3) {
         console.log($sessionStorage.UserId)
         $http({
             method: 'GET',
-            url: 'http://localhost:19342/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId,
-            data: { userId: $sessionStorage.UserId },
+            url: 'http://localhost:19342/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId[0],
+            data: { userId: $sessionStorage.UserId[0] },
             headers: { 'Content-Type': 'application/json' }
         }).
-        then(function mySucces(response) {
+        then(function mySuccess(response) {
             $scope.Email = "Welcome " + response.data;
             console.log(response.data);
         }, function myError(response) {
-            alert("error");
+            alert("get user first name : id=" + $sessionStorage.UserId[0]);
         });
     }
     else if ($sessionStorage.UserId && $sessionStorage.UserType == "Builder") {
@@ -109,10 +109,14 @@ app.controller("NavBar", ['$scope', '$http', '$localStorage', '$sessionStorage',
 
     }
     $scope.logout = function () {
-        $localStorage.$reset()
-        $sessionStorage.$reset();
-        $scope.Email = "LOGIN"
-        $window.location.href = 'Index.html';
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            $localStorage.$reset()
+            $sessionStorage.$reset();
+            $scope.Email = "LOGIN";
+            console.log('User signed out.');
+            $window.location.href = '/Index.html';
+        });
     }
 }]);
 

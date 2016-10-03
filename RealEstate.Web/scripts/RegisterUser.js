@@ -1,10 +1,10 @@
 ﻿var app = angular.module('RegisterUser', ['ngStorage']);
 
-    function onSignIn(googleUser) {
+function onSignIn(googleUser) {
     console.log(googleUser);
-        var profile = googleUser.getBasicProfile();
-        console.log(profile.getName());
-        setUser(profile);
+    var profile = googleUser.getBasicProfile();
+    console.log(profile.getName());
+    setUser(profile);
 }
 
 app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStorage', '$window', function ($scope, $http, $localStorage, $sessionStorage, $window) {
@@ -19,40 +19,40 @@ app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStor
     }
 
     setUser = function (profile) {
-        
+
         //obj.ProfilePicture = btoa(profile.getImageUrl());
         //obj.displayPicture = btoa(profile.getImageUrl());               //converts to base 64
         var imageUrl = profile.getImageUrl();
         //var encodedImage = {};
         //var convertFunction = convertFileToDataURLviaFileReader;
-        
+
         //convertFunction(imageUrl, function (base64Img) {
         //    $('.output')
-              
+
         //    var encodedImageArray = base64Img.split(",");
         //    encodedImage = encodedImageArray[1];
         //    console.log(encodedImage);
         //    sendDataThroughGoogle(profile, encodedImage);
         //});
 
-       // event.preventDefault();
+        // event.preventDefault();
 
-    //    function convertFileToDataURLviaFileReader(url, callback) {
-    //        var xhr = new XMLHttpRequest();
-    //        xhr.responseType = 'blob';
-    //        xhr.onload = function () {
-    //            var reader = new FileReader();
-    //            reader.onloadend = function () {
-    //                callback(reader.result);
-    //            }
-    //            reader.readAsDataURL(xhr.response);
-    //        };
-    //        xhr.open('GET', url);
-    //        xhr.send();
-    //    }
-        
-    //}
-    //function sendDataThroughGoogle(profile,encodedImage) {
+        //    function convertFileToDataURLviaFileReader(url, callback) {
+        //        var xhr = new XMLHttpRequest();
+        //        xhr.responseType = 'blob';
+        //        xhr.onload = function () {
+        //            var reader = new FileReader();
+        //            reader.onloadend = function () {
+        //                callback(reader.result);
+        //            }
+        //            reader.readAsDataURL(xhr.response);
+        //        };
+        //        xhr.open('GET', url);
+        //        xhr.send();
+        //    }
+
+        //}
+        //function sendDataThroughGoogle(profile,encodedImage) {
         var fullName = profile.getName();
         var name = fullName.split(" ");
         //console.log(profile.getImageUrl());
@@ -61,8 +61,8 @@ app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStor
         obj.EmailId = profile.getEmail();
         obj.Password = "demo";
         obj.UserTypeId = 3;
-       // obj.image = encodedImage;
-        obj.ProfilePictureUrl =profile.getImageUrl() ;
+        // obj.image = encodedImage;
+        obj.ProfilePictureUrl = profile.getImageUrl();
 
         $http({
             method: "POST",
@@ -82,7 +82,7 @@ app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStor
         })
     }
 
-       
+
 
     dataFromFacebook = function (response) {
         console.log(response);
@@ -168,12 +168,12 @@ app.directive('ngFiles', ['$parse', function ($parse) {
     }, function myError(response) {
         $scope.UserTypeList = response.statusText;
     })
-        var formdata = new FormData();
-        $scope.getProfilePic = function ($files) {
-            angular.forEach($files, function (value, key) {
-                formdata.append(key, value);
-            });
-        };
+    var formdata = new FormData();
+    $scope.getProfilePic = function ($files) {
+        angular.forEach($files, function (value, key) {
+            formdata.append(key, value);
+        });
+    };
     $scope.setFile = function (element) {
         $scope.currentFile = element.files[0];
         var reader = new FileReader();
@@ -211,50 +211,50 @@ app.directive('ngFiles', ['$parse', function ($parse) {
                 .error(function () {
                 });
             register = function () {
-            var obj = {};
-            obj.FirstName = $scope.objForm.Fname;
-            obj.LastName = $scope.objForm.Lname;
-            obj.EmailId = $scope.objForm.Email;
-            obj.Password = $scope.objForm.Password;
-            obj.Contact = $scope.objForm.Contact;
-            obj.City = $scope.objForm.City;
+                var obj = {};
+                obj.FirstName = $scope.objForm.Fname;
+                obj.LastName = $scope.objForm.Lname;
+                obj.EmailId = $scope.objForm.Email;
+                obj.Password = $scope.objForm.Password;
+                obj.Contact = $scope.objForm.Contact;
+                obj.City = $scope.objForm.City;
                 obj.ProfilePictureUrl = image;
-            obj.UserTypeId = $scope.objForm.UserType.Id;
+                obj.UserTypeId = $scope.objForm.UserType.Id;
                 obj.UserRegMode = 1;
-            console.log(obj.UserTypeId)
-            $http({
-                method: "POST",
-                url: "http://localhost:19342/api/User/RegisterUser",
-                data: obj,
-                headers: { 'Content-Type': 'application/json' }
-            }).then(function mySuccess(response) {
-                var status = response.status;
-                if (status != 400) {
-                    $scope.User = response.data;
-                    if ($scope.User == "EMAIL ID already exist")
-                        $scope.message = "Email Id already exist";
-                    else {
-                        console.log($scope.User)
-                        $sessionStorage.UserId = {};
-                        $sessionStorage.UserId = response.data[0];
-                        $sessionStorage.UserType = "User";
-                        $sessionStorage.UserType = response.data[2];
-                        $window.location.href = "Index.html";
+                console.log(obj.UserTypeId)
+                $http({
+                    method: "POST",
+                    url: "http://localhost:19342/api/User/RegisterUser",
+                    data: obj,
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(function mySuccess(response) {
+                    var status = response.status;
+                    if (status != 400) {
+                        $scope.User = response.data;
+                        if ($scope.User == "EMAIL ID already exist")
+                            $scope.message = "Email Id already exist";
+                        else {
+                            console.log($scope.User)
+                            $sessionStorage.UserId = {};
+                            $sessionStorage.UserId = response.data[0];
+                            $sessionStorage.UserType = "User";
+                            $sessionStorage.UserType = response.data[2];
+                            $window.location.href = "Index.html";
+                        }
                     }
-                }
-            }, function myError(response) {
-                //alert(response.statusText);
-            })
-        }
+                }, function myError(response) {
+                    //alert(response.statusText);
+                })
+            }
 
         }
     }
 }]);
 
 app.controller('LoginController', ['$scope', '$http', '$localStorage', '$sessionStorage', '$window', function ($scope, $http, $localStorage, $sessionStorage, $window) {
-        $scope.objLogin = {};
-        $scope.login = function () {
-            if ($scope.loginForm.$valid) {
+    $scope.objLogin = {};
+    $scope.login = function () {
+        if ($scope.loginForm.$valid) {
             $scope.EMAILRequired = '';
             $scope.PASSWORDRequired = '';
 
@@ -286,7 +286,7 @@ app.controller('LoginController', ['$scope', '$http', '$localStorage', '$session
                         $sessionStorage.UserRegType = "Web";
                         $sessionStorage.UserType = response.data[2];
                         if ($sessionStorage.url)
-                        $window.location.href = $sessionStorage.url;
+                            $window.location.href = $sessionStorage.url;
                         else
                             $window.location.href = "/Index.html";
 
