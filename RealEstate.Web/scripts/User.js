@@ -5,7 +5,7 @@ UserApp.controller("UserDetailsController", ['$scope', '$http', '$localStorage',
         $window.location.href = "/Index.html";
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/User/UserProfile?userId=" + id,
+        url: "http://localhost:19342/api/User/UserProfile?userId=" + id,
     }).then(function mySucces(response) {
         $scope.userDetails = response.data;
         $scope.getImages = function () {
@@ -43,7 +43,7 @@ app.directive('ngFiles', ['$parse', function ($parse) {
     $scope.objForm = {};
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/User/UserProfile?userId=" + id
+        url: "http://localhost:19342/api/User/UserProfile?userId=" + id
     }).then(function mySuccess(response) {
         console.log(response.data)
         $scope.objForm = response.data;
@@ -62,7 +62,7 @@ app.directive('ngFiles', ['$parse', function ($parse) {
         console.log($scope.objForm)
         $http({
             method: "GET",
-            url: "http://mosrealestate.silive.in/rest/api/User/GetAllUserType"
+            url: "http://localhost:19342/api/User/GetAllUserType"
         }).then(function mySuccess(response) {
             console.log(response.data)
             $scope.Id = null;
@@ -107,7 +107,7 @@ app.directive('ngFiles', ['$parse', function ($parse) {
 
             $http({
                 method: "PUT",
-                url: "http://mosrealestate.silive.in/rest/api/User/EditProfile",
+                url: "http://localhost:19342/api/User/EditProfile",
                 data: obj,
                 headers: { 'Content-Type': 'application/json' }
             }).then(function mySuccess(response) {

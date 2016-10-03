@@ -48,7 +48,7 @@
             if ($scope.objUser.EmailId && $scope.objUser.Password) {
                 $http({
                     method: 'POST',
-                    url: 'http://mosrealestate.silive.in/rest/api/User/Login',
+                    url: 'http://localhost:19342/api/User/Login',
                     data: $scope.objUser, //forms user object
                     headers: { 'Content-Type': 'application/json' }
                 }).then(function mySuccess(response) {

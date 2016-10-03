@@ -125,7 +125,7 @@ app.controller('AddReviewController', ['$scope', '$localStorage', '$sessionStora
             ];
             $http({
                 method: 'POST',
-                url: 'http://mosrealestate.silive.in/rest/api/Review/AddReview',
+                url: 'http://localhost:19342/api/Review/AddReview',
                 data: obj, //forms user object
                 headers: { 'Content-Type': 'application/json' }
             }).
@@ -182,7 +182,7 @@ app.controller('RecentReviewController', ['$scope', '$localStorage', '$sessionSt
     var projectId = $sessionStorage.ProjectId;
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Review/RecentReviews?projectId=" + projectId
+        url: "http://localhost:19342/api/Review/RecentReviews?projectId=" + projectId
     }).then(function mySucces(response) {
         $scope.RecentReviews = response.data;
     }, function myError(response) {

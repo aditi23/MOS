@@ -23,7 +23,7 @@ app.controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
         if ($scope.objUser.FirstName && $scope.objUser.LastName && $scope.objUser.EmailId && $scope.objUser.Contact && $scope.objUser.Password && $scope.objUser.City) {
             $http({
                 method: 'POST',
-                url: 'http://mosrealestate.silive.in/rest/api/User/RegisterUser',
+                url: 'http://localhost:19342/api/User/RegisterUser',
                 data: $scope.objUser, //forms user object
                 headers: { 'Content-Type': 'application/json' }
             }).
@@ -42,7 +42,7 @@ app.controller('BuilderRegistrationController', ['$scope', '$http', '$window', f
             console.log($scope.objBuilder)
             $http({
                 method: "POST",
-                url: 'http://mosrealestate.silive.in/rest/api/Builder/Register',
+                url: 'http://localhost:19342/api/Builder/Register',
                 data: $scope.objBuilder, //forms builder object
                 headers: { 'Content-Type': 'application/json' }
             }).
@@ -64,7 +64,7 @@ app.controller('RegisterBuilderController', ['$scope', '$http', '$localStorage',
             console.log($scope.objBuilder)
             $http({
                 method: "POST",
-                url: 'http://mosrealestate.silive.in/rest/api/Builder/Register',
+                url: 'http://localhost:19342/api/Builder/Register',
                 data: $scope.objBuilder, //forms builder object
                 headers: { 'Content-Type': 'application/json' }
             }).

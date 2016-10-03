@@ -66,7 +66,7 @@ app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStor
 
         $http({
             method: "POST",
-            url: "http://mosrealestate.silive.in/rest/api/User/RegisterUser",
+            url: "http://localhost:19342/api/User/RegisterUser",
             data: obj,
             headers: { 'Content-Type': 'application/json' }
         }).then(function mySuccess(response) {
@@ -97,7 +97,7 @@ app.controller('socialLogin', ['$scope', '$http', '$localStorage', '$sessionStor
         console.log(obj);
         $http({
             method: "POST",
-            url: "http://mosrealestate.silive.in/rest/api/User/RegisterUser",
+            url: "http://localhost:19342/api/User/RegisterUser",
             data: obj,
             headers: { 'Content-Type': 'application/json' }
         }).then(function mySuccess(response) {
@@ -160,7 +160,7 @@ app.directive('ngFiles', ['$parse', function ($parse) {
 
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/User/GetAllUserType"
+        url: "http://localhost:19342/api/User/GetAllUserType"
     }).then(function mySuccess(response) {
         console.log(response.data)
         $scope.Id = null;
@@ -191,7 +191,7 @@ app.directive('ngFiles', ['$parse', function ($parse) {
         if ($scope.UserRegForm.$valid) {
             var request = {
                 method: 'POST',
-                url: 'http://mosrealestate.silive.in/rest/api/Search/UploadFiles',
+                url: 'http://localhost:19342/api/Search/UploadFiles',
                 data: formdata,
                 headers: {
                     'Content-Type': undefined
@@ -220,11 +220,11 @@ app.directive('ngFiles', ['$parse', function ($parse) {
             obj.City = $scope.objForm.City;
                 obj.ProfilePictureUrl = image;
             obj.UserTypeId = $scope.objForm.UserType.Id;
-                obj.UserRegMode = true;
+                obj.UserRegMode = 1;
             console.log(obj.UserTypeId)
             $http({
                 method: "POST",
-                url: "http://mosrealestate.silive.in/rest/api/User/RegisterUser",
+                url: "http://localhost:19342/api/User/RegisterUser",
                 data: obj,
                 headers: { 'Content-Type': 'application/json' }
             }).then(function mySuccess(response) {
@@ -270,7 +270,7 @@ app.controller('LoginController', ['$scope', '$http', '$localStorage', '$session
 
             $http({
                 method: "POST",
-                url: "http://mosrealestate.silive.in/rest/api/User/Login",
+                url: "http://localhost:19342/api/User/Login",
                 data: obj,
                 headers: { 'Content-Type': 'application/json' }
             }).then(function mySuccess(response) {

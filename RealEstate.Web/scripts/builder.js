@@ -4,7 +4,7 @@ UserApp.controller("BuilderDetailsController", ['$scope', '$http', '$localStorag
     var id = $sessionStorage.UserId;
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Builder/BuilderDetails?builderId=" + id,
+        url: "http://localhost:19342/api/Builder/BuilderDetails?builderId=" + id,
     }).then(function mySucces(response) {
         $scope.builderDetails = response.data;
         console.log(response.data)
@@ -17,7 +17,7 @@ UserApp.controller("BuilderDetailsController", ['$scope', '$http', '$localStorag
     $scope.AddComment = function (reviewId) {
         $http({
             method: "POST",
-            url: "http://mosrealestate.silive.in/rest/api/Builder/AddComment",
+            url: "http://localhost:19342/api/Builder/AddComment",
             data: {
                 ReviewId: reviewId,
                 Text: $scope.builderComment,
@@ -38,7 +38,7 @@ app.controller('EditBuilderController', ['$scope', '$http', '$localStorage', '$s
     var id = $sessionStorage.UserId;
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Builder/BuilderDetails?builderId=" + id,
+        url: "http://localhost:19342/api/Builder/BuilderDetails?builderId=" + id,
     }).then(function mySucces(response) {
         $scope.objBuilder = response.data;
         console.log(response.data)
@@ -51,7 +51,7 @@ app.controller('EditBuilderController', ['$scope', '$http', '$localStorage', '$s
 
             $http({
                 method: "POST",
-                url: 'http://mosrealestate.silive.in/rest/api/Builder/EditProfile',
+                url: 'http://localhost:19342/api/Builder/EditProfile',
                 data: $scope.objBuilder, //forms builder object
                 headers: { 'Content-Type': 'application/json' }
             }).

@@ -48,7 +48,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     var showYears = "";
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Search/ProjectDetails?projectId=" + projectId + "&&userId=" + userId,
+        url: "http://localhost:19342/api/Search/ProjectDetails?projectId=" + projectId + "&&userId=" + userId,
     }).then(function mySuccess(response) {
         console.log(response.data)
         $scope.propertyDetails = response.data;
@@ -72,7 +72,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
 
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Search/SimilarProjects?projectId=" +projectId,
+        url: "http://localhost:19342/api/Search/SimilarProjects?projectId=" +projectId,
     }).then(function mySuccess(response) {
         $scope.similarProjects = response.data;
     }, function myError(response) {
@@ -82,7 +82,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     $scope.ViewFullDetails = function () {
         $http({
             method: "GET",
-            url: "http://mosrealestate.silive.in/rest/api/Search/ProjectDetails?projectId=" + projectId + "&&userId=" + userId
+            url: "http://localhost:19342/api/Search/ProjectDetails?projectId=" + projectId + "&&userId=" + userId
         }).then(function mySuccess(response) {
         console.log(response.data)
             $scope.propertyDetails = response.data;
@@ -116,7 +116,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     FollowProject = function () {
         $http({
             method: 'POST',
-            url: 'http://mosrealestate.silive.in/rest/api/User/FollowProject',
+            url: 'http://localhost:19342/api/User/FollowProject',
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ProjectId: projectId,
@@ -132,7 +132,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     MarkHelpful = function (Id) {
         $http({
             method: 'POST',
-            url: 'http://mosrealestate.silive.in/rest/api/Review/MarkHelpful',
+            url: 'http://localhost:19342/api/Review/MarkHelpful',
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ReviewId: Id,
@@ -159,7 +159,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     MarkSayThanks = function (Id) {
         $http({
             method: 'POST',
-            url: 'http://mosrealestate.silive.in/rest/api/Review/MarkSayThanks',
+            url: 'http://localhost:19342/api/Review/MarkSayThanks',
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ReviewId: Id,
@@ -199,7 +199,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     MarkInappropriate = function(Id) {
         $http({
             method: 'POST',
-            url: 'http://mosrealestate.silive.in/rest/api/Review/AddInappropriate',
+            url: 'http://localhost:19342/api/Review/AddInappropriate',
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ReviewId: Id,
@@ -226,7 +226,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     $scope.MarkIsConvinced = function (Id) {
         $http({
             method: 'POST',
-            url: 'http://mosrealestate.silive.in/rest/api/Review/MarkConvinced?reviewId=' + Id + '&&IsConvinced=' + true + '&&userId=' + userId,
+            url: 'http://localhost:19342/api/Review/MarkConvinced?reviewId=' + Id + '&&IsConvinced=' + true + '&&userId=' + userId,
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ReviewId: 3,
@@ -252,7 +252,7 @@ app.controller("PropertyController",[ '$scope', '$localStorage', '$sessionStorag
     UnFollowProject = function () {                                                         //change method, bind isconvinced
         $http({
             method: 'PUT',
-            url: 'http://mosrealestate.silive.in/rest/api/User/UnfollowProject',
+            url: 'http://localhost:19342/api/User/UnfollowProject',
             headers: { 'Content-Type': 'application / json' },
             data: {
                 ProjectId: projectId,
@@ -272,7 +272,7 @@ app.controller('QueryUsController', ['$scope', '$http', function ($scope, $http)
     $scope.objQuuery = {};
     $http({
         method: "GET",
-        url: "http://mosrealestate.silive.in/rest/api/Search/GetAllCities"
+        url: "http://localhost:19342/api/Search/GetAllCities"
     }).then(function mySuccess(response) {
         $scope.Id = null;
         $scope.CityList = response.data;
@@ -307,7 +307,7 @@ app.controller('QueryUsController', ['$scope', '$http', function ($scope, $http)
         obj.Message = $scope.objQuery.Message;
         $http({
             method: "PUT",
-            url: "http://mosrealestate.silive.in/rest/api/User/Query",
+            url: "http://localhost:19342/api/User/Query",
             data: obj,
             headers: { 'Content-Type': 'application/json' }
         }).then(function mySuccess(response) {
@@ -327,7 +327,7 @@ app.controller("ProjectPageAutoComplete", ['$scope', '$http', '$localStorage', '
     var self = this;
 
 
-    $http.get('http://mosrealestate.silive.in/rest/api/Search/GetAllCities').
+    $http.get('http://localhost:19342/api/Search/GetAllCities').
    then(function mySucces(response) {
        $scope.City = response.data;
        //CityId = response.data.map(function (a) { return a.Id; });
@@ -343,7 +343,7 @@ app.controller("ProjectPageAutoComplete", ['$scope', '$http', '$localStorage', '
         $sessionStorage.SelectedCity = CityId;
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/Search/FinalAutoComplete',
+            url: 'http://localhost:19342/api/Search/FinalAutoComplete',
             //data: JSON.stringify(params),
             headers: { 'Content-Type': 'application/json' }
         }).
@@ -468,7 +468,7 @@ app.controller("NavBarProjectPage", ['$scope', '$http', '$localStorage', '$sessi
         console.log($sessionStorage.UserId)
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId,
+            url: 'http://localhost:19342/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId,
             data: { userId: $sessionStorage.UserId },
             headers: { 'Content-Type': 'application/json' }
         }).
@@ -483,7 +483,7 @@ app.controller("NavBarProjectPage", ['$scope', '$http', '$localStorage', '$sessi
         console.log($sessionStorage.UserId)
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/Builder/BuilderDetails?builderId=' + $sessionStorage.UserId,
+            url: 'http://localhost:19342/api/Builder/BuilderDetails?builderId=' + $sessionStorage.UserId,
             headers: { 'Content-Type': 'application/json' }
         }).
         then(function mySucces(response) {

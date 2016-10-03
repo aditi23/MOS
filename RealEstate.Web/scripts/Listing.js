@@ -7,11 +7,11 @@ app.controller("PropertiesController",['$scope', '$http', '$localStorage', '$ses
     var id = 2;
     var abc = "";
     if (Type == "City")
-        abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByCity?cityId=" + TypeId;
+        abc = "http://localhost:19342/api/Search/ProjectByCity?cityId=" + TypeId;
     if (Type == "Builder")
-        abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByBuilder?builderId=" + TypeId;
+        abc = "http://localhost:19342/api/Search/ProjectByBuilder?builderId=" + TypeId;
     if (Type == "Location")
-        abc = "http://mosrealestate.silive.in/rest/api/Search/ProjectByLocation?locationId=" + TypeId;
+        abc = "http://localhost:19342/api/Search/ProjectByLocation?locationId=" + TypeId;
     $http({
         method: 'GET',
         url: abc,

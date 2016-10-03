@@ -344,7 +344,7 @@
     } ]).controller('MyController', function ($scope, $http) {
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/Builder/GetAllMasterDetails',
+            url: 'http://localhost:19342/api/Builder/GetAllMasterDetails',
             headers: { 'Content-Type': 'application/json' }
         }).then(function mySuccess(response) {
             $scope.MasterEntries = response.data;
@@ -460,7 +460,7 @@
             console.log(obj);
             $http({
                 method: 'POST',
-                url: 'http://mosrealestate.silive.in/rest/api/Builder/AddNewProject',
+                url: 'http://localhost:19342/api/Builder/AddNewProject',
                 data: { obj, formdata },
                 headers: { 'Content-Type': 'application/json' }
             }).then(function mySuccess(response) {

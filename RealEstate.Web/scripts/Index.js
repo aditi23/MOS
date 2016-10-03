@@ -1,14 +1,14 @@
 ﻿var app = angular.module("Home", ['ui.bootstrap', 'autocomplete', 'ngStorage', 'ngDialog', 'ngMaterial']);
 
 app.controller("TrendingReviewsController", function ($scope, $http) {
-    $http.get('http://mosrealestate.silive.in/rest/api/Search/TrendingReviews').
+    $http.get('http://localhost:19342/api/Search/TrendingReviews').
     then(function mySucces(response) {
         $scope.Trending = response.data;
         console.log(response.data)
     }, function myError(response) {
         alert("error");
     });
-    $http.get('http://mosrealestate.silive.in/rest/api/Search/SiteStats').
+    $http.get('http://localhost:19342/api/Search/SiteStats').
    then(function mySucces(response) {
        $scope.SiteStats = response.data;
    }, function myError(response) {
@@ -62,7 +62,7 @@ app.controller("NavBar", ['$scope', '$http', '$localStorage', '$sessionStorage',
         console.log($sessionStorage.UserId)
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId,
+            url: 'http://localhost:19342/api/User/GetUserFirstName?userId=' + $sessionStorage.UserId,
             data: { userId: $sessionStorage.UserId },
             headers: { 'Content-Type': 'application/json' }
         }).
@@ -77,7 +77,7 @@ app.controller("NavBar", ['$scope', '$http', '$localStorage', '$sessionStorage',
         console.log($sessionStorage.UserId)
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/Builder/BuilderDetails?builderId=' + $sessionStorage.UserId,
+            url: 'http://localhost:19342/api/Builder/BuilderDetails?builderId=' + $sessionStorage.UserId,
             headers: { 'Content-Type': 'application/json' }
         }).
         then(function mySucces(response) {
@@ -122,7 +122,7 @@ app.controller("ProjectController", ['$scope', '$http', '$localStorage', '$sessi
     var self = this;
 
 
-    $http.get('http://mosrealestate.silive.in/rest/api/Search/GetAllCities').
+    $http.get('http://localhost:19342/api/Search/GetAllCities').
    then(function mySucces(response) {
        $scope.City = response.data;
        //CityId = response.data.map(function (a) { return a.Id; });
@@ -138,7 +138,7 @@ app.controller("ProjectController", ['$scope', '$http', '$localStorage', '$sessi
         $sessionStorage.SelectedCity = CityId;
         $http({
             method: 'GET',
-            url: 'http://mosrealestate.silive.in/rest/api/Search/SearchByCity?cityId=' + CityId,
+            url: 'http://localhost:19342/api/Search/SearchByCity?cityId=' + CityId,
             //data: JSON.stringify(params),
             headers: { 'Content-Type': 'application/json' }
         }).
@@ -263,7 +263,7 @@ app.controller('LoginC', ['$scope', '$http', '$localstorage', '$sessionstorage',
     $scope.login = function () {
         $http({
             method: 'post',
-            url: 'http://mosrealestate.silive.in/rest/api/user/login',
+            url: 'http://localhost:19342/api/user/login',
             data: $scope.objuser, //forms user object
             headers: { 'content-type': 'application/json' }
         }).then(function mysuccess(response) {
